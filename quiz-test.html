@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Test - No Server Required</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .quiz-container { background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .question { background: white; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .options { margin: 10px 0; }
+        .option { margin: 5px 0; padding: 8px; background: #e9e9e9; border-radius: 3px; cursor: pointer; }
+        .option:hover { background: #d0d0d0; }
+        .option.selected { background: #007bff; color: white; }
+        .btn { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .btn:hover { background: #0056b3; }
+        .result { background: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .api-status { padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .api-success { background: #d4edda; border: 1px solid #c3e6cb; }
+        .api-error { background: #f8d7da; border: 1px solid #f5c6cb; }
+        .server-free { background: #e7f3ff; border: 1px solid #b3d9ff; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🧠 Quiz Test - GitHub Pages Ready</h1>
+    
+    <div class="server-free">
+        <h3>🚀 No Server Required!</h3>
+        <p>✅ Works directly on GitHub Pages<br>
+        ✅ Firebase backend only<br>
+        ✅ Client-side Groq AI integration<br>
+        ✅ No installation needed</p>
+    </div>
+    
+    <div class="api-status" id="apiStatus">
+        <strong>Status:</strong> Checking...
+    </div>
+
+    <div>
+        <h3>Generate Quiz</h3>
+        <select id="domain">
+            <option value="HTML5">HTML5</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="CSS">CSS</option>
+            <option value="React">React</option>
+            <option value="Node.js">Node.js</option>
+        </select>
+        
+        <select id="difficulty">
+            <option value="Beginner">Beginner</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+        </select>
+        
+        <input type="number" id="numQuestions" value="3" min="1" max="10" placeholder="Number of questions">
+        
+        <button class="btn" onclick="generateQuiz()">Generate Quiz</button>
+        <button class="btn" onclick="clearApiKey()">Clear API Key</button>
+    </div>
+
+    <div id="quizContainer"></div>
+    <div id="results"></div>
+
+    <script type="module">
+        // Import functions - no server needed!
+        import { generateQuizWithGroq } from './firebase-quiz-service.js';
+        import { clearApiKey as clearKey, validateConfig } from './config.js';
+
+        let currentQuiz = [];
+        let userAnswers = [];
+
+        // Check status on load
+        window.addEventListener('load', () => {
+            const apiStatus = document.getElementById('apiStatus');
+            if (validateConfig()) {
+                apiStatus.className = 'api-status api-success';
+                apiStatus.innerHTML = '<strong>Status:</strong> ✅ Ready! Groq AI + Firebase (No server needed)';
+            } else {
+                apiStatus.className = 'api-status api-error';
+                apiStatus.innerHTML = '<strong>Status:</strong> ⚠️ Using mock data. Add ?api_key=YOUR_KEY to URL';
+            }
+        });
+
+        window.generateQuiz = async function() {
+            const domain = document.getElementById('domain').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const numQuestions = parseInt(document.getElementById('numQuestions').value);
+            
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '<p>🔄 Generating quiz questions...</p>';
+            
+            try {
+                currentQuiz = await generateQuizWithGroq(domain, difficulty, numQuestions);
+                userAnswers = new Array(currentQuiz.length).fill(-1);
+                displayQuiz();
+            } catch (error) {
+                container.innerHTML = `<p style="color: red;">❌ Error: ${error.message}</p>`;
+            }
+        };
+
+        function displayQuiz() {
+            const container = document.getElementById('quizContainer');
+            let html = '<div class="quiz-container"><h3>📝 Quiz Questions</h3>';
+            
+            currentQuiz.forEach((q, index) => {
+                html += `<div class="question">
+                    <h4>Q${index + 1}: ${q.question}</h4>
+                    <div class="options">`;
+                
+                q.options.forEach((option, optIndex) => {
+                    html += `<div class="option" onclick="selectAnswer(${index}, ${optIndex})" id="q${index}_opt${optIndex}">
+                        ${String.fromCharCode(65 + optIndex)}. ${option}
+                    </div>`;
+                });
+                
+                html += '</div></div>';
+            });
+            
+            html += '<button class="btn" onclick="submitQuiz()">Submit Quiz</button></div>';
+            container.innerHTML = html;
+        }
+
+        window.selectAnswer = function(questionIndex, optionIndex) {
+            // Clear previous selection
+            for (let i = 0; i < 4; i++) {
+                const opt = document.getElementById(`q${questionIndex}_opt${i}`);
+                if (opt) opt.classList.remove('selected');
+            }
+            
+            // Select new option
+            document.getElementById(`q${questionIndex}_opt${optionIndex}`).classList.add('selected');
+            userAnswers[questionIndex] = optionIndex;
+        };
+
+        window.submitQuiz = function() {
+            let score = 0;
+            let resultsHtml = '<div class="result"><h3>📊 Quiz Results</h3>';
+            
+            currentQuiz.forEach((q, index) => {
+                const isCorrect = userAnswers[index] === q.correctAnswer;
+                if (isCorrect) score++;
+                
+                resultsHtml += `<div style="margin: 15px 0; padding: 10px; background: ${isCorrect ? '#d4edda' : '#f8d7da'}; border-radius: 5px;">
+                    <strong>Q${index + 1}:</strong> ${q.question}<br>
+                    <strong>Your answer:</strong> ${userAnswers[index] >= 0 ? q.options[userAnswers[index]] : 'Not answered'}<br>
+                    <strong>Correct answer:</strong> ${q.options[q.correctAnswer]}<br>
+                    <strong>Explanation:</strong> ${q.explanation}
+                </div>`;
+            });
+            
+            const percentage = Math.round((score / currentQuiz.length) * 100);
+            resultsHtml += `<h4>Final Score: ${score}/${currentQuiz.length} (${percentage}%)</h4></div>`;
+            
+            document.getElementById('results').innerHTML = resultsHtml;
+        };
+
+        window.clearApiKey = function() {
+            clearKey();
+            location.reload();
+        };
+    </script>
+</body>
+</html>
