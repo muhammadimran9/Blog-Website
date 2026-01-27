@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Take AI-powered quizzes on Web Development, Data Science, AI, and Cyber Security. Test your knowledge with multiple difficulty levels.">
+    <title>Quiz Test - IT Interview Hub</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="layout.js"></script>
+    <style>
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --gray: #64748b;
+  --gray-light: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s ease;
+  --success: #10b981;
+  --danger: #ef4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  background: var(--light);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 3rem 0;
+  min-height: calc(100vh - 200px);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h1 {
+  font-size: 2.5rem;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.section-title p {
+  color: var(--gray);
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.quiz-container {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: var(--shadow);
+  margin-top: 2rem;
+}
+
+/* Domain Selection */
+.domains-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.domains-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.domains-grid::-webkit-scrollbar-track {
+  background: var(--gray-light);
+  border-radius: 4px;
+}
+
+.domains-grid::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+.domains-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+.domain-card {
+  background: white;
+  border: 2px solid var(--gray-light);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.domain-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.domain-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.2);
+}
+
+.domain-card:hover::before {
+  transform: scaleX(1);
+}
+
+.domain-card.selected {
+  border-color: var(--primary);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.domain-card.selected::before {
+  transform: scaleX(1);
+}
+
+.domain-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.domain-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.domain-card p {
+  color: var(--gray);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Difficulty Selection */
+.difficulty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.difficulty-btn {
+  background: white;
+  border: 2px solid var(--gray-light);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.difficulty-btn:hover {
+  border-color: var(--primary);
+  background: rgba(37, 99, 235, 0.05);
+  transform: translateY(-2px);
+}
+
+.difficulty-btn.selected {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: white;
+}
+
+.difficulty-btn.beginner { border-left: 4px solid #10b981; }
+.difficulty-btn.easy { border-left: 4px solid #3b82f6; }
+.difficulty-btn.intermediate { border-left: 4px solid #f59e0b; }
+.difficulty-btn.pro { border-left: 4px solid #8b5cf6; }
+.difficulty-btn.hard { border-left: 4px solid #ef4444; }
+
+.difficulty-btn.selected.beginner { background: #10b981; }
+.difficulty-btn.selected.easy { background: #3b82f6; }
+.difficulty-btn.selected.intermediate { background: #f59e0b; }
+.difficulty-btn.selected.pro { background: #8b5cf6; }
+.difficulty-btn.selected.hard { background: #ef4444; }
+
+/* Quiz Question */
+.quiz-question-container {
+  display: none;
+}
+
+.quiz-question-container.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--gray-light);
+}
+
+.question-number {
+  font-size: 1.1rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.question-progress {
+  background: var(--gray-light);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.question-progress-bar {
+  background: var(--primary);
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.question-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.options-list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.option-item {
+  margin-bottom: 1rem;
+}
+
+.option-btn {
+  width: 100%;
+  background: white;
+  border: 2px solid var(--gray-light);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1rem;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.option-btn:hover {
+  border-color: var(--primary);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.option-btn.selected {
+  border-color: var(--primary);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.option-btn.correct {
+  border-color: var(--success);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.option-btn.incorrect {
+  border-color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.option-label {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.option-btn.selected .option-label {
+  background: var(--primary);
+  color: white;
+}
+
+.option-btn.correct .option-label {
+  background: var(--success);
+  color: white;
+}
+
+.option-btn.incorrect .option-label {
+  background: var(--danger);
+  color: white;
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--gray-light);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary);
+  color: white;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2), 0 2px 4px -1px rgba(37, 99, 235, 0.1);
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3), 0 4px 6px -2px rgba(37, 99, 235, 0.15);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: rgba(37, 99, 235, 0.05);
+  box-shadow: none;
+}
+
+/* Results */
+.results-container {
+  display: none;
+  text-align: center;
+  padding: 3rem;
+}
+
+.results-container.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.score-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+}
+
+.score-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.score-description {
+  color: var(--gray);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--gray-light);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid var(--danger);
+  color: var(--danger);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 1.5rem;
+  }
+
+  .domains-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .difficulty-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .question-text {
+    font-size: 1.25rem;
+  }
+
+  .quiz-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <div class="container">
+            <div class="section-title">
+                <h1><i class="fas fa-clipboard-question"></i> Take a Quiz</h1>
+                <p>Test your knowledge with AI-powered quizzes. Choose a domain and difficulty level to get started.</p>
+                <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">
+                    <i class="fas fa-shield-alt"></i> Questions are generated uniquely each time and cannot be copied or saved.
+                </p>
+            </div>
+
+            <div class="quiz-container">
+                <!-- Domain Selection -->
+                <div id="domainSelection" class="quiz-section">
+                    <h2 style="margin-bottom: 1.5rem; color: var(--dark);">Select a Domain</h2>
+                    <div class="domains-grid" id="domainsGrid">
+                        <!-- Domains will be loaded dynamically from index.html topics -->
+                    </div>
+                </div>
+
+                <!-- Difficulty Selection -->
+                <div id="difficultySelection" class="quiz-section hidden">
+                    <h2 style="margin-bottom: 1.5rem; color: var(--dark);">Choose Difficulty Level</h2>
+                    <div class="difficulty-grid">
+                        <button class="difficulty-btn beginner" data-difficulty="Beginner">Beginner</button>
+                        <button class="difficulty-btn easy" data-difficulty="Easy">Easy</button>
+                        <button class="difficulty-btn intermediate" data-difficulty="Intermediate">Intermediate</button>
+                        <button class="difficulty-btn pro" data-difficulty="Pro">Pro</button>
+                        <button class="difficulty-btn hard" data-difficulty="Hard">Hard</button>
+                    </div>
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <button class="btn btn-outline" id="backToDomainBtn">
+                            <i class="fas fa-arrow-left"></i> Back to Domains
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading -->
+                <div id="loadingSection" class="loading hidden">
+                    <div class="loading-spinner"></div>
+                    <p style="color: var(--gray); font-size: 1.1rem;">Generating your quiz...</p>
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="error-message hidden"></div>
+
+                <!-- Quiz Questions -->
+                <div id="quizSection" class="quiz-question-container">
+                    <div class="question-header">
+                        <span class="question-number" id="questionNumber">Question 1 of 10</span>
+                    </div>
+                    <div class="question-progress">
+                        <div class="question-progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="question-text" id="questionText"></div>
+                    <ul class="options-list" id="optionsList"></ul>
+                    <div class="quiz-actions">
+                        <button class="btn btn-outline" id="prevQuestionBtn" style="display: none;">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <button class="btn" id="nextQuestionBtn">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="btn" id="submitQuizBtn" style="display: none;">
+                            <i class="fas fa-check"></i> Submit Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div id="resultsSection" class="results-container">
+                    <div class="score-circle" id="scoreCircle">0%</div>
+                    <div class="score-text" id="scoreText">Your Score</div>
+                    <div class="score-description" id="scoreDescription"></div>
+                    <div id="emailStatus" style="margin-top: 1rem; min-height: 30px;"></div>
+                    <div style="margin-top: 2rem;">
+                        <button class="btn" id="restartQuizBtn">
+                            <i class="fas fa-redo"></i> Take Another Quiz
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script>
+        // Copy Protection - Disable right-click, copy, paste, text selection
+        (function() {
+            // Disable right-click context menu
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // Disable text selection
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // Disable copy (Ctrl+C, Cmd+C)
+            document.addEventListener('copy', function(e) {
+                e.clipboardData.setData('text/plain', '');
+                e.preventDefault();
+                return false;
+            });
+
+            // Disable cut (Ctrl+X, Cmd+X)
+            document.addEventListener('cut', function(e) {
+                e.clipboardData.setData('text/plain', '');
+                e.preventDefault();
+                return false;
+            });
+
+            // Disable paste (Ctrl+V, Cmd+V)
+            document.addEventListener('paste', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // Disable keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Disable F12 (Developer Tools)
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    return false;
+                }
+                // Disable Ctrl+Shift+I (Developer Tools)
+                if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                    e.preventDefault();
+                    return false;
+                }
+                // Disable Ctrl+Shift+J (Console)
+                if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+                    e.preventDefault();
+                    return false;
+                }
+                // Disable Ctrl+U (View Source)
+                if (e.ctrlKey && e.key === 'u') {
+                    e.preventDefault();
+                    return false;
+                }
+                // Disable Ctrl+S (Save Page)
+                if (e.ctrlKey && e.key === 's') {
+                    e.preventDefault();
+                    return false;
+                }
+                // Disable Ctrl+A (Select All) in quiz section
+                if (e.ctrlKey && e.key === 'a' && document.getElementById('quizSection').classList.contains('active')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // Disable drag and drop
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // Disable image dragging
+            document.addEventListener('drag', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // Add CSS to prevent text selection
+            const style = document.createElement('style');
+            style.textContent = `
+                body {
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+                .quiz-container, .question-text, .option-btn {
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+                .option-btn {
+                    cursor: pointer;
+                }
+            `;
+            document.head.appendChild(style);
+        })();
+
+        // Load domains from index.html topics
+        const topics = [
+            { icon: "fa-code", title: "Programming Basics", category: "Fundamentals" },
+            { icon: "fa-cubes", title: "OOP Concepts", category: "Fundamentals" },
+            { icon: "fa-layer-group", title: "Data Structures", category: "Algorithms" },
+            { icon: "fa-diagram-project", title: "Algorithms", category: "Algorithms" },
+            { icon: "fa-laptop-code", title: "Web Development", category: "Web" },
+            { icon: "fa-html5", title: "HTML5", category: "Web" },
+            { icon: "fa-css3-alt", title: "CSS3", category: "Web" },
+            { icon: "fa-js", title: "JavaScript", category: "Programming" },
+            { icon: "fa-react", title: "React JS", category: "Frontend" },
+            { icon: "fa-server", title: "Backend Development", category: "Backend" },
+            { icon: "fa-node-js", title: "Node.js", category: "Backend" },
+            { icon: "fa-database", title: "SQL", category: "Database" },
+            { icon: "fa-leaf", title: "MongoDB", category: "Database" },
+            { icon: "fa-sitemap", title: "System Design", category: "Architecture" },
+            { icon: "fa-cloud", title: "Cloud Computing", category: "DevOps" },
+            { icon: "fa-aws", title: "AWS", category: "Cloud" },
+            { icon: "fa-docker", title: "Docker", category: "DevOps" },
+            { icon: "fa-shield-halved", title: "Cyber Security", category: "Security" },
+            { icon: "fa-terminal", title: "Linux", category: "DevOps" },
+            { icon: "fa-code-branch", title: "Git & GitHub", category: "Tools" },
+            { icon: "fa-user-tie", title: "HR Interview", category: "Interview" },
+            { icon: "fa-brain", title: "Problem Solving", category: "Algorithms" },
+            { icon: "fa-python", title: "Python", category: "Programming" },
+            { icon: "fa-java", title: "Java", category: "Programming" },
+            { icon: "fa-php", title: "PHP", category: "Backend" },
+            { icon: "fa-c", title: "C / C++", category: "Programming" },
+            { icon: "fa-flutter", title: "Flutter", category: "Mobile" },
+            { icon: "fa-link", title: "Blockchain", category: "Emerging Tech" },
+            { icon: "fa-robot", title: "AI Concepts", category: "AI/ML" },
+            { icon: "fa-chart-line", title: "Data Science", category: "AI/ML" },
+            { icon: "fa-microchip", title: "Machine Learning", category: "AI/ML" },
+            { icon: "fa-network-wired", title: "Computer Networks", category: "Networking" },
+            { icon: "fa-desktop", title: "Operating Systems", category: "Fundamentals" },
+            { icon: "fa-vial", title: "Manual Testing", category: "Testing" },
+            { icon: "fa-gear", title: "Automation Testing", category: "Testing" },
+            { icon: "fa-lock", title: "API Security", category: "Security" },
+            { icon: "fa-user-shield", title: "Authentication", category: "Security" },
+            { icon: "fa-key", title: "JWT & OAuth", category: "Security" },
+            { icon: "fa-project-diagram", title: "Low Level Design", category: "Design" },
+            { icon: "fa-building", title: "High Level Design", category: "Design" },
+            { icon: "fa-clipboard-check", title: "SDLC", category: "Process" },
+            { icon: "fa-people-group", title: "Agile & Scrum", category: "Process" },
+            { icon: "fa-search", title: "MCQs", category: "Practice" },
+            { icon: "fa-file-lines", title: "Resume Preparation", category: "Career" },
+            { icon: "fa-comments", title: "Behavioral Questions", category: "Interview" },
+            { icon: "fa-laptop", title: "Scenario Based Questions", category: "Interview" },
+            { icon: "fa-terminal", title: "Shell Scripting", category: "DevOps" },
+            { icon: "fa-server", title: "Microservices", category: "Architecture" },
+            { icon: "fa-cloud-arrow-up", title: "CI / CD", category: "DevOps" },
+            { icon: "fa-database", title: "Database Design", category: "Database" },
+            { icon: "fa-layer-group", title: "Design Patterns", category: "Design" },
+            { icon: "fa-memory", title: "Caching", category: "Performance" },
+            { icon: "fa-diagram-project", title: "Software Architecture", category: "Architecture" }
+        ];
+
+        // Quiz State
+        let quizState = {
+            domain: null,
+            difficulty: null,
+            questions: [],
+            currentQuestion: 0,
+            answers: {},
+            score: 0
+        };
+
+        // API Endpoint (adjust if needed)
+        const API_URL = 'http://localhost:3000/api';
+        
+        // Check authentication on page load
+        async function checkAuth() {
+            try {
+                const response = await fetch(`${API_URL}/auth/status`, {
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    // If server returns error, save current URL and redirect to login
+                    sessionStorage.setItem('returnUrl', window.location.href);
+                    window.location.href = 'login.html';
+                    return false;
+                }
+                
+                const data = await response.json();
+                
+                if (!data.authenticated) {
+                    // Redirect to login if not authenticated, save return URL
+                    sessionStorage.setItem('returnUrl', window.location.href);
+                    window.location.href = 'login.html';
+                    return false;
+                }
+                
+                // Store user info
+                if (data.user) {
+                    sessionStorage.setItem('user', JSON.stringify(data.user));
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                }
+                return true;
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                // If server is not running or connection fails, redirect to login
+                sessionStorage.setItem('returnUrl', window.location.href);
+                window.location.href = 'login.html';
+                return false;
+            }
+        }
+
+        // Load domains on page load
+        function loadDomains() {
+            const domainsGrid = document.getElementById('domainsGrid');
+            domainsGrid.innerHTML = '';
+            
+            // Check if there's a saved domain/difficulty selection from login redirect
+            const savedDomain = sessionStorage.getItem('selectedDomain');
+            const savedDifficulty = sessionStorage.getItem('selectedDifficulty');
+            
+            topics.forEach(topic => {
+                const card = document.createElement('div');
+                card.className = 'domain-card';
+                card.dataset.domain = topic.title;
+                card.innerHTML = `
+                    <div class="domain-icon"><i class="fas ${topic.icon}"></i></div>
+                    <h3>${topic.title}</h3>
+                    <p>${topic.category}</p>
+                `;
+                card.addEventListener('click', async () => {
+                    // Quick auth check - if not authenticated, save domain and redirect
+                    try {
+                        const authResponse = await fetch(`${API_URL}/auth/status`, {
+                            credentials: 'include'
+                        });
+                        const authData = await authResponse.json();
+                        
+                        if (!authData.authenticated) {
+                            // Save selected domain before redirecting
+                            sessionStorage.setItem('selectedDomain', card.dataset.domain);
+                            sessionStorage.setItem('returnUrl', window.location.href);
+                            window.location.href = 'login.html';
+                            return;
+                        }
+                    } catch (error) {
+                        // If auth check fails, save domain and redirect
+                        sessionStorage.setItem('selectedDomain', card.dataset.domain);
+                        sessionStorage.setItem('returnUrl', window.location.href);
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    
+                    // User is authenticated, proceed with domain selection
+                    document.querySelectorAll('.domain-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    quizState.domain = card.dataset.domain;
+                    
+                    setTimeout(() => {
+                        document.getElementById('domainSelection').classList.add('hidden');
+                        document.getElementById('difficultySelection').classList.remove('hidden');
+                    }, 300);
+                });
+                domainsGrid.appendChild(card);
+            });
+            
+            // If there's a saved domain, auto-select it and show difficulty selection
+            if (savedDomain) {
+                const savedCard = Array.from(document.querySelectorAll('.domain-card')).find(
+                    c => c.dataset.domain === savedDomain
+                );
+                if (savedCard) {
+                    savedCard.classList.add('selected');
+                    quizState.domain = savedDomain;
+                    
+                    // Remove saved domain from storage
+                    sessionStorage.removeItem('selectedDomain');
+                    
+                    setTimeout(() => {
+                        document.getElementById('domainSelection').classList.add('hidden');
+                        document.getElementById('difficultySelection').classList.remove('hidden');
+                        
+                        // If there's also a saved difficulty, auto-select it and start quiz
+                        if (savedDifficulty) {
+                            const savedDifficultyBtn = document.querySelector(
+                                `.difficulty-btn[data-difficulty="${savedDifficulty}"]`
+                            );
+                            if (savedDifficultyBtn) {
+                                savedDifficultyBtn.classList.add('selected');
+                                quizState.difficulty = savedDifficulty;
+                                sessionStorage.removeItem('selectedDifficulty');
+                                // Auto-start quiz after a brief delay
+                                setTimeout(() => {
+                                    startQuiz();
+                                }, 500);
+                            }
+                        }
+                    }, 300);
+                }
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check authentication first - this will redirect if not authenticated
+            const isAuthenticated = await checkAuth();
+            if (isAuthenticated) {
+                loadDomains();
+            }
+            // If not authenticated, checkAuth() already redirected to login
+        });
+
+        // Domain selection is now handled in loadDomains() function
+
+        // Difficulty Selection
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // No need to check auth here - already checked on page load
+                document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                quizState.difficulty = btn.dataset.difficulty;
+                
+                startQuiz();
+            });
+        });
+
+        // Back to Domain
+        document.getElementById('backToDomainBtn').addEventListener('click', () => {
+            document.getElementById('difficultySelection').classList.add('hidden');
+            document.getElementById('domainSelection').classList.remove('hidden');
+            quizState.domain = null;
+            quizState.difficulty = null;
+        });
+
+        // Start Quiz
+        async function startQuiz() {
+            document.getElementById('difficultySelection').classList.add('hidden');
+            document.getElementById('loadingSection').classList.remove('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+
+            try {
+                const response = await fetch(`${API_URL}/generate-quiz`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        domain: quizState.domain,
+                        difficulty: quizState.difficulty
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    
+                    // If authentication error, save state and redirect to login
+                    if (response.status === 401) {
+                        sessionStorage.setItem('selectedDomain', quizState.domain);
+                        sessionStorage.setItem('selectedDifficulty', quizState.difficulty);
+                        sessionStorage.setItem('returnUrl', window.location.href);
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    
+                    throw new Error(errorData.message || `Server error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (!data.questions || !Array.isArray(data.questions)) {
+                    throw new Error('Invalid quiz data received');
+                }
+
+                quizState.questions = data.questions;
+                quizState.currentQuestion = 0;
+                quizState.answers = {};
+
+                document.getElementById('loadingSection').classList.add('hidden');
+                displayQuestion();
+            } catch (error) {
+                document.getElementById('loadingSection').classList.add('hidden');
+                
+                let errorMessage = 'Failed to generate quiz. ';
+                if (error.message.includes('Failed to fetch') || error.message.includes('ERR_CONNECTION_REFUSED')) {
+                    errorMessage += 'The server is not running. Please start the backend server by running "npm start" in the project directory.';
+                } else {
+                    errorMessage += error.message || 'Please try again.';
+                }
+                
+                showError(errorMessage);
+                document.getElementById('difficultySelection').classList.remove('hidden');
+            }
+        }
+
+        // Display Question
+        function displayQuestion() {
+            const question = quizState.questions[quizState.currentQuestion];
+            const totalQuestions = quizState.questions.length;
+            const progress = ((quizState.currentQuestion + 1) / totalQuestions) * 100;
+
+            document.getElementById('quizSection').classList.add('active');
+            document.getElementById('questionNumber').textContent = `Question ${quizState.currentQuestion + 1} of ${totalQuestions}`;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('questionText').textContent = question.question;
+
+            const optionsList = document.getElementById('optionsList');
+            optionsList.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.className = 'option-item';
+                
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.type = 'button';
+                if (quizState.answers[quizState.currentQuestion] === index) {
+                    btn.classList.add('selected');
+                }
+
+                const label = document.createElement('span');
+                label.className = 'option-label';
+                label.textContent = String.fromCharCode(65 + index); // A, B, C, D
+
+                const text = document.createElement('span');
+                text.textContent = option;
+
+                btn.appendChild(label);
+                btn.appendChild(text);
+                btn.addEventListener('click', () => selectOption(index));
+                li.appendChild(btn);
+                optionsList.appendChild(li);
+            });
+
+            // Navigation buttons
+            document.getElementById('prevQuestionBtn').style.display = 
+                quizState.currentQuestion > 0 ? 'inline-flex' : 'none';
+            
+            const isLastQuestion = quizState.currentQuestion === totalQuestions - 1;
+            document.getElementById('nextQuestionBtn').style.display = 
+                isLastQuestion ? 'none' : 'inline-flex';
+            document.getElementById('submitQuizBtn').style.display = 
+                isLastQuestion ? 'inline-flex' : 'none';
+        }
+
+        // Select Option
+        function selectOption(index) {
+            quizState.answers[quizState.currentQuestion] = index;
+            
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            const clickedBtn = event.target.closest('.option-btn');
+            if (clickedBtn) {
+                clickedBtn.classList.add('selected');
+            } else {
+                // Fallback: find button by index
+                const options = document.querySelectorAll('.option-btn');
+                if (options[index]) {
+                    options[index].classList.add('selected');
+                }
+            }
+        }
+
+        // Previous Question
+        document.getElementById('prevQuestionBtn').addEventListener('click', () => {
+            if (quizState.currentQuestion > 0) {
+                quizState.currentQuestion--;
+                displayQuestion();
+            }
+        });
+
+        // Next Question
+        document.getElementById('nextQuestionBtn').addEventListener('click', () => {
+            if (quizState.currentQuestion < quizState.questions.length - 1) {
+                quizState.currentQuestion++;
+                displayQuestion();
+            }
+        });
+
+        // Submit Quiz
+        document.getElementById('submitQuizBtn').addEventListener('click', () => {
+            calculateScore();
+            showResults();
+        });
+
+        // Calculate Score
+        function calculateScore() {
+            let correct = 0;
+            quizState.questions.forEach((question, index) => {
+                if (quizState.answers[index] === question.correctAnswer) {
+                    correct++;
+                }
+            });
+            quizState.score = correct;
+        }
+
+        // Show Results
+        async function showResults() {
+            const totalQuestions = quizState.questions.length;
+            const percentage = Math.round((quizState.score / totalQuestions) * 100);
+            
+            document.getElementById('quizSection').classList.remove('active');
+            document.getElementById('resultsSection').classList.add('active');
+            
+            document.getElementById('scoreCircle').textContent = `${percentage}%`;
+            document.getElementById('scoreText').textContent = 
+                `You scored ${quizState.score} out of ${totalQuestions}`;
+            
+            let description = '';
+            if (percentage >= 90) {
+                description = 'Outstanding! You have excellent knowledge in this domain.';
+            } else if (percentage >= 70) {
+                description = 'Great job! You have a good understanding of this topic.';
+            } else if (percentage >= 50) {
+                description = 'Good effort! Keep practicing to improve your knowledge.';
+            } else {
+                description = 'Keep learning! Review the topics and try again.';
+            }
+            document.getElementById('scoreDescription').textContent = description;
+            
+            // Send results via email
+            await sendResultsEmail(totalQuestions, percentage);
+        }
+        
+        // Send quiz results via email
+        async function sendResultsEmail(totalQuestions, percentage) {
+            try {
+                // Prepare questions with correct answers for email
+                const questionsForEmail = quizState.questions.map((q, index) => ({
+                    question: q.question,
+                    options: q.options,
+                    correctAnswer: q.correctAnswer
+                }));
+                
+                const response = await fetch(`${API_URL}/send-results`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        domain: quizState.domain,
+                        difficulty: quizState.difficulty,
+                        score: quizState.score,
+                        total: totalQuestions,
+                        questions: questionsForEmail,
+                        answers: quizState.answers
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.emailSent) {
+                    // Show email confirmation
+                    const emailStatus = document.getElementById('emailStatus');
+                    emailStatus.innerHTML = `
+                        <div style="background: rgba(16, 185, 129, 0.1); border: 2px solid var(--success); color: var(--success); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <i class="fas fa-check-circle"></i> Quiz results have been sent to your email!
+                        </div>
+                    `;
+                } else {
+                    console.error('Email sending failed:', data);
+                    // Show optional message
+                    const emailStatus = document.getElementById('emailStatus');
+                    emailStatus.innerHTML = `
+                        <div style="background: rgba(239, 68, 68, 0.1); border: 2px solid var(--danger); color: var(--danger); padding: 1rem; border-radius: 8px; text-align: center; font-size: 0.9rem;">
+                            <i class="fas fa-info-circle"></i> Email could not be sent, but your results are saved.
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error sending email:', error);
+                // Don't show error to user, email is optional
+            }
+        }
+
+        // Restart Quiz
+        document.getElementById('restartQuizBtn').addEventListener('click', () => {
+            quizState = {
+                domain: null,
+                difficulty: null,
+                questions: [],
+                currentQuestion: 0,
+                answers: {},
+                score: 0
+            };
+            
+            document.getElementById('resultsSection').classList.remove('active');
+            document.getElementById('quizSection').classList.remove('active');
+            document.getElementById('domainSelection').classList.remove('hidden');
+            document.getElementById('emailStatus').innerHTML = '';
+            document.querySelectorAll('.domain-card').forEach(c => c.classList.remove('selected'));
+        });
+
+        // Show Error
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

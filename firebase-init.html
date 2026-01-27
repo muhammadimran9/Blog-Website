@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Setup - IT Interview Hub</title>
+    <script src="https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .status {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #4b5563;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+        .status.loading {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left: 4px solid #3b82f6;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .info-box p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Firebase Setup</h1>
+        <p style="color: #6b7280; margin-bottom: 20px;">IT Interview Hub - Cloud Backend</p>
+        
+        <div id="status" class="status loading">
+            Initializing Firebase...
+        </div>
+
+        <div id="auth-section" style="display: none;">
+            <h3 style="color: #1f2937; margin-bottom: 15px;">Sign In / Register</h3>
+            <input type="email" id="email" placeholder="Enter your email" />
+            <input type="password" id="password" placeholder="Enter your password" />
+            <button onclick="signUpUser()">Create Account</button>
+            <button onclick="signInUser()" style="margin-top: 10px;">Sign In</button>
+        </div>
+
+        <div id="user-section" style="display: none;">
+            <div class="status success">
+                ✓ Firebase Connected Successfully!
+            </div>
+            <div class="info-box">
+                <p><strong>Welcome:</strong> <span id="user-email"></span></p>
+                <p><strong>Firebase Database:</strong> Ready</p>
+                <p><strong>Features Enabled:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Real-time Quiz Data</li>
+                    <li>User Authentication</li>
+                    <li>Quiz Results Storage</li>
+                </ul>
+            </div>
+            <button onclick="signOutUser()">Sign Out</button>
+            <p style="text-align: center; margin-top: 20px; color: #6b7280;">
+                <a href="test.html" style="color: #2563eb; text-decoration: none;">← Back to Quiz</a>
+            </p>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+            <p><strong>Firebase Project:</strong> blogstech-51a16</p>
+            <p><strong>Realtime Database:</strong> Enabled</p>
+            <p><strong>Authentication:</strong> Email/Password</p>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHggfL_VVnMnVUKqV92r8gtd6WE6IWohE",
+            authDomain: "blogstech-51a16.firebaseapp.com",
+            projectId: "blogstech-51a16",
+            storageBucket: "blogstech-51a16.firebasestorage.app",
+            messagingSenderId: "648513363852",
+            appId: "1:648513363852:web:6fd46645ca30fbaf1080a9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        // Make auth available globally
+        window.auth = auth;
+        window.database = database;
+        window.firebaseApp = app;
+
+        // Update UI on auth state change
+        onAuthStateChanged(auth, (user) => {
+            const statusDiv = document.getElementById('status');
+            const authSection = document.getElementById('auth-section');
+            const userSection = document.getElementById('user-section');
+
+            if (user) {
+                // User is signed in
+                statusDiv.style.display = 'none';
+                authSection.style.display = 'none';
+                userSection.style.display = 'block';
+                document.getElementById('user-email').textContent = user.email;
+                localStorage.setItem('firebaseUser', JSON.stringify({
+                    uid: user.uid,
+                    email: user.email
+                }));
+            } else {
+                // User is signed out
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'status';
+                statusDiv.textContent = 'Ready to sign in';
+                authSection.style.display = 'block';
+                userSection.style.display = 'none';
+                localStorage.removeItem('firebaseUser');
+            }
+        });
+
+        // Sign up function
+        window.signUpUser = async function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert('Please enter email and password');
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                console.log('User created:', userCredential.user);
+            } catch (error) {
+                console.error('Sign up error:', error);
+                alert('Error: ' + error.message);
+            }
+        };
+
+        // Sign in function
+        window.signInUser = async function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert('Please enter email and password');
+                return;
+            }
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                console.log('User signed in:', userCredential.user);
+            } catch (error) {
+                console.error('Sign in error:', error);
+                alert('Error: ' + error.message);
+            }
+        };
+
+        // Sign out function
+        window.signOutUser = async function() {
+            try {
+                await signOut(auth);
+                console.log('User signed out');
+            } catch (error) {
+                console.error('Sign out error:', error);
+                alert('Error: ' + error.message);
+            }
+        };
+
+        // Update status to show Firebase is connected
+        setTimeout(() => {
+            const statusDiv = document.getElementById('status');
+            if (statusDiv.style.display !== 'none') {
+                statusDiv.className = 'status success';
+                statusDiv.textContent = '✓ Firebase Connected Successfully!';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

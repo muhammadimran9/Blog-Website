@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP Concepts - 25 Essential Interview Questions & Answers</title>
+    <meta name="description" content="Master Object-Oriented Programming with 25 essential interview questions, detailed answers, and real-world code examples. Perfect for interview preparation and skill building.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="layout.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #7c3aed;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9fafb;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Box */
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            align-self: flex-start;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar h2 i {
+            color: var(--primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            color: var(--gray);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .toc-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .toc-hidden {
+            display: none;
+        }
+
+        .toc-toggle-btn {
+            margin-left: auto;
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .toc-toggle-btn:hover {
+            background: rgba(37, 99, 235, 0.15);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .breadcrumbs {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumbs span {
+            color: var(--gray);
+        }
+
+        /* Question Box Styles */
+        .q-box {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: var(--transition);
+        }
+
+        .q-box:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .q-box h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .q-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .q-number {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .q-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .q-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn i {
+            font-size: 0.9em;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        /* Answer Styles */
+        .answer {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .answer-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .answer-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .answer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .answer-section h4 i {
+            color: var(--primary);
+        }
+
+        .answer-section p {
+            margin-bottom: 1rem;
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        /* Code Block Styles */
+        pre {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        pre code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0f172a;
+            padding: 0.5rem 1rem;
+            border-radius: 6px 6px 0 0;
+            margin: 0;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #94a3b8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+
+        .page-info {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 2rem;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            header p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .search-box input {
+                padding: 0.75rem 1rem 0.75rem 2.25rem;
+                font-size: 0.95rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .main-content, .sidebar {
+                padding: 1rem;
+            }
+
+            .q-box {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .q-box h3 {
+                font-size: 1.1rem;
+                line-height: 1.3;
+            }
+
+            .q-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .q-tags {
+                margin-bottom: 0.75rem;
+            }
+
+            .q-tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1.5rem 0.75rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0.75rem;
+            }
+
+            .main-content, .sidebar {
+                padding: 0.75rem;
+            }
+
+            .q-box {
+                padding: 0.75rem;
+            }
+
+            .q-box h3 {
+                font-size: 1rem;
+            }
+
+            .sidebar h2 {
+                font-size: 1rem;
+            }
+
+            .toc-link {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .q-number {
+                width: 24px;
+                height: 24px;
+                font-size: 0.7rem;
+            }
+
+            .q-tag {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.5rem;
+            }
+
+            pre {
+                padding: 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .code-header {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.7rem;
+            }
+
+            .copy-btn {
+                padding: 0.2rem 0.5rem;
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .mobile-sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            background: white;
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-sidebar-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-sidebar-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-sidebar-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .mobile-sidebar.active {
+            right: 0;
+        }
+
+        .mobile-sidebar-overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-sidebar .sidebar {
+                display: block;
+                position: static;
+                margin: 0;
+                padding: 1rem;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .btn, .toc-link, .copy-btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .toc-link {
+                padding: 0.75rem;
+            }
+
+            .q-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Improved mobile typography */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .q-box p, .answer-section p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+        }
+
+        /* Better mobile spacing */
+        @media (max-width: 768px) {
+            .q-box {
+                border-radius: 8px;
+            }
+
+            .main-content {
+                border-radius: 8px;
+            }
+
+            .sidebar {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    
+    <header>
+        <div class="header-content">
+            <h1>OOP Concepts</h1>
+            <p>Master Object-Oriented Programming with 100 essential interview questions, detailed answers, and real-world code examples</p>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search questions...">
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <h3><i class="fas fa-list"></i> Menu</h3>
+            <button class="mobile-sidebar-close" id="mobileSidebarClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h2><i class="fas fa-list"></i> Table of Contents <button class="toc-toggle-btn" id="tocToggleBtnMobile" type="button" aria-label="Toggle table of contents"><i class="fas fa-bars"></i></button></h2>
+                <ul class="toc-list toc-hidden" id="tocListMobile">
+                    <!-- Filled by JavaScript -->
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h2><i class="fas fa-link"></i> Quick Links</h2>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="/" class="toc-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-book"></i> All Topics</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link" onclick="downloadPDF()"><i class="fas fa-download"></i> Download PDF</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-question-circle"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar with Table of Contents -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2><i class="fas fa-list"></i> Table of Contents <button class="toc-toggle-btn" id="tocToggleBtn" type="button" aria-label="Toggle table of contents"><i class="fas fa-bars"></i></button></h2>
+                <ul class="toc-list toc-hidden" id="tocList">
+                    <!-- Filled by JavaScript -->
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h2><i class="fas fa-link"></i> Quick Links</h2>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="/" class="toc-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-book"></i> All Topics</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link" onclick="downloadPDF()"><i class="fas fa-download"></i> Download PDF</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-question-circle"></i> About</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="breadcrumbs">
+                <a href="/">Home</a>
+                <span>/</span>
+                <a href="#">Topics</a>
+                <span>/</span>
+                <span>OOP Concepts</span>
+            </div>
+            
+            <h2 style="margin-bottom: 2rem;">25 Essential OOP Interview Questions</h2>
+            
+            <!-- Adsterra Ad Placement - Top -->
+            <div style="text-align: center; margin: 2rem 0;">
+                <script>
+  atOptions = {
+    'key' : '30e0f65d6b0b49e9f4a86a454e6d5a48',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/30e0f65d6b0b49e9f4a86a454e6d5a48/invoke.js"></script> </div>
+            
+            <div id="questionsContainer">
+                <!-- Questions will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="pagination">
+                <button class="btn" id="prevPage"><i class="fas fa-chevron-left"></i> Previous</button>
+                <span id="pageInfo" class="page-info">Page 1 of 12</span>
+                <button class="btn" id="nextPage">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <footer>
+        <div class="footer-content">
+            <p> 2025 IT Interview Hub – OOP Concepts</p>
+            <p>Your go-to resource for technical interview preparation</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="#">Topics</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        // Initialize syntax highlighting
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+
+        // Pagination variables
+        let currentPage = 1;
+        const questionsPerPage = 10; // Changed to show 10 questions per page
+        let currentQuestions = [];
+
+        // Questions data
+        const data = [
+            {
+                q: "What is Object-Oriented Programming (OOP)?",
+                a: "Object-Oriented Programming is a programming paradigm based on the concept of 'objects' which contain data (attributes) and code (methods). OOP organizes software design around data, rather than functions and logic. It provides four main principles: encapsulation, abstraction, inheritance, and polymorphism.",
+                r: "Think of a car as an object - it has properties (color, speed) and behaviors (start, stop, accelerate).",
+                tags: ["oop-basics", "concepts", "introduction"]
+            },
+            {
+                q: "What is the difference between a class and an object?",
+                a: "A class is a blueprint or template for creating objects, while an object is an instance of a class. A class defines properties and methods that objects will have, but doesn't occupy memory until instantiated. Objects are actual entities that exist in memory with their own state and behavior.",
+                r: "Class = Car blueprint, Object = Your specific red Toyota Camry with VIN 12345.",
+                tags: ["oop-basics", "class", "object", "instantiation"]
+            },
+            {
+                q: "What is encapsulation in OOP?",
+                a: "Encapsulation is the bundling of data (attributes) and methods that operate on the data into a single unit (class). It also involves restricting direct access to some of an object's components, which is known as data hiding. This is achieved using access modifiers like private, protected, and public.",
+                r: "A bank account encapsulates balance data and provides methods like deposit() and withdraw() instead of direct access to balance.",
+                tags: ["oop-principles", "encapsulation", "data-hiding", "access-modifiers"]
+            },
+            {
+                q: "What is abstraction in OOP?",
+                a: "Abstraction is the concept of hiding complex implementation details and showing only the essential features of an object. It helps reduce complexity by allowing programmers to focus on interactions at a higher level. Abstract classes and interfaces are common ways to implement abstraction.",
+                r: "When you drive a car, you use the steering wheel and pedals (abstraction) without needing to know how the engine works (implementation).",
+                tags: ["oop-principles", "abstraction", "abstract-class", "interface"]
+            },
+            {
+                q: "What is inheritance in OOP?",
+                a: "Inheritance is a mechanism where a new class (derived/child class) inherits properties and methods from an existing class (base/parent class). This promotes code reuse and establishes a hierarchical relationship between classes. The child class can extend, modify, or add new functionality.",
+                r: "A 'SportsCar' class inherits from 'Car' class, getting all car features plus adding turbo boost functionality.",
+                tags: ["oop-principles", "inheritance", "base-class", "derived-class", "code-reuse"]
+            },
+            {
+                q: "What is polymorphism in OOP?",
+                a: "Polymorphism means 'many forms' and allows objects of different classes to be treated as objects of a common superclass. It enables one interface to be used for a general class of actions. There are two types: compile-time (method overloading) and runtime (method overriding).",
+                r: "A 'draw()' method works differently for Circle, Square, and Triangle objects, but you can call draw() on any shape.",
+                tags: ["oop-principles", "polymorphism", "method-overloading", "method-overriding"]
+            },
+            {
+                q: "What are access modifiers in OOP?",
+                a: "Access modifiers control the visibility and accessibility of class members (fields, methods, constructors). Common modifiers are: public (accessible everywhere), private (accessible only within the same class), protected (accessible within class and subclasses), and package/default (accessible within the same package).",
+                r: "A bank account's balance is private, deposit() is public, and accountNumber might be protected for subclass access.",
+                tags: ["encapsulation", "access-modifiers", "visibility", "public", "private", "protected"]
+            },
+            {
+                q: "What is recursion, and what is a base case?",
+                a: "Recursion is when a function solves a problem by calling itself on a smaller version of the same problem. For recursion to be safe, it must have a base case—a condition where it stops calling itself. Without a base case (or if the base case is never reached), recursion will keep going until the program runs out of memory.",
+                r: "Processing a tree structure is naturally recursive because each node can have child nodes.",
+                tags: ["basics", "recursion", "control-flow"]
+            },
+            {
+                q: "What is the difference between static and instance members?",
+                a: "Static members belong to the class itself rather than to any specific instance. They are shared across all objects and can be accessed using the class name. Instance members belong to individual objects and each object has its own copy. Static methods cannot access instance members directly.",
+                r: "Math.PI is static (same for all), while each Person object has its own name (instance).",
+                tags: ["static", "instance", "class-members", "object-members", "memory"]
+            },
+            {
+                q: "What is composition in OOP and how does it differ from inheritance?",
+                a: "Composition is a 'has-a' relationship where a class contains objects of other classes as members. Inheritance is an 'is-a' relationship where a subclass extends a parent class. Composition provides more flexibility and avoids deep inheritance hierarchies. The principle 'favor composition over inheritance' suggests using composition when possible.",
+                r: "Car has-a Engine (composition) vs SportsCar is-a Car (inheritance).",
+                tags: ["composition", "inheritance", "design-patterns", "has-a", "is-a"]
+            },
+            {
+                q: "What is method chaining in OOP?",
+                a: "Method chaining is a technique where multiple method calls are made on the same object in a single statement. Each method returns the object itself (this), allowing subsequent calls. This creates fluent interfaces and makes code more readable. Common in builder patterns and query builders.",
+                r: "person.setName('John').setAge(25).setEmail('john@email') chains multiple setters.",
+                tags: ["method-chaining", "fluent-interface", "builder-pattern", "this"]
+            },
+            {
+                q: "What is the difference between shallow copy and deep copy?",
+                a: "Shallow copy copies the object's fields but not the objects they reference - both copies share the same nested objects. Deep copy creates copies of all nested objects recursively. Shallow copy is faster but can cause unintended side effects when modifying nested objects. Deep copy is safer but more expensive.",
+                r: "Shallow: two lists pointing to same items. Deep: two independent lists with duplicate items.",
+                tags: ["copying", "memory", "object-cloning", "reference-types"]
+            },
+            {
+                q: "What is the SOLID principle in OOP?",
+                a: "SOLID is an acronym for five OOP design principles: Single Responsibility (each class has one reason to change), Open/Closed (open for extension, closed for modification), Liskov Substitution (subtypes must be substitutable for base types), Interface Segregation (many specific interfaces better than one general), and Dependency Inversion (depend on abstractions, not concretions). These principles guide robust, maintainable OOP design.",
+                r: "SOLID helps create flexible, reusable, and maintainable object-oriented systems.",
+                tags: ["solid", "design-principles", "architecture", "best-practices"]
+            },
+            {
+                q: "What is the difference between method overloading and method overriding?",
+                a: "Method overloading is compile-time polymorphism where multiple methods have the same name but different parameters (same class). Method overriding is runtime polymorphism where a subclass provides a specific implementation of a method already defined in its superclass (different classes). Overloading changes method signature, overriding keeps the same signature.",
+                r: "Overloading: calculate(int) vs calculate(double). Overriding: Dog overrides Animal's makeSound().",
+                tags: ["polymorphism", "method-overloading", "method-overriding", "inheritance", "compile-time", "runtime"]
+            },
+            {
+                q: "What is the Liskov Substitution Principle (LSP)?",
+                a: "LSP states that objects of a superclass should be replaceable with objects of a subclass without affecting program correctness. Subclasses must honor the contract of their parent classes - they shouldn't strengthen preconditions or weaken postconditions. This ensures inheritance hierarchies are reliable and substitutable.",
+                r: "Any code using a Bird should work with a Penguin without breaking, even if Penguins can't fly.",
+                tags: ["solid", "liskov", "inheritance", "substitution", "design-principles"]
+            },
+            {
+                q: "What is the difference between abstract classes and interfaces?",
+                a: "Abstract classes can have implemented methods, constructors, and state variables, supporting single inheritance. Interfaces define pure contracts with no implementation, supporting multiple inheritance. Abstract classes share code among closely related classes, while interfaces define behavior across unrelated classes. Choose abstract classes for 'is-a' relationships with shared code, interfaces for 'can-do' capabilities.",
+                r: "Abstract Vehicle class with shared engine logic vs Flyable interface for planes, birds, drones.",
+                tags: ["abstract-class", "interface", "inheritance", "design", "contracts"]
+            },
+            {
+                q: "What is the Single Responsibility Principle (SRP)?",
+                a: "SRP states that a class should have only one reason to change - meaning it should have only one primary responsibility or purpose. This principle helps create more maintainable, understandable, and robust code. When a class has multiple responsibilities, changes to one responsibility can unexpectedly affect others, making the code fragile and harder to maintain.",
+                r: "A User class should handle user data, not email sending and database logging too.",
+                tags: ["solid", "single-responsibility", "design-principles", "maintainability", "class-design"]
+            },
+            {
+                q: "What is the Open/Closed Principle (OCP)?",
+                a: "OCP states that software entities should be open for extension but closed for modification. This means you should be able to add new functionality without changing existing code. Achieve this through abstraction, interfaces, and polymorphism. This principle reduces the risk of introducing bugs when extending functionality and makes code more maintainable.",
+                r: "Add new payment methods by creating new classes, not modifying existing payment processor code.",
+                tags: ["solid", "open-closed", "design-principles", "extensibility", "maintenance"]
+            },
+            {
+                q: "What is the Interface Segregation Principle (ISP)?",
+                a: "ISP states that clients should not be forced to depend on interfaces they don't use. Instead of large, monolithic interfaces, create smaller, specific interfaces for different client needs. This prevents 'interface pollution' where classes must implement methods they don't need. ISP leads to more focused, maintainable code and reduces the impact of changes.",
+                r: "Separate Print and Scan interfaces instead of one MultiFunctionDevice interface.",
+                tags: ["solid", "interface-segregation", "design-principles", "interfaces", "client-focused"]
+            },
+            {
+                q: "What is the Dependency Inversion Principle (DIP)?",
+                a: "DIP states that high-level modules should not depend on low-level modules; both should depend on abstractions. Also, abstractions should not depend on details; details should depend on abstractions. This principle decouples components, making systems more flexible and testable. It's the foundation for dependency injection and inversion of control containers.",
+                r: "Business logic depends on Logger interface, not concrete FileLogger or DatabaseLogger classes.",
+                tags: ["solid", "dependency-inversion", "design-principles", "dependency-injection", "decoupling"]
+            },
+            {
+                q: "What is dependency injection and how does it work?",
+                a: "Dependency injection is a technique where dependencies are provided to an object from external sources rather than created internally. It implements the Dependency Inversion Principle by making high-level modules depend on abstractions. DI can be done through constructor injection, setter injection, or interface injection, improving testability and flexibility.",
+                r: "Passing a DatabaseService into UserService constructor instead of creating it inside.",
+                tags: ["dependency-injection", "di", "design-patterns", "inversion-of-control", "testability"]
+            },
+            {
+                q: "What is the difference between aggregation and composition?",
+                a: "Both are 'has-a' relationships, but with different lifecycles. In composition, the child cannot exist without the parent (strong ownership). In aggregation, the child can exist independently of the parent (weak ownership). Composition implies destruction of parts when the whole is destroyed; aggregation does not.",
+                r: "Composition: Engine destroyed when Car destroyed. Aggregation: Department exists even if University closes.",
+                tags: ["aggregation", "composition", "relationships", "uml", "design-patterns"]
+            },
+            {
+                q: "What is the Factory Method pattern in OOP?",
+                a: "Factory Method is a creational pattern that defines an interface for creating objects but lets subclasses decide which class to instantiate. It allows a class to delegate instantiation to subclasses, promoting loose coupling and making code more flexible for adding new types without modifying existing code.",
+                r: "AnimalFactory.createAnimal('dog') returns Dog object without client knowing Dog class.",
+                tags: ["factory-pattern", "creational-patterns", "design-patterns", "encapsulation", "polymorphism"]
+            },
+            {
+                q: "What is the Observer pattern and when should you use it?",
+                a: "Observer is a behavioral pattern where one object (subject) maintains a list of dependents (observers) and notifies them of state changes. Use it when you need one-to-many dependency between objects so that when one changes state, all dependents are updated automatically without tight coupling.",
+                r: "UI components update when data model changes, or event handling systems.",
+                tags: ["observer-pattern", "behavioral-patterns", "design-patterns", "events", "loose-coupling"]
+            },
+            {
+                q: "What is the Strategy pattern in OOP?",
+                a: "Strategy is a behavioral pattern that defines a family of algorithms, encapsulates each one, and makes them interchangeable. It lets you select algorithms at runtime without changing the clients that use them. This pattern is useful when you have multiple ways to do something and want to choose between them dynamically.",
+                r: "PaymentProcessor uses different payment strategies (CreditCard, PayPal, Bitcoin) interchangeably.",
+                tags: ["strategy-pattern", "behavioral-patterns", "design-patterns", "algorithms", "runtime-selection"]
+            },
+            {
+                q: "What is the Singleton pattern and when should you use it?",
+                a: "Singleton is a creational pattern that ensures a class has only one instance and provides global access to it. Use it when exactly one object is needed to coordinate actions across the system, like database connections, logging, or configuration managers. Be cautious as it can make testing difficult and hide dependencies.",
+                r: "DatabaseConnection.getInstance() returns the same connection object throughout the application.",
+                tags: ["singleton-pattern", "creational-patterns", "design-patterns", "global-state", "instance-control"]
+            },
+            {
+                q: "What is the difference between tight coupling and loose coupling?",
+                a: "Tight coupling means classes are highly dependent on each other's implementation details, making changes difficult and error-prone. Loose coupling means classes depend on abstractions rather than concrete implementations, making the system more flexible, testable, and maintainable. OOP principles like DIP and dependency injection promote loose coupling.",
+                r: "Tight: OrderService directly creates PaymentProcessor. Loose: OrderService uses IPaymentProcessor interface.",
+                tags: ["coupling", "loose-coupling", "tight-coupling", "design-principles", "dependencies"]
+            },
+            {
+                q: "What is the Template Method pattern in OOP?",
+                a: "Template Method is a behavioral pattern that defines the skeleton of an algorithm in a base class but lets subclasses override specific steps. It allows subclasses to redefine parts of an algorithm without changing its structure. Use it when you have multiple algorithms with similar overall flow but different implementation details.",
+                r: "DataProcessor defines process() skeleton with read(), validate(), transform(), save() steps that subclasses implement.",
+                tags: ["template-method-pattern", "behavioral-patterns", "design-patterns", "algorithms", "code-reuse"]
+            },
+            {
+                q: "What is the difference between association and dependency?",
+                a: "Association is a structural relationship between two classes where one uses the other as a field or parameter. Dependency is a weaker relationship where one class temporarily uses another in a method. Association implies longer-term relationship and often means one class holds a reference to another. Dependency is typically short-term and method-level.",
+                r: "Association: Car has Engine field. Dependency: OrderService uses TaxCalculator in calculateTotal() method.",
+                tags: ["association", "dependency", "relationships", "uml", "design-patterns"]
+            },
+            {
+                q: "What is the Builder pattern and when should you use it?",
+                a: "Builder is a creational pattern that separates the construction of a complex object from its representation. Use it when an object has many optional parameters or complex construction logic. It provides a fluent interface for building objects step-by-step, making code more readable and avoiding telescoping constructors.",
+                r: "UserBuilder.setName('John').setAge(25).setEmail('john@email').build() creates User object.",
+                tags: ["builder-pattern", "creational-patterns", "design-patterns", "fluent-interface", "complex-objects"]
+            },
+            {
+                q: "What is the Adapter pattern and when should you use it?",
+                a: "Adapter is a structural pattern that allows incompatible interfaces to work together. It acts as a bridge between two incompatible classes, converting one interface to another. Use it when you need to integrate existing code with new systems, or when third-party libraries have incompatible interfaces.",
+                r: "LegacyPrinterAdapter makes old printer work with new printing system without changing printer code.",
+                tags: ["adapter-pattern", "structural-patterns", "design-patterns", "interface-compatibility", "integration"]
+            },
+            {
+                q: "What is the Command pattern and when should you use it?",
+                a: "Command is a behavioral pattern that encapsulates a request as an object, allowing you to parameterize clients with different requests, queue or log requests, and support undoable operations. Use it for implementing undo/redo, macro operations, or when you need to decouple the object that invokes an operation from the one that knows how to perform it.",
+                r: "Text editor's undo system stores each edit as a Command object that can be executed or undone.",
+                tags: ["command-pattern", "behavioral-patterns", "design-patterns", "undo-redo", "encapsulation"]
+            },
+            {
+                q: "What is the Decorator pattern and when should you use it?",
+                a: "Decorator is a structural pattern that allows you to add new functionality to objects dynamically without altering their structure. It wraps objects to add responsibilities. Use it when you need to extend functionality of objects at runtime, or when subclassing would create too many classes.",
+                r: "InputStream -> BufferedInputStream -> CipherInputStream adds buffering and encryption dynamically.",
+                tags: ["decorator-pattern", "structural-patterns", "design-patterns", "dynamic-behavior", "wrapping"]
+            },
+            {
+                q: "What is the difference between inheritance and composition in terms of design flexibility?",
+                a: "Inheritance creates tight coupling between parent and child classes, making changes to the parent affect all children. Composition creates loose coupling by assembling objects from independent components. Composition provides more flexibility as you can change components at runtime, while inheritance relationships are fixed at compile time. Favor composition over inheritance for better maintainability.",
+                r: "Inheritance: Car is-a Vehicle. Composition: Car has-a Engine, has-a Transmission, has-a Wheels.",
+                tags: ["inheritance", "composition", "design-flexibility", "coupling", "design-principles"]
+            },
+            {
+                q: "What is the Facade pattern and when should you use it?",
+                a: "Facade is a structural pattern that provides a simplified interface to a complex subsystem. It hides complexity by providing a single entry point to multiple subsystems. Use it when you need to simplify a complex system, provide a high-level interface, or decouple clients from subsystem implementation details.",
+                r: "ComputerFacade.start() handles CPU, memory, disk, and OS initialization behind one simple method.",
+                tags: ["facade-pattern", "structural-patterns", "design-patterns", "simplification", "complexity-hiding"]
+            },
+            {
+                q: "What is the Proxy pattern and when should you use it?",
+                a: "Proxy is a structural pattern that provides a surrogate or placeholder for another object to control access to it. Use it for lazy loading, access control, logging, caching, or when you need to add functionality without modifying the original object. The proxy acts as an intermediary that can perform operations before or after forwarding requests to the real object.",
+                r: "ImageProxy loads large image only when needed, or SecurityProxy checks permissions before method calls.",
+                tags: ["proxy-pattern", "structural-patterns", "design-patterns", "access-control", "lazy-loading"]
+            },
+            {
+                q: "What is the Chain of Responsibility pattern and when should you use it?",
+                a: "Chain of Responsibility is a behavioral pattern that passes a request along a chain of handlers until one handles it. Each handler decides whether to process the request or pass it to the next handler. Use it when you want to decouple senders and receivers, allow multiple objects to handle a request, or when you want to avoid hardcoding receiver.",
+                r: "Help desk system where Level 1 handles basic issues, Level 2 handles complex issues, Level 3 handles escalations.",
+                tags: ["chain-of-responsibility-pattern", "behavioral-patterns", "design-patterns", "request-handling", "decoupling"]
+            },
+            {
+                q: "What is the Iterator pattern and when should you use it?",
+                a: "Iterator is a behavioral pattern that provides a way to access elements of an aggregate object sequentially without exposing its underlying representation. Use it when you want to provide multiple ways to traverse an aggregate, simplify the aggregate interface, or when you need uniform traversal across different data structures.",
+                r: "ListIterator, TreeIterator, and HashMapIterator all provide hasNext() and next() methods for consistent traversal.",
+                tags: ["iterator-pattern", "behavioral-patterns", "design-patterns", "traversal", "encapsulation"]
+            },
+            {
+                q: "What is the difference between abstract factory and factory method patterns?",
+                a: "Factory Method defines an interface for creating one product, letting subclasses decide which class to instantiate. Abstract Factory provides an interface for creating families of related products without specifying their concrete classes. Use Factory Method for single product creation, Abstract Factory for multiple related products that must work together.",
+                r: "Factory Method: AnimalFactory.createAnimal(). Abstract Factory: GUIFactory.createButton() + createWindow().",
+                tags: ["factory-pattern", "abstract-factory-pattern", "creational-patterns", "design-patterns", "object-creation"]
+            },
+            {
+                q: "What is the difference between composition and aggregation in UML relationships?",
+                a: "In UML, composition is shown with a filled diamond and represents strong ownership where the child cannot exist without the parent. Aggregation is shown with an empty diamond and represents weak ownership where the child can exist independently. Composition implies lifecycle dependency, aggregation does not.",
+                r: "Composition: House contains Rooms (rooms destroyed when house destroyed). Aggregation: Department has Employees (employees exist without department).",
+                tags: ["composition", "aggregation", "uml", "relationships", "lifecycle"]
+            },
+            {
+                q: "What is the Mediator pattern and when should you use it?",
+                a: "Mediator is a behavioral pattern that defines an object that centralizes communication between objects in a system. It promotes loose coupling by preventing objects from referring to each other directly. Use it when you have many objects that need to communicate in complex ways, or when you want to avoid tight coupling between interacting objects.",
+                r: "ChatRoom mediator handles messages between User objects instead of users communicating directly.",
+                tags: ["mediator-pattern", "behavioral-patterns", "design-patterns", "communication", "loose-coupling"]
+            },
+            {
+                q: "What is the Memento pattern and when should you use it?",
+                a: "Memento is a behavioral pattern that captures and externalizes an object's internal state without violating encapsulation, allowing the object to be restored to this state later. Use it for implementing undo/redo, save/load game states, or when you need to checkpoint and rollback object state without exposing internal implementation.",
+                r: "Text editor saves Memento objects for each change to enable undo functionality.",
+                tags: ["memento-pattern", "behavioral-patterns", "design-patterns", "state-preservation", "undo-redo"]
+            },
+            {
+                q: "What is the State pattern and when should you use it?",
+                a: "State is a behavioral pattern that allows an object to change its behavior when its internal state changes. The object will appear to change its class. Use it when an object's behavior depends on its state and it must change behavior at runtime depending on that state, or when you have large conditional statements that switch based on object state.",
+                r: "Order object changes behavior based on its state: Pending, Processing, Shipped, Delivered.",
+                tags: ["state-pattern", "behavioral-patterns", "design-patterns", "state-machine", "behavior-change"]
+            },
+            {
+                q: "What is the Visitor pattern and when should you use it?",
+                a: "Visitor is a behavioral pattern that lets you add new operations to an object structure without modifying the classes of the elements on which it operates. It separates algorithms from the object structure. Use it when you need to perform many different and unrelated operations on an object structure, or when you want to add operations without changing object classes.",
+                r: "DocumentVisitor can calculate word count, extract links, or format content without changing Document class.",
+                tags: ["visitor-pattern", "behavioral-patterns", "design-patterns", "operations", "extensibility"]
+            },
+            {
+                q: "What is the difference between a class diagram and a sequence diagram in UML?",
+                a: "Class diagrams show static structure - classes, attributes, methods, and relationships between classes. They model the architecture and design of a system. Sequence diagrams show dynamic behavior - interactions between objects over time, method calls, and message flow. They model runtime scenarios and use cases. Class diagrams are for 'what exists', sequence diagrams are for 'how they interact'.",
+                r: "Class diagram: User, Order, Product classes with relationships. Sequence diagram: User creates Order, Order checks Product availability.",
+                tags: ["uml", "class-diagram", "sequence-diagram", "modeling", "design-documentation"]
+            },
+            {
+                q: "What is the difference between cohesion and coupling in software design?",
+                a: "Cohesion measures how well elements within a module belong together - high cohesion means elements are strongly related and focused on a single task. Coupling measures interdependence between modules - low coupling means modules are independent and have minimal dependencies. Good design has high cohesion (focused modules) and low coupling (independent modules).",
+                r: "High cohesion: EmailValidator only validates emails. Low coupling: EmailService doesn't depend on DatabaseService.",
+                tags: ["cohesion", "coupling", "design-quality", "modularity", "software-metrics"]
+            },
+            {
+                q: "What is the difference between an abstract class and a concrete class?",
+                a: "Abstract classes cannot be instantiated and may contain abstract methods (methods without implementation) that must be implemented by subclasses. They can also have concrete methods and state. Concrete classes can be instantiated and provide implementations for all methods. Abstract classes define common interfaces and partial implementations for inheritance hierarchies.",
+                r: "Abstract: Shape with draw() method. Concrete: Circle, Square classes that implement draw().",
+                tags: ["abstract-class", "concrete-class", "inheritance", "polymorphism", "instantiation"]
+            },
+            {
+                q: "What is the difference between multiple inheritance and multilevel inheritance?",
+                a: "Multiple inheritance allows a class to inherit from multiple parent classes simultaneously, combining features from all parents. Multilevel inheritance creates a chain of inheritance where a class inherits from a parent, which inherits from another parent. Multiple inheritance can lead to complexity and the diamond problem, while multilevel inheritance creates deeper hierarchies.",
+                r: "Multiple: FlyingFish inherits from Fish + Bird. Multilevel: GrandParent -> Parent -> Child.",
+                tags: ["inheritance", "multiple-inheritance", "multilevel-inheritance", "hierarchy", "design-complexity"]
+            },
+            {
+                q: "What is the difference between an interface and an abstract class in terms of multiple inheritance?",
+                a: "Interfaces support multiple inheritance naturally - a class can implement multiple interfaces without conflicts. Abstract classes typically don't support multiple inheritance in many languages (like Java) due to the diamond problem and implementation conflicts. Interfaces define pure contracts, while abstract classes provide partial implementations, making interfaces safer for multiple inheritance.",
+                r: "A class can implement Serializable, Cloneable, Comparable interfaces but usually extends only one abstract class.",
+                tags: ["interface", "abstract-class", "multiple-inheritance", "contracts", "design-patterns"]
+            },
+            {
+                q: "What are Python lists, tuples, dictionaries, and sets?",
+                a: "Lists are ordered, mutable sequences. Tuples are ordered, immutable sequences. Dictionaries are key-value mappings (mutable). Sets are unordered collections of unique elements. These built-in data structures cover most programming needs without requiring custom implementations, unlike C where you'd implement these manually.",
+                r: "Use lists for ordered data you'll modify, tuples for fixed collections, dicts for lookups, sets for uniqueness.",
+                tags: ["python", "data-structures", "built-ins"]
+            },
+            {
+                q: "What is the difference between static and dynamic binding in OOP?",
+                a: "Static binding (early binding) resolves method calls at compile time based on the reference type. Dynamic binding (late binding) resolves method calls at runtime based on the actual object type. Static binding is used for private, final, and static methods. Dynamic binding enables polymorphism and runtime method resolution.",
+                r: "Static: compile-time method resolution. Dynamic: runtime polymorphic method calls.",
+                tags: ["binding", "static-binding", "dynamic-binding", "polymorphism", "runtime", "compile-time"]
+            },
+            {
+                q: "What is the difference between a constructor and a method in OOP?",
+                a: "Constructors are special methods used to initialize objects when they're created. They have the same name as the class and no return type. Methods are regular functions that perform operations on objects. Constructors are called automatically during object creation, while methods must be called explicitly. Constructors set up initial state, methods define behavior.",
+                r: "Constructor: new Person('John') initializes object. Method: person.getName() retrieves data.",
+                tags: ["constructor", "method", "initialization", "object-creation", "instantiation"]
+            },
+            {
+                q: "What is the difference between shallow copy and deep copy in OOP?",
+                a: "Shallow copy copies the object's fields but not the objects they reference - both copies share the same nested objects. Deep copy creates copies of all nested objects recursively. Shallow copy is faster but can cause unintended side effects when modifying nested objects. Deep copy is safer but more expensive.",
+                r: "Shallow: two lists pointing to same items. Deep: two independent lists with duplicate items.",
+                tags: ["copying", "memory", "object-cloning", "reference-types"]
+            },
+            {
+                q: "What is the difference between static and instance members in OOP?",
+                a: "Static members belong to the class itself and are shared among all instances. Instance members belong to individual objects. Static members can be accessed without creating an object, while instance members require object creation. Static members are useful for shared data and utility methods, instance members for object-specific state and behavior.",
+                r: "Static: Math.PI (shared constant). Instance: person.name (individual property).",
+                tags: ["static-members", "instance-members", "class-level", "object-level", "shared-state"]
+            },
+            {
+                q: "What is the difference between method chaining and method cascading in OOP?",
+                a: "Method chaining calls multiple methods on the same object in a single statement, with each method returning the object itself. Method cascading calls multiple methods on the same object without repeating the object reference. Both improve code readability and reduce temporary variables. Chaining is more common in fluent APIs.",
+                r: "Chaining: builder.setTitle('Test').setContent('Hello').show(). Cascading: object.setTitle(); setContent(); show();",
+                tags: ["method-chaining", "method-cascading", "fluent-interface", "code-style", "api-design"]
+            },
+            {
+                q: "What is Python used in data science and machine learning?",
+                a: "Python dominates data science through NumPy (numerical computing), pandas (data manipulation), matplotlib/seaborn (visualization), and scikit-learn (ML algorithms). Deep learning frameworks like TensorFlow and PyTorch are Python-first. Jupyter notebooks provide interactive development, making Python ideal for data exploration and model development.",
+                r: "Most data scientists and ML engineers use Python as their primary language for analysis and modeling.",
+                tags: ["python", "data-science", "machine-learning"]
+            },
+            {
+                q: "What is the difference between value types and reference types in OOP?",
+                a: "Value types store data directly and are copied when assigned, creating independent copies. Reference types store references to objects on the heap, so multiple variables can reference the same object. Value types include primitives like int, bool, char. Reference types include classes, arrays, strings. Understanding this difference is crucial for memory management and avoiding unexpected side effects.",
+                r: "Value: int a = 5; int b = a; (b gets copy). Reference: Person p1 = new Person(); Person p2 = p1; (p2 points to same object).",
+                tags: ["value-types", "reference-types", "memory", "stack", "heap", "assignment"]
+            },
+            {
+                q: "What is the difference between early binding and late binding in OOP?",
+                a: "Early binding (static binding) resolves method calls at compile time, providing better performance but less flexibility. Late binding (dynamic binding) resolves method calls at runtime, enabling polymorphism and more flexible code. Early binding is used for static methods, final methods, and when the exact method to call is known. Late binding enables runtime method selection based on actual object types.",
+                r: "Early binding: faster, compile-time. Late binding: slower, enables polymorphism and flexibility.",
+                tags: ["early-binding", "late-binding", "static-binding", "dynamic-binding", "polymorphism", "performance"]
+            },
+            {
+                q: "What is the difference between method overloading and method overriding in OOP?",
+                a: "Method overloading defines multiple methods with the same name but different parameters in the same class. Method overriding provides a new implementation for a method in a subclass that already exists in the parent class. Overloading is compile-time polymorphism, overriding is runtime polymorphism. Overloading increases code readability, overriding enables specialized behavior in subclasses.",
+                r: "Overloading: same method name, different parameters. Overriding: subclass replaces parent method implementation.",
+                tags: ["method-overloading", "method-overriding", "polymorphism", "inheritance", "compile-time", "runtime"]
+            },
+            {
+                q: "What is the difference between abstraction and encapsulation in OOP?",
+                a: "Abstraction hides complexity by showing only essential features and hiding implementation details. Encapsulation bundles data and methods together into a single unit and restricts access to internal state. Abstraction is about what an object does, encapsulation is about how it does it. Abstraction reduces complexity, encapsulation protects data integrity.",
+                r: "Abstraction: hiding implementation details. Encapsulation: bundling data and methods together.",
+                tags: ["abstraction", "encapsulation", "data-hiding", "complexity", "design-principles"]
+            },
+            {
+                tags: ["python", "pitfalls", "best-practices"]
+            },
+            {
+                q: "What is the difference between a class and an object in OOP?",
+                a: "A class is a blueprint or template that defines properties and behaviors for objects. An object is an instance of a class with actual data and state. Classes define structure, objects are concrete entities. Classes are static definitions, objects are dynamic instances. You create multiple objects from one class, each with its own state.",
+                r: "Class: blueprint for creating objects. Object: instance of a class with actual data.",
+                tags: ["class", "object", "instance", "blueprint", "template", "oop-basics"]
+            },
+            {
+                q: "What is the difference between access modifiers public, private, and protected?",
+                a: "Public allows access from anywhere, private restricts access to within the same class only, and protected allows access within the same class and subclasses. Public provides maximum accessibility, private provides maximum encapsulation, protected balances accessibility with inheritance needs. These modifiers implement encapsulation and control data access.",
+                r: "Public: accessible everywhere. Private: only within class. Protected: class + subclasses.",
+                tags: ["access-modifiers", "public", "private", "protected", "encapsulation", "visibility"]
+            },
+            {
+                q: "What is the difference between a base class and a derived class?",
+                a: "A base class (parent class) is the class being inherited from, providing common attributes and methods. A derived class (child class) inherits from the base class and can extend or override its functionality. Base classes define common behavior, derived classes provide specialized behavior. This enables code reuse and hierarchical relationships.",
+                r: "Base class: parent class being inherited. Derived class: child class that inherits.",
+                tags: ["base-class", "derived-class", "inheritance", "parent-class", "child-class", "hierarchy"]
+            },
+            {
+                q: "What is the difference between method signature and method body?",
+                a: "Method signature defines the method's name, parameters, and return type - it's the interface. Method body contains the actual implementation code - it's the logic. Signature is for identification and calling, body is for execution. Signatures must be unique for overloading, bodies can vary while keeping same signature.",
+                r: "Signature: method name + parameters. Body: actual implementation code.",
+                tags: ["method-signature", "method-body", "interface", "implementation", "overloading"]
+            },
+            {
+                q: "What is the difference between runtime polymorphism and compile-time polymorphism?",
+                a: "Compile-time polymorphism (static) is resolved during compilation via method overloading and operator overloading. Runtime polymorphism (dynamic) is resolved during execution via method overriding and virtual functions. Compile-time is faster but less flexible, runtime is slower but enables true polymorphic behavior. Both achieve polymorphism through different mechanisms.",
+                r: "Compile-time: overloading (fast). Runtime: overriding (flexible).",
+                tags: ["runtime-polymorphism", "compile-time-polymorphism", "overloading", "overriding", "dynamic-binding"]
+            },
+            {
+                q: "What is the difference between object state and object behavior?",
+                a: "Object state refers to the data or attributes stored in an object at any given time. Object behavior refers to the methods or operations an object can perform. State represents what an object knows, behavior represents what an object does. State changes over time through method calls, behavior remains consistent. State is data, behavior is functionality.",
+                r: "State: object's data/attributes. Behavior: object's methods/operations.",
+                tags: ["object-state", "object-behavior", "attributes", "methods", "data", "functionality"]
+            },
+            {
+                q: "What is the difference between object identity and object equality?",
+                a: "Object identity refers to whether two references point to the exact same object in memory (== operator). Object equality refers to whether two objects have the same content or value (.equals() method). Identity is about memory location, equality is about logical equivalence. Two objects can be equal but have different identities.",
+                r: "Identity: same memory location. Equality: same content/value.",
+                tags: ["object-identity", "object-equality", "equals", "hashcode", "memory", "comparison"]
+            },
+            {
+                q: "What is the difference between object collaboration and object composition?",
+                a: "Object collaboration refers to objects working together by sending messages and calling methods. Object composition is a specific relationship where one object contains or owns other objects. Collaboration is about interaction, composition is about ownership. All composition involves collaboration, but not all collaboration involves composition.",
+                r: "Collaboration: objects working together. Composition: object contains other objects.",
+                tags: ["object-collaboration", "object-composition", "interaction", "ownership", "has-a-relationship"]
+            },
+            {
+                q: "What is the difference between object lifecycle and object scope?",
+                a: "Object lifecycle refers to the phases from creation to destruction: instantiation, usage, and garbage collection. Object scope refers to where and when an object can be accessed in the program. Lifecycle is about time duration, scope is about accessibility. Objects can have different scopes (local, instance, static) but all follow the same lifecycle pattern.",
+                r: "Lifecycle: creation to destruction. Scope: where object is accessible.",
+                tags: ["object-lifecycle", "object-scope", "creation", "destruction", "accessibility", "garbage-collection"]
+            },
+            {
+                q: "What is the difference between object responsibility and object capability?",
+                a: "Object responsibility refers to what an object should do according to its design and Single Responsibility Principle. Object capability refers to what an object can do based on its available methods and properties. Responsibility is about design intent, capability is about implementation. Objects should have focused responsibilities but broad capabilities through collaboration.",
+                r: "Responsibility: what object should do. Capability: what object can do.",
+                tags: ["object-responsibility", "object-capability", "srp", "design-intent", "implementation"]
+            },
+            {
+                q: "What is the difference between object interface and object implementation?",
+                a: "Object interface defines what operations an object provides (public methods and properties). Object implementation contains the actual code that performs those operations. Interface is the contract, implementation is the fulfillment. Interface focuses on 'what', implementation focuses on 'how'. Good design separates interface from implementation.",
+                r: "Interface: what object does. Implementation: how object does it.",
+                tags: ["object-interface", "object-implementation", "contract", "abstraction", "encapsulation"]
+            },
+            {
+                q: "What is the difference between object messaging and object invocation?",
+                a: "Object messaging refers to the conceptual communication between objects where one object sends a message to another. Object invocation is the actual mechanism of calling a method on an object. Messaging is about the design pattern, invocation is about the technical implementation. Messaging emphasizes loose coupling, invocation is the concrete action.",
+                r: "Messaging: conceptual communication. Invocation: actual method call.",
+                tags: ["object-messaging", "object-invocation", "communication", "method-call", "loose-coupling"]
+            },
+            {
+                q: "What is the difference between object persistence and object serialization?",
+                a: "Object persistence refers to keeping objects alive beyond program execution through storage in databases or files. Object serialization is the process of converting objects to a stream of bytes for storage or transmission. Persistence is about long-term storage, serialization is about data format conversion. Serialization is often used to achieve persistence.",
+                r: "Persistence: keeping objects alive. Serialization: converting to bytes.",
+                tags: ["object-persistence", "object-serialization", "storage", "database", "byte-conversion"]
+            },
+            {
+                q: "What is the difference between object cloning and object copying?",
+                a: "Object cloning creates an exact duplicate of an object, typically using a clone() method. Object copying can be shallow (copying references) or deep (copying nested objects). Cloning is usually a specific operation, copying is a general concept. Cloning preserves type and state, copying may lose type information in shallow copies.",
+                r: "Cloning: exact duplicate. Copying: may be shallow or deep.",
+                tags: ["object-cloning", "object-copying", "duplicate", "shallow-copy", "deep-copy"]
+            },
+            {
+                q: "What is the difference between object pooling and object caching?",
+                a: "Object pooling maintains a set of reusable objects to avoid frequent creation/destruction. Object caching stores frequently accessed objects for quick retrieval. Pooling manages object lifecycle, caching manages object accessibility. Pooling is for performance optimization, caching is for data access optimization. Both improve performance but solve different problems.",
+                r: "Pooling: reusable objects. Caching: quick object retrieval.",
+                tags: ["object-pooling", "object-caching", "performance", "optimization", "reuse"]
+            },
+            {
+                q: "What is the difference between object graph and object hierarchy?",
+                a: "Object graph represents the network of interconnected objects through references, showing relationships. Object hierarchy represents the inheritance structure showing parent-child relationships. Graph is about runtime connections, hierarchy is about design relationships. Graph can be complex and cyclical, hierarchy is typically tree-like and acyclic.",
+                r: "Graph: network of references. Hierarchy: inheritance structure.",
+                tags: ["object-graph", "object-hierarchy", "references", "inheritance", "relationships"]
+            },
+            {
+                q: "What is the difference between object identity and object mutability?",
+                a: "Object identity refers to whether two references point to the same object. Object mutability refers to whether an object's state can be changed after creation. Identity is about reference equality, mutability is about state changeability. Immutable objects maintain identity but can't change state, mutable objects can change state while maintaining identity.",
+                r: "Identity: reference equality. Mutability: state changeability.",
+                tags: ["object-identity", "object-mutability", "immutable", "mutable", "state-change"]
+            },
+            {
+                q: "What is the difference between object initialization and object instantiation?",
+                a: "Object instantiation is the process of creating an object instance using 'new' or similar mechanisms. Object initialization is the process of setting up the object's initial state through constructors or initialization methods. Instantiation allocates memory, initialization sets values. Instantiation happens first, then initialization completes object setup.",
+                r: "Instantiation: creating object. Initialization: setting up object state.",
+                tags: ["object-initialization", "object-instantiation", "constructor", "memory-allocation", "setup"]
+            },
+            {
+                q: "What is the difference between object delegation and object inheritance?",
+                a: "Object inheritance creates 'is-a' relationships where subclasses inherit from superclasses. Object delegation creates 'has-a' relationships where objects forward requests to other objects. Inheritance is static at compile time, delegation is dynamic at runtime. Inheritance creates tight coupling, delegation creates loose coupling. Delegation is more flexible than inheritance.",
+                r: "Inheritance: is-a relationship. Delegation: has-a relationship.",
+                tags: ["object-delegation", "object-inheritance", "is-a", "has-a", "composition", "flexibility"]
+            },
+            {
+                q: "What is the difference between object coupling and object cohesion?",
+                a: "Object cohesion measures how well elements within an object belong together. Object coupling measures how dependent objects are on each other. High cohesion means focused responsibilities, low coupling means independence. Good design has high cohesion and low coupling. Cohesion is internal quality, coupling is external relationship.",
+                r: "Cohesion: internal focus. Coupling: external dependency.",
+                tags: ["object-coupling", "object-cohesion", "design-quality", "independence", "focus"]
+            },
+            {
+                q: "What is the difference between object granularity and object abstraction?",
+                a: "Object granularity refers to the size and scope of an object's responsibilities. Object abstraction refers to hiding implementation details while showing essential features. Granularity is about how much an object does, abstraction is about how much it reveals. Fine-grained objects have specific responsibilities, coarse-grained objects have broad responsibilities.",
+                r: "Granularity: object size/scope. Abstraction: hiding details.",
+                tags: ["object-granularity", "object-abstraction", "scope", "size", "responsibility"]
+            },
+            {
+                q: "What is the difference between object autonomy and object collaboration?",
+                a: "Object autonomy refers to an object's ability to operate independently with self-contained logic and state. Object collaboration refers to objects working together to achieve common goals. Autonomy emphasizes independence, collaboration emphasizes cooperation. Autonomous objects make decisions locally, collaborative objects coordinate with others.",
+                r: "Autonomy: independent operation. Collaboration: working together.",
+                tags: ["object-autonomy", "object-collaboration", "independence", "cooperation", "self-contained"]
+            },
+            {
+                q: "What is the difference between interface and abstract class in OOP?",
+                a: "An interface defines a contract that must be implemented by any class that implements it. An abstract class provides a partial implementation that can be shared by subclasses. Interfaces are used for defining a common set of methods that must be implemented, while abstract classes are used for providing a basic implementation that can be extended.",
+                r: "Interface: defines a contract. Abstract class: provides a partial implementation.",
+                tags: ["interface", "abstract-class", "oop", "contract", "implementation"]
+            },
+            {
+                q: "What is the difference between object encapsulation and object abstraction?",
+                a: "Object encapsulation bundles data and methods together and restricts access to internal state. Object abstraction hides implementation details while showing essential features. Encapsulation is about bundling and protection, abstraction is about hiding complexity. Encapsulation is the mechanism, abstraction is the principle.",
+                r: "Encapsulation: bundling data + methods. Abstraction: hiding implementation details.",
+                tags: ["object-encapsulation", "object-abstraction", "bundling", "hiding", "protection"]
+            },
+            {
+                q: "What is the difference between inheritance and polymorphism in OOP?",
+                a: "Inheritance is a mechanism where a subclass inherits properties and methods from a parent class. Polymorphism is the ability of an object to take on multiple forms, depending on the context. Inheritance is about creating a new class based on an existing one, while polymorphism is about objects behaving differently in different situations.",
+                r: "Inheritance: creating a new class from an existing one. Polymorphism: objects behaving differently.",
+                tags: ["inheritance", "polymorphism", "oop", "subclass", "parent-class"]
+            },
+            {
+                q: "What is the difference between composition and aggregation in OOP?",
+                a: "Composition is a strong 'part-of' relationship where the child cannot exist without the parent. Aggregation is a weak 'has-a' relationship where the child can exist independently. Composition implies ownership and lifecycle dependency, aggregation implies loose association. Composition destroys child when parent is destroyed.",
+                r: "Composition: strong ownership. Aggregation: loose association.",
+                tags: ["composition", "aggregation", "has-a", "part-of", "ownership", "lifecycle"]
+            },
+            {
+                q: "What is the difference between association and dependency in OOP?",
+                a: "Association is a structural relationship between objects where one object uses another. Dependency is a weaker relationship where one object requires another to function. Association implies ongoing relationship, dependency implies temporary usage. Association can be bidirectional, dependency is typically unidirectional.",
+                r: "Association: structural relationship. Dependency: usage requirement.",
+                tags: ["association", "dependency", "relationship", "usage", "structure"]
+            },
+            {
+                q: "What is the difference between SOLID principles and design patterns?",
+                a: "SOLID principles are fundamental guidelines for writing maintainable, scalable code (SRP, OCP, LSP, ISP, DIP). Design patterns are specific solutions to common problems (Singleton, Factory, Observer, etc.). SOLID provides principles, patterns provide implementations. SOLID is about 'what' to avoid, patterns are about 'how' to solve.",
+                r: "SOLID: design principles. Patterns: specific solutions.",
+                tags: ["solid-principles", "design-patterns", "srp", "ocp", "lsp", "isp", "dip"]
+            },
+            {
+                q: "What is the difference between tight coupling and loose coupling in OOP?",
+                a: "Tight coupling means classes are highly dependent on each other, making changes difficult. Loose coupling means classes have minimal dependencies, making changes easier. Tight coupling creates fragile systems, loose coupling creates flexible systems. Good design aims for loose coupling through interfaces, dependency injection, and abstraction.",
+                r: "Tight coupling: high dependency. Loose coupling: low dependency.",
+                tags: ["tight-coupling", "loose-coupling", "dependency", "flexibility", "maintainability"]
+            },
+            {
+                q: "What is the difference between high cohesion and low cohesion in OOP?",
+                a: "High cohesion means elements within a class are closely related and focused on a single responsibility. Low cohesion means elements are unrelated and scattered across multiple responsibilities. High cohesion creates maintainable, understandable classes. Low cohesion creates confusing, hard-to-maintain classes. Good design aims for high cohesion.",
+                r: "High cohesion: focused responsibility. Low cohesion: scattered responsibilities.",
+                tags: ["high-cohesion", "low-cohesion", "responsibility", "focus", "maintainability"]
+            },
+            {
+                q: "What is the difference between dependency injection and service locator?",
+                a: "Dependency injection passes dependencies to objects through constructors or methods. Service locator requires objects to request dependencies from a central registry. DI makes dependencies explicit and testable, service locator hides dependencies and creates tight coupling. DI promotes loose coupling, service locator can become a hidden dependency.",
+                r: "DI: dependencies given to object. Service locator: object requests dependencies.",
+                tags: ["dependency-injection", "service-locator", "di-container", "ioc", "loose-coupling"]
+            },
+            {
+                q: "What is the difference between inversion of control and dependency injection?",
+                a: "Inversion of Control (IoC) is a principle where control flow is inverted compared to procedural programming. Dependency Injection (DI) is a specific implementation of IoC for managing dependencies. IoC is the broader concept, DI is one way to achieve it. IoC includes DI, service locator, and other patterns.",
+                r: "IoC: general principle. DI: specific implementation.",
+                tags: ["inversion-of-control", "dependency-injection", "ioc", "di", "control-flow"]
+            },
+            {
+                q: "What is the difference between factory pattern and abstract factory pattern?",
+                a: "Factory pattern creates objects without specifying exact classes. Abstract factory pattern provides interface for creating families of related objects. Factory creates one type of product, abstract factory creates multiple related products. Factory is simpler, abstract factory is more complex but provides consistency.",
+                r: "Factory: creates one product type. Abstract factory: creates related product families.",
+                tags: ["factory-pattern", "abstract-factory-pattern", "creational-patterns", "design-patterns", "object-creation"]
+            },
+            {
+                q: "What is the difference between singleton pattern and static class?",
+                a: "Singleton pattern ensures only one instance exists and provides global access point. Static class has all static members and cannot be instantiated. Singleton can be instantiated once, static class cannot be instantiated. Singleton can implement interfaces, static class cannot. Singleton supports inheritance, static class does not.",
+                r: "Singleton: one instance. Static class: no instances, all members static.",
+                tags: ["singleton-pattern", "static-class", "creational-patterns", "global-access", "instance-control"]
+            },
+            {
+                q: "What is the difference between observer pattern and publisher-subscriber pattern?",
+                a: "Observer pattern has direct coupling between subject and observers. Publisher-subscriber uses message broker for loose coupling. Observer knows about observers, pub-sub doesn't know about subscribers. Observer is simpler, pub-sub is more scalable. Observer is synchronous, pub-sub can be asynchronous.",
+                r: "Observer: direct coupling. Pub-sub: message broker, loose coupling.",
+                tags: ["observer-pattern", "publisher-subscriber-pattern", "behavioral-patterns", "events", "messaging"]
+            },
+            {
+                q: "What is the difference between strategy pattern and state pattern?",
+                a: "Strategy pattern encapsulates algorithms and makes them interchangeable. State pattern allows object to change behavior when state changes. Strategy is about algorithm selection, state is about behavior based on state. Strategy is chosen by client, state changes internally. Strategy has multiple algorithms, state has multiple behaviors.",
+                r: "Strategy: interchangeable algorithms. State: behavior changes with state.",
+                tags: ["strategy-pattern", "state-pattern", "behavioral-patterns", "algorithms", "behavior"]
+            },
+            {
+                q: "What is the difference between command pattern and template method pattern?",
+                a: "Command pattern encapsulates requests as objects for undo/redo and queueing. Template method pattern defines algorithm skeleton with subclasses implementing steps. Command is about request encapsulation, template method is about algorithm structure. Command is object-oriented callback, template method is inheritance-based.",
+                r: "Command: encapsulated request. Template method: algorithm skeleton.",
+                tags: ["command-pattern", "template-method-pattern", "behavioral-patterns", "requests", "algorithms"]
+            },
+            {
+                tags: ["css", "debugging", "devtools", "troubleshooting", "browser-tools"]
+            },
+            {
+                q: "What is the difference between decorator pattern and adapter pattern?",
+                a: "Decorator pattern adds functionality to objects dynamically without changing class structure. Adapter pattern makes incompatible interfaces work together. Decorator enhances existing interface, adapter bridges incompatible interfaces. Decorator adds responsibilities, adapter converts interface. Decorator is transparent, adapter is explicit.",
+                r: "Decorator: adds functionality. Adapter: makes interfaces compatible.",
+                tags: ["decorator-pattern", "adapter-pattern", "structural-patterns", "functionality", "interfaces"]
+            }
+                  ];
+
+        // Function to download all questions as PDF
+        function downloadPDF() {
+            // Show loading message
+            const originalText = event.target.innerHTML;
+            event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            event.target.disabled = true;
+            
+            setTimeout(() => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Set font size and style
+                doc.setFontSize(20);
+                doc.text('OOP Concepts - Interview Questions', 20, 20);
+                
+                doc.setFontSize(12);
+                doc.text('Complete collection of OOP interview questions and answers', 20, 30);
+                
+                let yPosition = 50;
+                const pageHeight = doc.internal.pageSize.height;
+                const lineHeight = 7;
+                const margin = 20;
+                
+                // Add all questions to PDF
+                data.forEach((item, index) => {
+                    // Check if we need a new page
+                    if (yPosition > pageHeight - 40) {
+                        doc.addPage();
+                        yPosition = 30;
+                    }
+                    
+                    // Question number and title
+                    doc.setFontSize(14);
+                    doc.setFont(undefined, 'bold');
+                    const questionText = `Q${index + 1}: ${item.q}`;
+                    const questionLines = doc.splitTextToSize(questionText, 170);
+                    
+                    questionLines.forEach(line => {
+                        if (yPosition > pageHeight - 20) {
+                            doc.addPage();
+                            yPosition = 30;
+                        }
+                        doc.text(line, margin, yPosition);
+                        yPosition += lineHeight;
+                    });
+                    
+                    // Answer
+                    doc.setFontSize(11);
+                    doc.setFont(undefined, 'normal');
+                    const answerText = `Answer: ${item.a}`;
+                    const answerLines = doc.splitTextToSize(answerText, 170);
+                    
+                    answerLines.forEach(line => {
+                        if (yPosition > pageHeight - 20) {
+                            doc.addPage();
+                            yPosition = 30;
+                        }
+                        doc.text(line, margin, yPosition);
+                        yPosition += lineHeight;
+                    });
+                    
+                    // Real-world example (if exists)
+                    if (item.r) {
+                        doc.setFont(undefined, 'italic');
+                        const exampleText = `Example: ${item.r}`;
+                        const exampleLines = doc.splitTextToSize(exampleText, 170);
+                        
+                        exampleLines.forEach(line => {
+                            if (yPosition > pageHeight - 20) {
+                                doc.addPage();
+                                yPosition = 30;
+                            }
+                            doc.text(line, margin, yPosition);
+                            yPosition += lineHeight;
+                        });
+                    }
+                    
+                    // Add spacing between questions
+                    yPosition += lineHeight * 2;
+                    
+                    // Add separator line
+                    if (yPosition < pageHeight - 20) {
+                        doc.setLineWidth(0.1);
+                        doc.line(margin, yPosition, 190, yPosition);
+                        yPosition += lineHeight;
+                    }
+                });
+                
+                // Add footer
+                const totalPages = doc.internal.getNumberOfPages();
+                for (let i = 1; i <= totalPages; i++) {
+                    doc.setPage(i);
+                    doc.setFontSize(10);
+                    doc.setFont(undefined, 'normal');
+                    doc.text(`Page ${i} of ${totalPages}`, 105, pageHeight - 10, { align: 'center' });
+                    doc.text('Generated from IT Interview Hub', 105, pageHeight - 5, { align: 'center' });
+                }
+                
+                // Save the PDF
+                doc.save('OOP-Concepts-Interview-Questions.pdf');
+                
+                // Restore button state
+                event.target.innerHTML = originalText;
+                event.target.disabled = false;
+            }, 100);
+        }
+
+        // Function to copy code to clipboard
+        function copyCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+
+            if (!codeElement) return;
+
+            const code = codeElement.innerText;
+
+            navigator.clipboard.writeText(code).then(() => {
+                // Show copied feedback
+                const copyBtn = codeElement.closest('.code-container').querySelector('.copy-btn');
+                if (copyBtn) {
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+            });
+        }
+    
+
+        // Function to scroll to specific question
+        function scrollToQuestion(questionId) {
+            const element = document.getElementById(questionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Update active TOC link
+                const tocLinks = document.querySelectorAll('.toc-link');
+                tocLinks.forEach(link => link.classList.remove('active'));
+                
+                const activeLink = document.querySelector(`.toc-link[href="#${questionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        }
+
+        // Function to render table of contents
+        function renderTOC() {
+            const tocList = document.getElementById('tocList');
+            const tocListMobile = document.getElementById('tocListMobile');
+            
+            if (!tocList && !tocListMobile) return;
+
+            const source = currentQuestions && currentQuestions.length ? currentQuestions : data;
+            const start = (currentPage - 1) * questionsPerPage;
+            const end = start + questionsPerPage;
+
+            const pageItems = source.slice(start, end);
+
+            const tocHTML = pageItems.map((item, index) => {
+                const number = start + index + 1;
+                const shortQ = item.q.substring(0, 50) + (item.q.length > 50 ? '...' : '');
+                return `
+                    <li class="toc-item">
+                        <a href="#q-${number}" class="toc-link" onclick="scrollToQuestion('q-${number}'); return false;">
+                            <span class="toc-number">${number}.</span>
+                            <span class="toc-question">${shortQ}</span>
+                        </a>
+                    </li>
+                `;
+            }).join('');
+            
+            // Update both TOC lists
+            if (tocList) {
+                tocList.innerHTML = tocHTML;
+            }
+            if (tocListMobile) {
+                tocListMobile.innerHTML = tocHTML;
+            }
+        }
+
+        // Function to handle search with highlighting
+        function filterQuestions() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!searchTerm) {
+                currentQuestions = [...data];
+                currentPage = 1;
+                updatePagination();
+                return;
+            }
+            
+            currentQuestions = data.filter(item => 
+                item.q.toLowerCase().includes(searchTerm) || 
+                item.a.toLowerCase().includes(searchTerm) ||
+                (item.r && item.r.toLowerCase().includes(searchTerm)) ||
+                (item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchTerm)))
+            );
+            
+            currentPage = 1;
+            updatePagination();
+            
+            // Highlight search terms after rendering
+            setTimeout(() => highlightSearchTerms(searchTerm), 100);
+        }
+
+        // Function to highlight search terms
+        function highlightSearchTerms(searchTerm) {
+            if (!searchTerm) return;
+            
+            const questionsContainer = document.getElementById('questionsContainer');
+            const questionBoxes = questionsContainer.querySelectorAll('.q-box');
+            
+            questionBoxes.forEach(box => {
+                const h3 = box.querySelector('h3');
+                const paragraphs = box.querySelectorAll('p');
+                
+                // Highlight in question title
+                if (h3) {
+                    h3.innerHTML = highlightText(h3.textContent, searchTerm);
+                }
+                
+                // Highlight in paragraphs
+                paragraphs.forEach(p => {
+                    p.innerHTML = highlightText(p.textContent, searchTerm);
+                });
+            });
+        }
+
+        // Function to highlight text
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+        }
+
+        // Add CSS for search highlighting
+        const searchHighlightStyle = document.createElement('style');
+        searchHighlightStyle.textContent = `
+            .search-highlight {
+                background-color: #fef08a;
+                color: #713f12;
+                padding: 2px 4px;
+                border-radius: 3px;
+                font-weight: 500;
+            }
+        `;
+        document.head.appendChild(searchHighlightStyle);
+
+        // Function to render questions with pagination
+        function renderQuestions(questionsToRender = data) {
+            currentQuestions = [...questionsToRender];
+            currentPage = 1; // Reset to first page when filtering
+            updatePagination();
+        }
+
+        // Function to update pagination
+        function updatePagination() {
+            const questionsContainer = document.getElementById('questionsContainer');
+            const pageInfo = document.getElementById('pageInfo');
+            const prevPageBtn = document.getElementById('prevPage');
+            const nextPageBtn = document.getElementById('nextPage');
+
+            // Calculate pagination details
+            const start = (currentPage - 1) * questionsPerPage;
+            const end = start + questionsPerPage;
+            const pageCount = Math.ceil(currentQuestions.length / questionsPerPage);
+
+            // Render questions for the current page
+            const questionsHTML = currentQuestions.slice(start, end).map((item, index) => {
+                const questionNumber = (currentPage - 1) * questionsPerPage + index + 1;
+                return `
+                    <div class="q-box" id="q-${questionNumber}">
+                        <h3>${item.q}</h3>
+                        <div class="q-meta">
+                            <span class="q-number">${questionNumber}</span>
+                            <span class="q-tags">
+                                ${item.tags.map(tag => `<span class="q-tag">${tag}</span>`).join('')}
+                            </span>
+                        </div>
+                        <p>${item.a}</p>
+                        ${item.r ? `<p class="q-result">${item.r}</p>` : ''}
+                        ${item.c ? `
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span class="code-title">Example Code</span>
+                                    <button class="copy-btn" onclick="copyCode('code-${questionNumber}')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                <pre><code id="code-${questionNumber}" class="language-javascript">${item.c}</code></pre>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            questionsContainer.innerHTML = questionsHTML;
+
+            renderTOC();
+
+            // Update page info
+            if (pageInfo) {
+                pageInfo.textContent = `Page ${currentPage} of ${pageCount} (${currentQuestions.length} questions)`;
+            }
+
+            // Update navigation buttons
+            if (prevPageBtn) {
+                prevPageBtn.disabled = currentPage === 1;
+            }
+            if (nextPageBtn) {
+                nextPageBtn.disabled = currentPage === pageCount || pageCount === 0;
+            }
+
+            // Highlight code blocks
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        }
+
+        // Pagination functions
+        function nextPage() {
+            const pageCount = Math.ceil(currentQuestions.length / questionsPerPage);
+            if (currentPage < pageCount) {
+                currentPage++;
+                updatePagination();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updatePagination();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderQuestions();
+
+            // Pagination button event listeners
+            const nextPageBtn = document.getElementById('nextPage');
+            if (nextPageBtn) {
+                nextPageBtn.addEventListener('click', nextPage);
+            }
+            const prevPageBtn = document.getElementById('prevPage');
+            if (prevPageBtn) {
+                prevPageBtn.addEventListener('click', prevPage);
+            }
+
+            // Toggle functionality for both desktop and mobile TOC
+            function setupTocToggle() {
+                const tocToggleBtn = document.getElementById('tocToggleBtn');
+                const tocToggleBtnMobile = document.getElementById('tocToggleBtnMobile');
+                const tocList = document.getElementById('tocList');
+                const tocListMobile = document.getElementById('tocListMobile');
+                
+                function toggleToc() {
+                    if (tocList) {
+                        tocList.classList.toggle('toc-hidden');
+                    }
+                    if (tocListMobile) {
+                        tocListMobile.classList.toggle('toc-hidden');
+                    }
+                }
+                
+                if (tocToggleBtn) {
+                    tocToggleBtn.addEventListener('click', toggleToc);
+                }
+                if (tocToggleBtnMobile) {
+                    tocToggleBtnMobile.addEventListener('click', toggleToc);
+                }
+            }
+            
+            setupTocToggle();
+            
+            // Add search event listener
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', filterQuestions);
+            }
+
+            // Mobile menu functionality
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+            const mobileSidebarClose = document.getElementById('mobileSidebarClose');
+
+            function openMobileMenu() {
+                mobileSidebar.classList.add('active');
+                mobileSidebarOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileSidebar.classList.remove('active');
+                mobileSidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openMobileMenu);
+            }
+
+            if (mobileSidebarClose) {
+                mobileSidebarClose.addEventListener('click', closeMobileMenu);
+            }
+
+            if (mobileSidebarOverlay) {
+                mobileSidebarOverlay.addEventListener('click', closeMobileMenu);
+            }
+
+            // Close mobile menu when clicking on TOC links
+            const mobileTocLinks = mobileSidebar?.querySelectorAll('.toc-link');
+            if (mobileTocLinks) {
+                mobileTocLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+            }
+
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileSidebar?.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
+// Load layout.js for header/footer functionality
+(function() {
+    if (!document.querySelector('script[src="layout.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'layout.js';
+        script.async = false;
+        document.head.appendChild(script);
+    }
+})();
+    </script>
+    <div id="footer"></div>
+</body>
+</html>

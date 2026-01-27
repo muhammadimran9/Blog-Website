@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 - 80+ Essential Interview Questions & Answers</title>
+    <meta name="description" content="Master CSS3 with 80+ essential interview questions, detailed answers, and real-world code examples. Perfect for interview preparation and skill building for students and professionals.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="layout.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #7c3aed;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9fafb;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        #header {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Box */
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            align-self: flex-start;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar h2 i {
+            color: var(--primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            color: var(--gray);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .toc-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .toc-hidden {
+            display: none;
+        }
+
+        .toc-toggle-btn {
+            margin-left: auto;
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .toc-toggle-btn:hover {
+            background: rgba(37, 99, 235, 0.15);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .breadcrumbs {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumbs span {
+            color: var(--gray);
+        }
+
+        /* Question Box Styles */
+        .q-box {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: var(--transition);
+        }
+
+        .q-box:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .q-box h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .q-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .q-number {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .q-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .q-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn i {
+            font-size: 0.9em;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        /* Answer Styles */
+        .answer {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .answer-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .answer-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .answer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .answer-section h4 i {
+            color: var(--primary);
+        }
+
+        .answer-section p {
+            margin-bottom: 1rem;
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        /* Code Block Styles */
+        pre {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        pre code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0f172a;
+            padding: 0.5rem 1rem;
+            border-radius: 6px 6px 0 0;
+            margin: 0;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #94a3b8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+
+        .page-info {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 2rem;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            header p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .search-box input {
+                padding: 0.75rem 1rem 0.75rem 2.25rem;
+                font-size: 0.95rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .main-content, .sidebar {
+                padding: 1rem;
+            }
+
+            .q-box {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .q-box h3 {
+                font-size: 1.1rem;
+                line-height: 1.3;
+            }
+
+            .q-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .q-tags {
+                margin-bottom: 0.75rem;
+            }
+
+            .q-tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1.5rem 0.75rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0.75rem;
+            }
+
+            .main-content, .sidebar {
+                padding: 0.75rem;
+            }
+
+            .q-box {
+                padding: 0.75rem;
+            }
+
+            .q-box h3 {
+                font-size: 1rem;
+            }
+
+            .sidebar h2 {
+                font-size: 1rem;
+            }
+
+            .toc-link {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .q-number {
+                width: 24px;
+                height: 24px;
+                font-size: 0.7rem;
+            }
+
+            .q-tag {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.5rem;
+            }
+
+            pre {
+                padding: 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .code-header {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.7rem;
+            }
+
+            .copy-btn {
+                padding: 0.2rem 0.5rem;
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .mobile-sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            background: white;
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-sidebar-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-sidebar-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-sidebar-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .mobile-sidebar.active {
+            right: 0;
+        }
+
+        .mobile-sidebar-overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-sidebar .sidebar {
+                display: block;
+                position: static;
+                margin: 0;
+                padding: 1rem;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .btn, .toc-link, .copy-btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .toc-link {
+                padding: 0.75rem;
+            }
+
+            .q-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Improved mobile typography */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .q-box p, .answer-section p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+        }
+
+        /* Better mobile spacing */
+        @media (max-width: 768px) {
+            .q-box {
+                border-radius: 8px;
+            }
+
+            .main-content {
+                border-radius: 8px;
+            }
+
+            .sidebar {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <header>
+        <div class="header-content">
+            <h1>CSS3</h1>
+            <p>Master Modern CSS3 with 80+ essential interview questions, detailed answers, and real-world code examples for students and professionals</p>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search questions...">
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <h3><i class="fas fa-list"></i> Menu</h3>
+            <button class="mobile-sidebar-close" id="mobileSidebarClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h2><i class="fas fa-list"></i> Table of Contents <button class="toc-toggle-btn" id="tocToggleBtnMobile" type="button" aria-label="Toggle table of contents"><i class="fas fa-bars"></i></button></h2>
+                <ul class="toc-list toc-hidden" id="tocListMobile">
+                    <!-- Filled by JavaScript -->
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h2><i class="fas fa-link"></i> Quick Links</h2>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="/" class="toc-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-book"></i> All Topics</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link" onclick="downloadPDF()"><i class="fas fa-download"></i> Download PDF</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-question-circle"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar with Table of Contents -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2><i class="fas fa-list"></i> Table of Contents <button class="toc-toggle-btn" id="tocToggleBtn" type="button" aria-label="Toggle table of contents"><i class="fas fa-bars"></i></button></h2>
+                <ul class="toc-list toc-hidden" id="tocList">
+                    <!-- Filled by JavaScript -->
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h2><i class="fas fa-link"></i> Quick Links</h2>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="/" class="toc-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-book"></i> All Topics</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link" onclick="downloadPDF()"><i class="fas fa-download"></i> Download PDF</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-question-circle"></i> About</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="breadcrumbs">
+                <a href="/">Home</a>
+                <span>/</span>
+                <a href="#">Topics</a>
+                <span>/</span>
+                <span>CSS3</span>
+            </div>
+            
+            <h2 style="margin-bottom: 2rem;">80+ Essential Web Development Interview Questions</h2>
+            
+            <!-- Adsterra Ad Placement - Top -->
+            <div style="text-align: center; margin: 2rem 0;">
+                <script>
+  atOptions = {
+    'key' : '30e0f65d6b0b49e9f4a86a454e6d5a48',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/30e0f65d6b0b49e9f4a86a454e6d5a48/invoke.js"></script> </div>
+            
+            <div id="questionsContainer">
+                <!-- Questions will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="pagination">
+                <button class="btn" id="prevPage"><i class="fas fa-chevron-left"></i> Previous</button>
+                <span id="pageInfo" class="page-info">Page 1 of 12</span>
+                <button class="btn" id="nextPage">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div id="footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        // Initialize syntax highlighting
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+
+        // Pagination variables
+        let currentPage = 1;
+        const questionsPerPage = 5; // Changed to show 5 questions per page
+        let currentQuestions = [];
+
+        // Questions data
+        const data = [
+            {
+                q: "What is CSS (Cascading Style Sheets)?",
+                a: "CSS is a stylesheet language used to describe the presentation of HTML documents. It controls colors, fonts, spacing, positioning, and responsive design. CSS separates content from presentation, making websites maintainable and consistent.",
+                tags: ["css", "basics", "styling"]
+            },
+            {
+                q: "What are CSS selectors and how do they work?",
+                a: "CSS selectors are patterns used to select and style HTML elements. Types: element selectors (p, div), class selectors (.class), ID selectors (#id), attribute selectors ([type='text']), pseudo-classes (:hover), pseudo-elements (::before), and combinators (space, >, +). Specificity determines which rule applies.",
+                tags: ["css", "selectors", "specificity"]
+            },
+            {
+                q: "What is the CSS Box Model?",
+                a: "CSS Box Model consists of content, padding, border, and margin. Content is the actual content area. Padding is space between content and border. Border surrounds padding. Margin is space outside border. Box-sizing property controls how width/height are calculated: content-box (default) or border-box.",
+                tags: ["css", "box-model", "layout"]
+            },
+            {
+                q: "What are CSS units and when to use each?",
+                a: "CSS units: Absolute units (px, pt, cm, in) - fixed size. Relative units (em, rem, %, vw, vh) - scale with viewport/font. em relative to parent font-size, rem to root font-size, % to parent, vw/vh to viewport. Use rem for typography, px for borders, % for layouts, vw/vh for responsive design.",
+                tags: ["css", "units", "responsive"]
+            },
+            {
+                q: "What is CSS Flexbox and how does it work?",
+                a: "Flexbox is a 1D layout method for arranging items in rows/columns. Key properties: display: flex, flex-direction (row/column), justify-content (center/space-between), align-items (center/stretch), flex-wrap (wrap/nowrap), flex-grow (expand), flex-shrink (shrink). Perfect for navigation bars, card layouts, centering content.",
+                tags: ["css", "flexbox", "layout"]
+            },
+            {
+                q: "What is CSS Grid and when should you use it?",
+                a: "CSS Grid is a 2D layout system for creating complex layouts. Properties: display: grid, grid-template-columns/rows, grid-gap, grid-area. Use for overall page layouts, card grids, dashboard designs. Combines with Flexbox for best results - Grid for main layout, Flexbox for component alignment.",
+                tags: ["css", "grid", "layout"]
+            },
+            {
+                q: "What are CSS media queries and responsive design?",
+                a: "Media queries apply CSS based on device characteristics. Syntax: @media (max-width: 768px) { }. Breakpoints: mobile (<768px), tablet (768-1024px), desktop (>1024px). Use mobile-first approach - design for mobile first, then enhance for larger screens. Essential for modern web development.",
+                tags: ["css", "media-queries", "responsive"]
+            },
+            {
+                q: "What is CSS specificity and how does it work?",
+                a: "CSS specificity determines which rule applies when multiple rules target same element. Calculation: inline styles (1000) > ID selectors (100) > class selectors (10) > element selectors (1). !important overrides all. Use specific selectors, avoid !important, and understand cascade order for maintainable CSS.",
+                tags: ["css", "specificity", "cascade"]
+            },
+            {
+                q: "What are CSS pseudo-classes and pseudo-elements?",
+                a: "Pseudo-classes select elements based on state: :hover, :active, :focus, :first-child, :nth-child(). Pseudo-elements style specific parts: ::before, ::after, ::first-letter, ::first-line. Used for tooltips, hover effects, decorative elements, and advanced styling without extra HTML.",
+                tags: ["css", "pseudo-classes", "pseudo-elements"]
+            },
+            {
+                q: "What is CSS positioning and what are the types?",
+                a: "CSS positioning: static (default), relative (positioned relative to normal), absolute (positioned relative to nearest positioned ancestor), fixed (positioned relative to viewport), sticky (hybrid of relative and fixed). Properties: top, right, bottom, left, z-index. Use absolute for overlays, fixed for headers, sticky for navigation bars.",
+                tags: ["css", "positioning", "layout"]
+            },
+            {
+                q: "What are CSS transitions and animations?",
+                a: "Transitions animate property changes over time: transition: property duration timing-function. Animations use keyframes for complex sequences: @keyframes, animation-name, duration, iteration-count. Use transitions for hover effects, animations for loading spinners and attention-grabbing effects. Performance: prefer transform/opacity over left/top.",
+                tags: ["css", "transitions", "animations"]
+            },
+            {
+                q: "What is CSS custom properties (CSS Variables)?",
+                a: "CSS custom properties store reusable values: --primary-color: #blue; var(--primary-color). Benefits: theming, dynamic updates, reduced repetition. Scope: :root for global, element-specific for local. Use with fallback: color: var(--primary-color, #blue). Essential for design systems.",
+                tags: ["css", "variables", "custom-properties"]
+            },
+            {
+                q: "What are CSS preprocessors and why use them?",
+                a: "CSS preprocessors extend CSS with programming features: Sass/SCSS, Less, Stylus. Features: variables, nesting, mixins, functions, imports. Benefits: modular code, calculations, loops, conditionals. Compiled to standard CSS. Use for large projects, design systems, and team collaboration.",
+                tags: ["css", "preprocessors", "sass", "less"]
+            },
+            {
+                q: "What is the difference between display: none and visibility: hidden?",
+                a: "display: none removes element from document flow and takes no space. visibility: hidden hides element but maintains space in layout. display: none triggers reflow, visibility: hidden doesn't. Use visibility for animations, display for completely removing elements.",
+                tags: ["css", "display", "visibility"]
+            },
+            {
+                q: "What are CSS transforms and when to use them?",
+                a: "CSS transforms modify element coordinate space: translate(x,y), rotate(angle), scale(x,y), skew(x,y). Used for animations, hover effects, 3D effects. Hardware-accelerated for better performance than position changes. Combine with transitions for smooth effects.",
+                tags: ["css", "transforms", "animations"]
+            },
+            {
+                q: "What is CSS float and how does it work?",
+                a: "CSS float removes element from normal flow and shifts left/right. Properties: float: left/right/none, clear: both/left/right/none. Legacy layout method replaced by Flexbox/Grid. Still useful for text wrapping around images. Clearfix needed to contain floated children.",
+                tags: ["css", "float", "layout"]
+            },
+            {
+                q: "What are CSS gradients and how to create them?",
+                a: "CSS gradients create smooth color transitions: linear-gradient(direction, color1, color2), radial-gradient(shape, size, color1, color2). Multiple color stops supported. Use for backgrounds, buttons, overlays. Replaces image gradients for better performance and customization.",
+                tags: ["css", "gradients", "backgrounds"]
+            },
+            {
+                q: "What is CSS opacity and transparency?",
+                a: "CSS opacity controls element transparency: opacity: 0.5 (50% transparent). Range 0-1. Affects child elements. Use rgba() for transparent colors without affecting children. Important for overlays, modal backgrounds, and hover effects.",
+                tags: ["css", "opacity", "transparency"]
+            },
+            {
+                q: "What are CSS filters and what can they do?",
+                a: "CSS filters apply visual effects: blur(), brightness(), contrast(), grayscale(), sepia(), saturate(), hue-rotate(). Used for image effects, hover states, and creative designs. Performance consideration: filters are GPU-accelerated but can be expensive on large elements.",
+                tags: ["css", "filters", "effects"]
+            },
+            {
+                q: "What is CSS overflow and how to control it?",
+                a: "CSS overflow controls content that doesn't fit: visible (default), hidden, scroll, auto. Properties: overflow-x, overflow-y for specific directions. Use for scrollable containers, text truncation with text-overflow: ellipsis. Important for responsive design.",
+                tags: ["css", "overflow", "layout"]
+            },
+            {
+                q: "What are CSS vendor prefixes and why are they needed?",
+                a: "Vendor prefixes add experimental CSS features: -webkit-, -moz-, -ms-, -o-. Needed for browser compatibility with new features. Autoprefixer tools can add them automatically. Modern browsers require fewer prefixes but still needed for some properties.",
+                tags: ["css", "vendor-prefixes", "compatibility"]
+            },
+            {
+                q: "What is the difference between margin and padding?",
+                a: "Padding is space inside element between content and border. Margin is space outside element between border and other elements. Padding adds to element size, margin creates external space. Collapsing margins: vertical margins of adjacent elements can combine into single margin.",
+                tags: ["css", "margin", "padding", "box-model"]
+            },
+            {
+                q: "What are CSS z-index and stacking context?",
+                a: "CSS z-index controls stacking order of positioned elements. Higher values appear above lower values. Only works on positioned elements (relative, absolute, fixed, sticky). New stacking context created by opacity, transform, filter. Use for dropdowns, modals, tooltips.",
+                tags: ["css", "z-index", "stacking"]
+            },
+            {
+                q: "What is CSS aspect-ratio property?",
+                a: "CSS aspect-ratio maintains element proportions: aspect-ratio: 16/9. Replaces padding-top hack for video embeds. Works with width/height auto. Values: ratios, auto. Essential for responsive video, images, and containers.",
+                tags: ["css", "aspect-ratio", "responsive"]
+            },
+            {
+                q: "What are CSS logical properties and why use them?",
+                a: "CSS logical properties adapt to writing direction: margin-inline-start vs margin-left, padding-block vs padding-top. Benefits: works for RTL/LTR languages, internationalization, better maintainability. Properties: inset, block-size, inline-size. Use for multilingual websites.",
+                tags: ["css", "logical-properties", "internationalization"]
+            },
+            {
+                q: "What is CSS container queries and when to use it?",
+                a: "CSS container queries apply styles based on parent container size, not viewport. Properties: container-type, container-name, @container query. Benefits: component-based responsive design, reusable components, better encapsulation. Use for design systems and component libraries.",
+                tags: ["css", "container-queries", "responsive"]
+            },
+            {
+                q: "What are CSS clamp(), min(), and max() functions?",
+                a: "CSS clamp() sets value between min and max: clamp(min, preferred, max). min() selects smallest value, max() selects largest. Use for responsive typography: font-size: clamp(16px, 2vw, 24px). Replaces media queries for fluid scaling.",
+                tags: ["css", "clamp", "responsive", "functions"]
+            },
+            {
+                q: "What is CSS object-fit and object-position?",
+                a: "CSS object-fit controls how replaced elements (img, video) fill container: fill, contain, cover, scale-down. object-position controls alignment: 50% 50% for center. Replaces background-size for images. Essential for responsive images and video thumbnails.",
+                tags: ["css", "object-fit", "images"]
+            },
+            {
+                q: "What are CSS counter styles and how to use them?",
+                a: "CSS counters create automatic numbering: counter-reset, counter-increment, content: counter(). Use for automatic list numbering, figure numbering, section headings. Benefits: semantic markup, accessible, maintainable. Can be nested for complex numbering schemes.",
+                tags: ["css", "counters", "generated-content"]
+            },
+            {
+                q: "What is CSS scroll-behavior property?",
+                a: "CSS scroll-behavior controls scrolling: auto (default), smooth, instant. smooth provides animated scrolling between anchor links. Performance consideration: smooth scrolling can impact performance on long pages. Use for single-page applications and anchor navigation.",
+                tags: ["css", "scroll-behavior", "user-experience"]
+            },
+            {
+                q: "What are CSS shape-outside and clip-path?",
+                a: "CSS shape-outside wraps text around custom shapes: circle(), ellipse(), polygon(). clip-path creates complex shapes and masks. Use for creative layouts, image galleries, text effects. Advanced feature with limited browser support but powerful for unique designs.",
+                tags: ["css", "shapes", "clip-path"]
+            },
+            {
+                q: "What is CSS will-change property?",
+                a: "CSS will-change hints browser about element changes for optimization: auto, scroll-position, contents, transform, opacity. Helps browsers optimize rendering and decide when to create GPU layers. Use for animations and performance-critical elements.",
+                tags: ["css", "will-change", "performance"]
+            },
+            {
+                q: "What are CSS color functions and how to use them?",
+                a: "CSS color functions: rgb(), rgba(), hsl(), hsla(), color-mix(), lab(), lch(). Benefits: dynamic colors, transparency, better color manipulation. Use for theming, hover effects, and design systems. Modern browsers support advanced color spaces for better accuracy.",
+                tags: ["css", "colors", "functions"]
+            },
+            {
+                q: "What is CSS gap property and Flexbox/Grid gaps?",
+                a: "CSS gap sets spacing between flex/grid items: gap: 10px (row-gap + column-gap). Replaces margin hacks for spacing. Works with Flexbox and Grid. Values: length, percentage. Simplifies layout code and improves consistency.",
+                tags: ["css", "gap", "flexbox", "grid"]
+            },
+            {
+                q: "What are CSS initial and inherit values?",
+                a: "CSS initial resets property to initial value. inherit inherits from parent element. Use initial for reseting styles, inherit for intentional inheritance. Most properties inherit by default, some don't (background, border, padding). Important for CSS architecture.",
+                tags: ["css", "inheritance", "values"]
+            },
+            {
+                q: "What is CSS text-overflow property?",
+                a: "CSS text-overflow controls text overflow: clip, ellipsis, fade. Used with white-space: nowrap and overflow: hidden for single-line text truncation. Essential for card layouts, tables, and responsive design. Add title attribute for full text on hover.",
+                tags: ["css", "text-overflow", "typography"]
+            },
+            {
+                q: "What are CSS user-select and pointer-events properties?",
+                a: "CSS user-select controls text selection: none, text, all, auto. pointer-events controls click events: none, auto, visible. Use for preventing text selection on buttons, making overlays clickable-through, and custom interactions. Important for accessibility and UX.",
+                tags: ["css", "user-select", "pointer-events"]
+            },
+            {
+                q: "What is CSS backface-visibility property?",
+                a: "CSS backface-visibility controls back face of 3D transforms: visible, hidden. Used with transform-style: preserve-3d. Prevents showing back of rotating elements. Essential for 3D animations, card flips, and cube effects.",
+                tags: ["css", "3d", "transforms"]
+            },
+            {
+                q: "What are CSS blend modes and how to use them?",
+                a: "CSS mix-blend-mode controls how overlapping elements blend: multiply, screen, overlay, color-dodge, etc. background-blend-mode for background images. Use for creative effects, overlays, and image processing. Limited browser support but powerful for visual effects.",
+                tags: ["css", "blend-modes", "effects"]
+            },
+            {
+                q: "What is CSS perspective property?",
+                a: "CSS perspective creates 3D space for transform elements: perspective: 1000px. Applied to parent of transformed elements. Creates depth perception. Use with rotateX/Y, translateZ. Essential for realistic 3D effects and animations.",
+                tags: ["css", "perspective", "3d"]
+            },
+            {
+                q: "What are CSS custom selectors and attribute selectors?",
+                a: "CSS custom selectors target attributes: [type='text'], [data-], [disabled], :checked, :not(), :has(). Powerful for form styling, component states, and conditional styling. Use for reducing classes and creating semantic styling based on HTML attributes.",
+                tags: ["css", "selectors", "attributes"]
+            },
+            {
+                q: "What is CSS isolation property?",
+                a: "CSS isolation creates new stacking context: auto, isolate. Prevents blend modes from affecting outside elements. Use with mix-blend-mode for contained effects. Important for component encapsulation and complex layouts.",
+                tags: ["css", "isolation", "stacking"]
+            },
+            {
+                q: "What are CSS environment variables and env() function?",
+                a: "CSS env() reads environment variables: env(safe-area-inset-top), env(viewport-height). Provides system UI values like notches, safe areas. Use for mobile layouts, PWA interfaces, and adapting to device constraints. Essential for modern mobile development.",
+                tags: ["css", "environment-variables", "responsive"]
+            },
+            {
+                q: "What is CSS subgrid and how does it differ from Grid?",
+                a: "CSS subgrid allows grid items to be grid containers themselves. Parent creates grid, child creates subgrid. Use for complex nested layouts, component grids, and design systems. Advanced feature with limited support but powerful for modular layouts.",
+                tags: ["css", "subgrid", "grid"]
+            },
+            {
+                q: "What are CSS trigonometric functions?",
+                a: "CSS trig functions: sin(), cos(), tan(), asin(), acos(), atan(). Used with transform for circular motion, wave effects, mathematical animations. Values in radians/degrees. Use for loading animations, particle effects, and creative motion graphics.",
+                tags: ["css", "trigonometric", "functions", "animations"]
+            },
+            {
+                q: "What is CSS accent-color property?",
+                a: "CSS accent-color controls form control colors: checkboxes, radio buttons, range sliders. Replaces platform defaults with brand colors. Use for consistent UI theming. Works with color-scheme for light/dark mode support.",
+                tags: ["css", "accent-color", "forms", "theming"]
+            },
+            {
+                q: "What are CSS logical box model properties?",
+                a: "CSS logical properties: margin-inline-start, padding-block-end, border-inline-width. Adapt to text direction (LTR/RTL). Replaces physical properties (margin-left) for internationalization. Essential for multilingual websites and right-to-left languages.",
+                tags: ["css", "logical-properties", "internationalization"]
+            },
+            {
+                q: "What is CSS appearance property?",
+                a: "CSS appearance controls native element styling: none, auto, button, searchfield, textarea. Removes default browser styling for form controls. Use for custom form styling, consistent cross-browser appearance. Important for design systems.",
+                tags: ["css", "appearance", "forms"]
+            },
+            {
+                q: "What are CSS scroll-snap and scroll-margin properties?",
+                a: "CSS scroll-snap creates magnetic scroll points: scroll-snap-type: mandatory/proximity. scroll-margin adjusts snap position. Use for carousel effects, image galleries, and smooth scrolling experiences. Essential for mobile UX and touch interfaces.",
+                tags: ["css", "scroll-snap", "user-experience"]
+            },
+            {
+                q: "What is CSS color-scheme property?",
+                a: "CSS color-scheme indicates preferred color theme: light, dark, normal. Browser adjusts UI accordingly. Use with prefers-color-scheme media query. Enables automatic dark/light mode switching. Important for accessibility and user preference support.",
+                tags: ["css", "color-scheme", "dark-mode"]
+            },
+            {
+                q: "What are CSS property values and global keywords?",
+                a: "CSS global keywords: inherit, initial, revert, revert-layer, unset. inherit takes parent value. initial uses default. revert reverts to previous cascade. revert-layer reverts to previous layer. unset combines inherit and initial. Use for CSS architecture and resets.",
+                tags: ["css", "values", "global-keywords"]
+            },
+            {
+                q: "What is CSS font-palette property?",
+                a: "CSS font-palette selects user-preferred fonts: @font-palette values. Part of CSS Fonts Level 4. Allows users to choose preferred font variations. Use for typography customization and accessibility. Limited browser support but future-facing feature.",
+                tags: ["css", "fonts", "typography"]
+            },
+            {
+                q: "What are CSS nesting rules and how do they work?",
+                a: "CSS nesting allows writing nested selectors: .card { h2 { color: blue; } }. Reduces repetition, improves organization. Uses & symbol for parent selector. Supported in modern browsers. Alternative to preprocessors. Essential for maintainable CSS architecture.",
+                tags: ["css", "nesting", "architecture"]
+            },
+            {
+                q: "What is CSS cascade layers and @layer rule?",
+                a: "CSS cascade layers control specificity order: @layer base, components, utilities. Lower priority layers overridden by higher. Use for reset styles, component overrides, utility classes. Prevents specificity wars. Essential for large projects and design systems.",
+                tags: ["css", "cascade-layers", "specificity"]
+            },
+            {
+                q: "What are CSS container style queries?",
+                a: "CSS container style queries apply styles based on container computed styles: @container style(min-width: 300px). More powerful than size queries. Use for responsive components, theme switching, and conditional styling based on container properties.",
+                tags: ["css", "container-queries", "responsive"]
+            },
+            {
+                q: "What is CSS anchor positioning and @anchor rule?",
+                a: "CSS anchor positioning positions elements relative to anchor elements: position: absolute; position-anchor: #anchor-name. Use for tooltips, popovers, callouts. @anchor rule defines positioning defaults. Replaces JavaScript positioning for many use cases.",
+                tags: ["css", "anchor-positioning", "layout"]
+            },
+            {
+                q: "What are CSS scope rules and scoped styles?",
+                a: "CSS @scope creates style boundaries: @scope (.component) { }. Styles apply only within scope. Prevents style leakage, improves encapsulation. Use for component-based styling, shadow DOM, and style isolation. Alternative to shadow DOM encapsulation.",
+                tags: ["css", "scope", "encapsulation"]
+            },
+            {
+                q: "What is CSS transition-behavior property?",
+                a: "CSS transition-behavior controls discrete property animations: normal, allow-discrete. Enables smooth transitions for properties like display, top. Use for modern animations, layout transitions. Improves user experience with animated state changes.",
+                tags: ["css", "transitions", "animations"]
+            },
+            {
+                q: "What are CSS relative color syntax and color-mix()?",
+                a: "CSS relative colors: from lab(l a b), oklab. color-mix() blends colors: color-mix(in oklab, white 50%). Better than RGB for perceptual uniformity. Use for theming, opacity effects, and color calculations. Essential for modern color systems.",
+                tags: ["css", "colors", "color-mix", "relative-colors"]
+            },
+            {
+                q: "What is CSS text-wrap and balance properties?",
+                a: "CSS text-wrap controls text wrapping: wrap, nowrap, balance. text-wrap: balance optimizes line breaks for headings. Improves typography and layout. Use for responsive text, multi-line headings, and better text flow control.",
+                tags: ["css", "text-wrap", "typography", "layout"]
+            },
+            {
+                q: "What are CSS size container queries?",
+                a: "CSS size container queries respond to container dimensions: @container size(min-width: 300px). More precise than regular container queries. Use for responsive components, adaptive layouts, and size-based styling. Essential for component libraries and design systems.",
+                tags: ["css", "container-queries", "responsive"]
+            },
+            {
+                q: "What is CSS field-sizing and when to use it?",
+                a: "CSS field-sizing controls form element sizing: content, fixed, max-content, min-content. field-sizing: content makes inputs fit content width. Use for form inputs, text areas, and responsive forms. Improves user experience and layout consistency.",
+                tags: ["css", "field-sizing", "forms"]
+            },
+            {
+                q: "What are CSS timeline and animation-range properties?",
+                a: "CSS timeline defines animation sequences: @timeline. animation-range controls when keyframes apply. Use for scroll-linked animations, complex sequences, and performance optimization. Advanced feature for sophisticated animations and user interactions.",
+                tags: ["css", "timeline", "animations", "scroll-driven"]
+            }
+        ];
+
+        // Function to download all questions as PDF
+        function downloadPDF() {
+            // Show loading message
+            const originalText = event.target.innerHTML;
+            event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            event.target.disabled = true;
+            
+            setTimeout(() => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Set font size and style
+                doc.setFontSize(20);
+                doc.text('Web Development - Interview Questions', 20, 20);
+                
+                doc.setFontSize(12);
+                doc.text('Complete collection of Web Development interview questions and answers', 20, 30);
+                
+                let yPosition = 50;
+                const pageHeight = doc.internal.pageSize.height;
+                const lineHeight = 7;
+                const margin = 20;
+                
+                // Add all questions to PDF
+                data.forEach((item, index) => {
+                    // Check if we need a new page
+                    if (yPosition > pageHeight - 40) {
+                        doc.addPage();
+                        yPosition = 30;
+                    }
+                    
+                    // Question number and title
+                    doc.setFontSize(14);
+                    doc.setFont(undefined, 'bold');
+                    const questionText = `Q${index + 1}: ${item.q}`;
+                    const questionLines = doc.splitTextToSize(questionText, 170);
+                    
+                    questionLines.forEach(line => {
+                        if (yPosition > pageHeight - 20) {
+                            doc.addPage();
+                            yPosition = 30;
+                        }
+                        doc.text(line, margin, yPosition);
+                        yPosition += lineHeight;
+                    });
+                    
+                    // Answer
+                    doc.setFontSize(11);
+                    doc.setFont(undefined, 'normal');
+                    const answerText = `Answer: ${item.a}`;
+                    const answerLines = doc.splitTextToSize(answerText, 170);
+                    
+                    answerLines.forEach(line => {
+                        if (yPosition > pageHeight - 20) {
+                            doc.addPage();
+                            yPosition = 30;
+                        }
+                        doc.text(line, margin, yPosition);
+                        yPosition += lineHeight;
+                    });
+                    
+                    // Real-world example (if exists)
+                    if (item.r) {
+                        doc.setFont(undefined, 'italic');
+                        const exampleText = `Example: ${item.r}`;
+                        const exampleLines = doc.splitTextToSize(exampleText, 170);
+                        
+                        exampleLines.forEach(line => {
+                            if (yPosition > pageHeight - 20) {
+                                doc.addPage();
+                                yPosition = 30;
+                            }
+                            doc.text(line, margin, yPosition);
+                            yPosition += lineHeight;
+                        });
+                    }
+                    
+                    // Add spacing between questions
+                    yPosition += lineHeight * 2;
+                    
+                    // Add separator line
+                    if (yPosition < pageHeight - 20) {
+                        doc.setLineWidth(0.1);
+                        doc.line(margin, yPosition, 190, yPosition);
+                        yPosition += lineHeight;
+                    }
+                });
+                
+                // Add footer
+                const totalPages = doc.internal.getNumberOfPages();
+                for (let i = 1; i <= totalPages; i++) {
+                    doc.setPage(i);
+                    doc.setFontSize(10);
+                    doc.setFont(undefined, 'normal');
+                    doc.text(`Page ${i} of ${totalPages}`, 105, pageHeight - 10, { align: 'center' });
+                    doc.text('Generated from IT Interview Hub', 105, pageHeight - 5, { align: 'center' });
+                }
+                
+                // Save the PDF
+                doc.save('Web-Development-Interview-Questions.pdf');
+                
+                // Restore button state
+                event.target.innerHTML = originalText;
+                event.target.disabled = false;
+            }, 100);
+        }
+
+        // Function to copy code to clipboard
+        function copyCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+
+            if (!codeElement) return;
+
+            const code = codeElement.innerText;
+
+            navigator.clipboard.writeText(code).then(() => {
+                // Show copied feedback
+                const copyBtn = codeElement.closest('.code-container').querySelector('.copy-btn');
+                if (copyBtn) {
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+            });
+        }
+    
+
+        // Function to scroll to specific question
+        function scrollToQuestion(questionId) {
+            const element = document.getElementById(questionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Update active TOC link
+                const tocLinks = document.querySelectorAll('.toc-link');
+                tocLinks.forEach(link => link.classList.remove('active'));
+                
+                const activeLink = document.querySelector(`.toc-link[href="#${questionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        }
+
+        // Function to render table of contents
+        function renderTOC() {
+            const tocList = document.getElementById('tocList');
+            const tocListMobile = document.getElementById('tocListMobile');
+            
+            if (!tocList && !tocListMobile) return;
+
+            const source = currentQuestions && currentQuestions.length ? currentQuestions : data;
+            const start = (currentPage - 1) * questionsPerPage;
+            const end = start + questionsPerPage;
+
+            const pageItems = source.slice(start, end);
+
+            const tocHTML = pageItems.map((item, index) => {
+                const number = start + index + 1;
+                const shortQ = item.q.substring(0, 50) + (item.q.length > 50 ? '...' : '');
+                return `
+                    <li class="toc-item">
+                        <a href="#q-${number}" class="toc-link" onclick="scrollToQuestion('q-${number}'); return false;">
+                            <span class="toc-number">${number}.</span>
+                            <span class="toc-question">${shortQ}</span>
+                        </a>
+                    </li>
+                `;
+            }).join('');
+            
+            // Update both TOC lists
+            if (tocList) {
+                tocList.innerHTML = tocHTML;
+            }
+            if (tocListMobile) {
+                tocListMobile.innerHTML = tocHTML;
+            }
+        }
+
+        // Function to handle search with highlighting
+        function filterQuestions() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!searchTerm) {
+                currentQuestions = [...data];
+                currentPage = 1;
+                updatePagination();
+                return;
+            }
+            
+            currentQuestions = data.filter(item => 
+                item.q.toLowerCase().includes(searchTerm) || 
+                item.a.toLowerCase().includes(searchTerm) ||
+                (item.r && item.r.toLowerCase().includes(searchTerm)) ||
+                (item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchTerm)))
+            );
+            
+            currentPage = 1;
+            updatePagination();
+            
+            // Highlight search terms after rendering
+            setTimeout(() => highlightSearchTerms(searchTerm), 100);
+        }
+
+        // Function to highlight search terms
+        function highlightSearchTerms(searchTerm) {
+            if (!searchTerm) return;
+            
+            const questionsContainer = document.getElementById('questionsContainer');
+            const questionBoxes = questionsContainer.querySelectorAll('.q-box');
+            
+            questionBoxes.forEach(box => {
+                const h3 = box.querySelector('h3');
+                const paragraphs = box.querySelectorAll('p');
+                
+                // Highlight in question title
+                if (h3) {
+                    h3.innerHTML = highlightText(h3.textContent, searchTerm);
+                }
+                
+                // Highlight in paragraphs
+                paragraphs.forEach(p => {
+                    p.innerHTML = highlightText(p.textContent, searchTerm);
+                });
+            });
+        }
+
+        // Function to highlight text
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+        }
+
+        // Add CSS for search highlighting
+        const searchHighlightStyle = document.createElement('style');
+        searchHighlightStyle.textContent = `
+            .search-highlight {
+                background-color: #fef08a;
+                color: #713f12;
+                padding: 2px 4px;
+                border-radius: 3px;
+                font-weight: 500;
+            }
+        `;
+        document.head.appendChild(searchHighlightStyle);
+
+        // Function to render questions with pagination
+        function renderQuestions(questionsToRender = data) {
+            currentQuestions = [...questionsToRender];
+            currentPage = 1; // Reset to first page when filtering
+            updatePagination();
+        }
+
+        // Function to update pagination
+        function updatePagination() {
+            const questionsContainer = document.getElementById('questionsContainer');
+            const pageInfo = document.getElementById('pageInfo');
+            const prevPageBtn = document.getElementById('prevPage');
+            const nextPageBtn = document.getElementById('nextPage');
+
+            // Calculate pagination details
+            const start = (currentPage - 1) * questionsPerPage;
+            const end = start + questionsPerPage;
+            const pageCount = Math.ceil(currentQuestions.length / questionsPerPage);
+
+            // Render questions for the current page
+            const questionsHTML = currentQuestions.slice(start, end).map((item, index) => {
+                const questionNumber = (currentPage - 1) * questionsPerPage + index + 1;
+                return `
+                    <div class="q-box" id="q-${questionNumber}">
+                        <h3>${item.q}</h3>
+                        <div class="q-meta">
+                            <span class="q-number">${questionNumber}</span>
+                            <span class="q-tags">
+                                ${item.tags.map(tag => `<span class="q-tag">${tag}</span>`).join('')}
+                            </span>
+                        </div>
+                        <p>${item.a}</p>
+                        ${item.r ? `<p class="q-result">${item.r}</p>` : ''}
+                        ${item.c ? `
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span class="code-title">Example Code</span>
+                                    <button class="copy-btn" onclick="copyCode('code-${questionNumber}')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                <pre><code id="code-${questionNumber}" class="language-javascript">${item.c}</code></pre>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            questionsContainer.innerHTML = questionsHTML;
+
+            renderTOC();
+
+            // Update page info
+            if (pageInfo) {
+                pageInfo.textContent = `Page ${currentPage} of ${pageCount} (${currentQuestions.length} questions)`;
+            }
+
+            // Update navigation buttons
+            if (prevPageBtn) {
+                prevPageBtn.disabled = currentPage === 1;
+            }
+            if (nextPageBtn) {
+                nextPageBtn.disabled = currentPage === pageCount || pageCount === 0;
+            }
+
+            // Highlight code blocks
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        }
+
+        // Pagination functions
+        function nextPage() {
+            const pageCount = Math.ceil(currentQuestions.length / questionsPerPage);
+            if (currentPage < pageCount) {
+                currentPage++;
+                updatePagination();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updatePagination();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderQuestions();
+
+            // Pagination button event listeners
+            const nextPageBtn = document.getElementById('nextPage');
+            if (nextPageBtn) {
+                nextPageBtn.addEventListener('click', nextPage);
+            }
+            const prevPageBtn = document.getElementById('prevPage');
+            if (prevPageBtn) {
+                prevPageBtn.addEventListener('click', prevPage);
+            }
+
+            // Toggle functionality for both desktop and mobile TOC
+            function setupTocToggle() {
+                const tocToggleBtn = document.getElementById('tocToggleBtn');
+                const tocToggleBtnMobile = document.getElementById('tocToggleBtnMobile');
+                const tocList = document.getElementById('tocList');
+                const tocListMobile = document.getElementById('tocListMobile');
+                
+                function toggleToc() {
+                    if (tocList) {
+                        tocList.classList.toggle('toc-hidden');
+                    }
+                    if (tocListMobile) {
+                        tocListMobile.classList.toggle('toc-hidden');
+                    }
+                }
+                
+                if (tocToggleBtn) {
+                    tocToggleBtn.addEventListener('click', toggleToc);
+                }
+                if (tocToggleBtnMobile) {
+                    tocToggleBtnMobile.addEventListener('click', toggleToc);
+                }
+            }
+            
+            setupTocToggle();
+            
+            // Add search event listener
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', filterQuestions);
+            }
+
+            // Mobile menu functionality
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+            const mobileSidebarClose = document.getElementById('mobileSidebarClose');
+
+            function openMobileMenu() {
+                mobileSidebar.classList.add('active');
+                mobileSidebarOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileSidebar.classList.remove('active');
+                mobileSidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openMobileMenu);
+            }
+
+            if (mobileSidebarClose) {
+                mobileSidebarClose.addEventListener('click', closeMobileMenu);
+            }
+
+            if (mobileSidebarOverlay) {
+                mobileSidebarOverlay.addEventListener('click', closeMobileMenu);
+            }
+
+            // Close mobile menu when clicking on TOC links
+            const mobileTocLinks = mobileSidebar?.querySelectorAll('.toc-link');
+            if (mobileTocLinks) {
+                mobileTocLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+            }
+
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileSidebar?.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
