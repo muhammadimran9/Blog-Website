@@ -442,6 +442,17 @@
   opacity: 1;
 }
 
+@media (max-width: 1200px) {
+  .header-container {
+    padding: 1rem 4%;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 968px) {
   .main-nav .nav-link span {
     display: none;
@@ -454,6 +465,11 @@
   .dropdown-menu {
     left: auto;
     right: 0;
+    min-width: 220px;
+  }
+  
+  .logo {
+    font-size: 1.6rem;
   }
 }
 
@@ -473,16 +489,70 @@
   .header-container {
     padding: 1rem 3%;
   }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-container {
+    padding: 0.75rem 4%;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+  }
+  
+  .mobile-menu {
+    width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
+  .header-container {
+    padding: 0.75rem 3%;
+  }
+  
   .logo {
+    font-size: 1.3rem;
+  }
+  
+  .logo i {
     font-size: 1.5rem;
   }
   
   .mobile-menu {
     width: 100%;
     max-width: 100%;
+  }
+  
+  .mobile-menu-header {
+    padding: 1rem;
+  }
+  
+  .mobile-logo {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-container {
+    padding: 0.5rem 2%;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+    gap: 0.5rem;
+  }
+  
+  .logo i {
+    font-size: 1.4rem;
+  }
+  
+  .mobile-menu-btn {
+    padding: 0.5rem;
+    font-size: 1.3rem;
   }
 }
 </style>
@@ -554,12 +624,10 @@
   // Check authentication and update nav
   async function updateNavAuth() {
     try {
-      const response = await fetch('http://localhost:3000/api/auth/status', {
-        credentials: 'include'
-      });
-      const data = await response.json();
+      // Check if using Firebase auth
+      const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
       
-      if (data.authenticated) {
+      if (isLoggedIn) {
         // User is logged in
         document.getElementById('loginNavLink').style.display = 'none';
         document.getElementById('loginNavLinkMobile').style.display = 'none';
@@ -573,7 +641,7 @@
         document.getElementById('logoutNavLinkMobile').style.display = 'none';
       }
     } catch (error) {
-      // If server is not running, show login link
+      // Show login link on error
       document.getElementById('loginNavLink').style.display = 'inline-flex';
       document.getElementById('loginNavLinkMobile').style.display = 'block';
       document.getElementById('logoutNavLink').style.display = 'none';
@@ -584,18 +652,17 @@
   // Logout function
   window.logout = async function() {
     try {
-      await fetch('http://localhost:3000/api/logout', {
-        method: 'POST',
-        credentials: 'include'
-      });
-      sessionStorage.removeItem('user');
-      sessionStorage.removeItem('isLoggedIn');
-      window.location.href = 'login.html';
+      // Import Firebase auth service dynamically
+      const { authService } = await import('./firebase-auth.js');
+      await authService.logout();
+      window.location.href = 'index.html';
     } catch (error) {
       console.error('Logout error:', error);
+      // Fallback logout
       sessionStorage.removeItem('user');
       sessionStorage.removeItem('isLoggedIn');
-      window.location.href = 'login.html';
+      sessionStorage.removeItem('userId');
+      window.location.href = 'index.html';
     }
   };
   

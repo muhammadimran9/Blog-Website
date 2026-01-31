@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS3 - 80+ Essential Interview Questions & Answers</title>
-    <meta name="description" content="Master CSS3 with 80+ essential interview questions, detailed answers, and real-world code examples. Perfect for interview preparation and skill building for students and professionals.">
+    <title>JavaScript - 180+ Essential Interview Questions & Answers</title>
+    <meta name="description" content="Master JavaScript with 180+ essential interview questions, detailed answers, and real-world code examples. Perfect for interview preparation and skill building for students and professionals.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
@@ -831,8 +831,8 @@
     <div id="header"></div>
     <header>
         <div class="header-content">
-            <h1>CSS3</h1>
-            <p>Master Modern CSS3 with 80+ essential interview questions, detailed answers, and real-world code examples for students and professionals</p>
+            <h1>JavaScript</h1>
+            <p>Master Modern JavaScript with 180+ essential interview questions, detailed answers, and real-world code examples for students and professionals</p>
             <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="Search questions...">
@@ -904,10 +904,10 @@
                 <span>/</span>
                 <a href="#">Topics</a>
                 <span>/</span>
-                <span>CSS3</span>
+                <span>JavaScript</span>
             </div>
             
-            <h2 style="margin-bottom: 2rem;">80+ Essential Web Development Interview Questions</h2>
+            <h2 style="margin-bottom: 2rem;">190+ Essential JavaScript Interview Questions</h2>
             
             <!-- Adsterra Ad Placement - Top -->
             <div style="text-align: center; margin: 2rem 0;">
@@ -956,11 +956,956 @@
         // Questions data
         const data = [
             {
-                q: "What is CSS (Cascading Style Sheets)?",
-                a: "CSS is a stylesheet language used to describe the presentation of HTML documents. It controls colors, fonts, spacing, positioning, and responsive design. CSS separates content from presentation, making websites maintainable and consistent.",
-                tags: ["css", "basics", "styling"]
+                q: "What is JavaScript?",
+                a: "JavaScript is a high-level, interpreted programming language that enables interactive web pages. It's a core technology of the World Wide Web, alongside HTML and CSS. JavaScript supports event-driven, functional, and imperative programming styles.",
+                tags: ["javascript", "basics", "programming"]
             },
-                  ];
+            {
+                q: "What are the different data types in JavaScript?",
+                a: "JavaScript has 8 data types: Number, String, Boolean, Undefined, Null, Symbol (ES6), BigInt (ES2020), and Object. The first 7 are primitive types, while Object is a non-primitive type that includes arrays, functions, and objects.",
+                tags: ["javascript", "data-types", "basics"]
+            },
+            {
+                q: "What is the difference between var, let, and const?",
+                a: "var has function scope and is hoisted, let has block scope and is hoisted but not initialized, const has block scope, is hoisted but not initialized, and cannot be reassigned. let and const were introduced in ES6.",
+                tags: ["javascript", "variables", "es6", "scope"]
+            },
+            {
+                q: "What is hoisting in JavaScript?",
+                a: "Hoisting is JavaScript's behavior of moving variable and function declarations to the top of their scope during compilation. Variables declared with var are hoisted and initialized with undefined, while let and const are hoisted but not initialized.",
+                tags: ["javascript", "hoisting", "concepts"]
+            },
+            {
+                q: "What is the difference between == and === operators?",
+                a: "== performs type coercion and compares values after converting them to the same type. === performs strict comparison without type coercion, comparing both value and type. === is generally preferred for precise comparisons.",
+                tags: ["javascript", "operators", "comparison"]
+            },
+            {
+                q: "What are closures in JavaScript?",
+                a: "A closure is a function that has access to variables in its outer (enclosing) scope even after the outer function has returned. Closures are created when a function is defined inside another function and references variables from the outer scope.",
+                tags: ["javascript", "closures", "advanced", "scope"]
+            },
+            {
+                q: "What is the 'this' keyword in JavaScript?",
+                a: "'this' refers to the object that is executing the current function. Its value depends on how the function is called: in methods it refers to the owner object, in regular functions it refers to the global object (or undefined in strict mode).",
+                tags: ["javascript", "this", "context", "objects"]
+            },
+            {
+                q: "What are arrow functions and how do they differ from regular functions?",
+                a: "Arrow functions are a concise way to write functions introduced in ES6. They don't have their own 'this', 'arguments', 'super', or 'new.target'. They cannot be used as constructors and are always anonymous.",
+                tags: ["javascript", "arrow-functions", "es6", "functions"]
+            },
+            {
+                q: "What is the difference between null and undefined?",
+                a: "undefined means a variable has been declared but not assigned a value, or a function doesn't return a value. null is an assignment value representing no value or empty value. typeof null returns 'object' (a known bug), while typeof undefined returns 'undefined'.",
+                tags: ["javascript", "null", "undefined", "data-types"]
+            },
+            {
+                q: "What are JavaScript promises?",
+                a: "Promises are objects representing the eventual completion or failure of an asynchronous operation. They have three states: pending, fulfilled, or rejected. Promises provide a cleaner alternative to callbacks for handling asynchronous operations.",
+                tags: ["javascript", "promises", "async", "es6"]
+            },
+            {
+                q: "What is async/await in JavaScript?",
+                a: "async/await is syntactic sugar built on top of promises, introduced in ES2017. async functions always return a promise, and await pauses the execution until the promise resolves, making asynchronous code look and behave more like synchronous code.",
+                tags: ["javascript", "async-await", "promises", "es2017"]
+            },
+            {
+                q: "What is event bubbling and event capturing?",
+                a: "Event bubbling is when an event starts from the target element and bubbles up to the root. Event capturing is the opposite - events start from the root and capture down to the target. You can control this with the third parameter of addEventListener().",
+                tags: ["javascript", "events", "dom", "bubbling"]
+            },
+            {
+                q: "What is the difference between call, apply, and bind?",
+                a: "call() invokes a function with a specific 'this' value and arguments passed individually. apply() is similar but takes arguments as an array. bind() returns a new function with a bound 'this' value and optional preset arguments.",
+                tags: ["javascript", "call", "apply", "bind", "this"]
+            },
+            {
+                q: "What are JavaScript prototypes?",
+                a: "Prototypes are the mechanism by which JavaScript objects inherit features from one another. Every object has a prototype property that points to another object. When accessing a property, JavaScript looks up the prototype chain until it finds the property or reaches null.",
+                tags: ["javascript", "prototypes", "inheritance", "objects"]
+            },
+            {
+                q: "What is the difference between function declaration and function expression?",
+                a: "Function declarations are hoisted completely and can be called before they're defined. Function expressions are not hoisted and cannot be called before they're defined. Function declarations create a variable in the current scope with the function name.",
+                tags: ["javascript", "functions", "declaration", "expression", "hoisting"]
+            },
+            {
+                q: "What are JavaScript modules?",
+                a: "Modules are reusable pieces of code that can be exported from one file and imported into another. ES6 introduced native module support with import/export syntax. Modules help organize code, avoid global namespace pollution, and enable code reusability.",
+                tags: ["javascript", "modules", "es6", "import", "export"]
+            },
+            {
+                q: "What is destructuring in JavaScript?",
+                a: "Destructuring is a syntax that allows unpacking values from arrays or properties from objects into distinct variables. It provides a concise way to extract data from complex data structures and was introduced in ES6.",
+                tags: ["javascript", "destructuring", "es6", "arrays", "objects"]
+            },
+            {
+                q: "What are template literals?",
+                a: "Template literals are string literals that allow embedded expressions and multi-line strings. They use backticks (`) instead of quotes and support variable interpolation using ${expression} syntax. Introduced in ES6.",
+                tags: ["javascript", "template-literals", "es6", "strings"]
+            },
+            {
+                q: "What is the spread operator?",
+                a: "The spread operator (...) allows an iterable to be expanded in places where zero or more arguments or elements are expected. It can be used to spread arrays, objects, and other iterables. Introduced in ES6 for arrays and ES2018 for objects.",
+                tags: ["javascript", "spread-operator", "es6", "arrays", "objects"]
+            },
+            {
+                q: "What is the rest parameter?",
+                a: "The rest parameter (...) allows a function to accept an indefinite number of arguments as an array. It collects all remaining arguments into an array. It must be the last parameter in the function parameter list.",
+                tags: ["javascript", "rest-parameter", "es6", "functions"]
+            },
+            {
+                q: "What are JavaScript classes?",
+                a: "Classes are a template for creating objects introduced in ES6. They're syntactic sugar over JavaScript's prototype-based inheritance. Classes support constructors, methods, static methods, inheritance with extends, and super keyword.",
+                tags: ["javascript", "classes", "es6", "oop", "inheritance"]
+            },
+            {
+                q: "What is the difference between synchronous and asynchronous programming?",
+                a: "Synchronous programming executes code sequentially, blocking until each operation completes. Asynchronous programming allows code to continue executing while waiting for operations to complete, using callbacks, promises, or async/await.",
+                tags: ["javascript", "sync", "async", "programming"]
+            },
+            {
+                q: "What is the event loop in JavaScript?",
+                a: "The event loop is the mechanism that handles asynchronous operations in JavaScript's single-threaded environment. It continuously checks the call stack and task queue, moving tasks from the queue to the stack when the stack is empty.",
+                tags: ["javascript", "event-loop", "async", "concurrency"]
+            },
+            {
+                q: "What are higher-order functions?",
+                a: "Higher-order functions are functions that take other functions as arguments or return functions as results. Examples include map(), filter(), reduce(), forEach(). They enable functional programming patterns and code reusability.",
+                tags: ["javascript", "higher-order", "functional", "functions"]
+            },
+            {
+                q: "What is currying in JavaScript?",
+                a: "Currying is a technique of transforming a function with multiple arguments into a sequence of functions, each taking a single argument. It enables partial application and creates more reusable and composable functions.",
+                tags: ["javascript", "currying", "functional", "advanced"]
+            },
+            {
+                q: "What is memoization?",
+                a: "Memoization is an optimization technique that stores the results of expensive function calls and returns the cached result when the same inputs occur again. It's commonly used to optimize recursive functions and expensive computations.",
+                tags: ["javascript", "memoization", "optimization", "performance"]
+            },
+            {
+                q: "What are JavaScript generators?",
+                a: "Generators are functions that can be paused and resumed, yielding multiple values over time. They're defined with function* syntax and use yield keyword. They return an iterator object and are useful for creating iterables and handling asynchronous operations.",
+                tags: ["javascript", "generators", "es6", "iterators"]
+            },
+            {
+                q: "What is the difference between Map and Object?",
+                a: "Map is a collection of key-value pairs where keys can be any type. Objects have string/symbol keys only. Map maintains insertion order, has a size property, and is optimized for frequent additions/removals. Objects are optimized for records and property access.",
+                tags: ["javascript", "map", "object", "data-structures"]
+            },
+            {
+                q: "What are Sets in JavaScript?",
+                a: "Set is a collection of unique values of any type. It automatically removes duplicates and maintains insertion order. Sets provide methods like add(), delete(), has(), and clear(). They're useful for storing unique values and set operations.",
+                tags: ["javascript", "set", "data-structures", "es6"]
+            },
+            {
+                q: "What is WeakMap and WeakSet?",
+                a: "WeakMap and WeakSet are collections that hold weak references to their keys/values. They don't prevent garbage collection of their contents and don't have size property or iteration methods. They're useful for storing metadata without memory leaks.",
+                tags: ["javascript", "weakmap", "weakset", "memory", "gc"]
+            },
+            {
+                q: "What are Symbols in JavaScript?",
+                a: "Symbols are primitive data types introduced in ES6 that represent unique identifiers. They're always unique, even if created with the same description. Symbols are often used as object property keys to avoid naming conflicts.",
+                tags: ["javascript", "symbols", "es6", "primitive"]
+            },
+            {
+                q: "What is the Proxy object?",
+                a: "Proxy allows you to define custom behavior for fundamental operations on objects (property lookup, assignment, enumeration, function invocation). It uses handlers (traps) to intercept and customize operations performed on the target object.",
+                tags: ["javascript", "proxy", "metaprogramming", "es6"]
+            },
+            {
+                q: "What is the Reflect API?",
+                a: "Reflect is a built-in object that provides methods for interceptable JavaScript operations. It has the same methods as Proxy handlers and provides a more functional approach to meta-programming operations like property access and function calls.",
+                tags: ["javascript", "reflect", "metaprogramming", "es6"]
+            },
+            {
+                q: "What are JavaScript iterators and iterables?",
+                a: "Iterators are objects that implement the iterator protocol with a next() method. Iterables are objects that implement the iterable protocol with a Symbol.iterator method. They enable custom iteration behavior and work with for...of loops.",
+                tags: ["javascript", "iterators", "iterables", "protocols"]
+            },
+            {
+                q: "What is the difference between for...in and for...of loops?",
+                a: "for...in iterates over enumerable property names of an object, including inherited properties. for...of iterates over values of iterable objects like arrays, strings, Maps, Sets. for...of works with the iterator protocol.",
+                tags: ["javascript", "loops", "iteration", "objects"]
+            },
+            {
+                q: "What are JavaScript decorators?",
+                a: "Decorators are a stage 3 proposal that provide a way to modify classes and class members using a declarative syntax. They're functions that can modify or replace class definitions, methods, or properties at design time.",
+                tags: ["javascript", "decorators", "proposal", "classes"]
+            },
+            {
+                q: "What is the difference between shallow and deep copying?",
+                a: "Shallow copying creates a new object but inserts references to nested objects. Deep copying creates a new object and recursively copies all nested objects. Methods include Object.assign() (shallow), JSON.parse/stringify (limited deep), and custom recursive functions.",
+                tags: ["javascript", "copying", "objects", "references"]
+            },
+            {
+                q: "What are JavaScript workers?",
+                a: "Web Workers allow running JavaScript in background threads, separate from the main UI thread. They enable parallel processing without blocking the user interface. Workers communicate with the main thread through message passing.",
+                tags: ["javascript", "workers", "threading", "performance"]
+            },
+            {
+                q: "What is the difference between localStorage and sessionStorage?",
+                a: "localStorage persists data until explicitly cleared and is shared across tabs/windows of the same origin. sessionStorage persists data only for the session (tab) and is cleared when the tab closes. Both have the same API and 5-10MB storage limit.",
+                tags: ["javascript", "storage", "browser", "persistence"]
+            },
+            {
+                q: "What are JavaScript regular expressions?",
+                a: "Regular expressions are patterns used to match character combinations in strings. JavaScript provides RegExp object and literal syntax (/pattern/flags). They're used for string validation, searching, and replacement operations.",
+                tags: ["javascript", "regex", "patterns", "strings"]
+            },
+            {
+                q: "What is JSON and how do you work with it in JavaScript?",
+                a: "JSON (JavaScript Object Notation) is a lightweight data interchange format. JavaScript provides JSON.parse() to convert JSON strings to objects and JSON.stringify() to convert objects to JSON strings. It's widely used for API communication.",
+                tags: ["javascript", "json", "parsing", "serialization"]
+            },
+            {
+                q: "What are JavaScript errors and how do you handle them?",
+                a: "JavaScript errors are runtime exceptions that stop code execution. They can be handled using try...catch...finally blocks. Common error types include SyntaxError, ReferenceError, TypeError. You can also throw custom errors.",
+                tags: ["javascript", "errors", "exception-handling", "debugging"]
+            },
+            {
+                q: "What is strict mode in JavaScript?",
+                a: "Strict mode is a way to opt into a restricted variant of JavaScript. It eliminates silent errors, fixes mistakes that make it difficult for engines to optimize, and prohibits syntax likely to be defined in future ECMAScript versions.",
+                tags: ["javascript", "strict-mode", "best-practices"]
+            },
+            {
+                q: "What are JavaScript polyfills?",
+                a: "Polyfills are code that implements features on web browsers that don't natively support them. They provide fallback functionality for newer JavaScript features in older browsers, ensuring cross-browser compatibility.",
+                tags: ["javascript", "polyfills", "compatibility", "browsers"]
+            },
+            {
+                q: "What is transpilation in JavaScript?",
+                a: "Transpilation is the process of converting source code from one language to another at the same abstraction level. Tools like Babel transpile modern JavaScript (ES6+) to older versions for browser compatibility.",
+                tags: ["javascript", "transpilation", "babel", "compatibility"]
+            },
+            {
+                q: "What are JavaScript bundlers?",
+                a: "Bundlers are tools that combine multiple JavaScript files and their dependencies into one or more bundle files. Popular bundlers include Webpack, Rollup, and Parcel. They optimize code for production and handle module dependencies.",
+                tags: ["javascript", "bundlers", "webpack", "build-tools"]
+            },
+            {
+                q: "What is tree shaking?",
+                a: "Tree shaking is a dead code elimination technique used in bundlers to remove unused code from the final bundle. It relies on ES6 module syntax's static structure to determine which exports are used and which can be safely removed.",
+                tags: ["javascript", "tree-shaking", "optimization", "bundling"]
+            },
+            {
+                q: "What are JavaScript source maps?",
+                a: "Source maps are files that map minified/transpiled code back to the original source code. They enable debugging of production code by showing original file names, line numbers, and variable names in browser developer tools.",
+                tags: ["javascript", "source-maps", "debugging", "development"]
+            },
+            {
+                q: "What is the difference between CommonJS and ES6 modules?",
+                a: "CommonJS uses require()/module.exports and loads modules synchronously at runtime. ES6 modules use import/export and are loaded asynchronously at compile time. ES6 modules have static structure enabling tree shaking and better optimization.",
+                tags: ["javascript", "modules", "commonjs", "es6"]
+            },
+            {
+                q: "What are JavaScript design patterns?",
+                a: "Design patterns are reusable solutions to common programming problems. Popular JavaScript patterns include Module, Observer, Singleton, Factory, Prototype, and MVC. They promote code organization, reusability, and maintainability.",
+                tags: ["javascript", "design-patterns", "architecture", "best-practices"]
+            },
+            {
+                q: "What is the Module pattern?",
+                a: "The Module pattern uses closures to create private variables and methods while exposing a public API. It helps avoid global namespace pollution and provides encapsulation. IIFE (Immediately Invoked Function Expression) is commonly used to implement it.",
+                tags: ["javascript", "module-pattern", "closures", "encapsulation"]
+            },
+            {
+                q: "What is the Observer pattern?",
+                a: "The Observer pattern defines a one-to-many dependency between objects. When one object (subject) changes state, all dependent objects (observers) are notified automatically. It's used in event systems and MVC architectures.",
+                tags: ["javascript", "observer-pattern", "events", "design-patterns"]
+            },
+            {
+                q: "What is functional programming in JavaScript?",
+                a: "Functional programming is a paradigm that treats computation as evaluation of mathematical functions. It emphasizes immutability, pure functions, higher-order functions, and avoiding side effects. JavaScript supports functional programming concepts.",
+                tags: ["javascript", "functional-programming", "paradigm", "pure-functions"]
+            },
+            {
+                q: "What are pure functions?",
+                a: "Pure functions are functions that always return the same output for the same input and have no side effects. They don't modify external state or depend on external mutable state. They're predictable, testable, and cacheable.",
+                tags: ["javascript", "pure-functions", "functional", "side-effects"]
+            },
+            {
+                q: "What is immutability in JavaScript?",
+                a: "Immutability means that once created, an object cannot be changed. Instead of modifying existing objects, new objects are created with the desired changes. Libraries like Immutable.js help implement immutable data structures.",
+                tags: ["javascript", "immutability", "functional", "data-structures"]
+            },
+            {
+                q: "What are JavaScript performance optimization techniques?",
+                a: "Key techniques include: minimizing DOM manipulation, using efficient algorithms, avoiding memory leaks, lazy loading, code splitting, caching, using requestAnimationFrame for animations, and optimizing loops and conditionals.",
+                tags: ["javascript", "performance", "optimization", "best-practices"]
+            },
+            {
+                q: "What is debouncing and throttling?",
+                a: "Debouncing delays function execution until after a specified time has passed since the last call. Throttling limits function execution to once per specified time interval. Both are used to optimize performance of frequently called functions.",
+                tags: ["javascript", "debouncing", "throttling", "performance"]
+            },
+            {
+                q: "What are JavaScript memory leaks and how to prevent them?",
+                a: "Memory leaks occur when memory is allocated but never released. Common causes include global variables, forgotten timers, closures holding references, and detached DOM nodes. Prevention involves proper cleanup, weak references, and memory profiling.",
+                tags: ["javascript", "memory-leaks", "garbage-collection", "performance"]
+            },
+            {
+                q: "What is the V8 JavaScript engine?",
+                a: "V8 is Google's open-source JavaScript engine that powers Chrome and Node.js. It compiles JavaScript to native machine code using just-in-time (JIT) compilation, includes garbage collection, and optimizes code execution for performance.",
+                tags: ["javascript", "v8", "engine", "performance"]
+            },
+            {
+                q: "What are JavaScript testing frameworks?",
+                a: "Popular testing frameworks include Jest, Mocha, Jasmine, and Cypress. They provide tools for unit testing, integration testing, and end-to-end testing. Features include test runners, assertion libraries, mocking, and code coverage.",
+                tags: ["javascript", "testing", "frameworks", "quality"]
+            },
+            {
+                q: "What is Test-Driven Development (TDD) in JavaScript?",
+                a: "TDD is a development approach where tests are written before the actual code. The cycle is: write a failing test, write minimal code to pass, refactor. It ensures code quality, better design, and comprehensive test coverage.",
+                tags: ["javascript", "tdd", "testing", "methodology"]
+            },
+            {
+                q: "What are JavaScript linters?",
+                a: "Linters are tools that analyze code for potential errors, bugs, stylistic errors, and suspicious constructs. Popular JavaScript linters include ESLint, JSHint, and TSLint. They enforce coding standards and catch errors early.",
+                tags: ["javascript", "linting", "code-quality", "tools"]
+            },
+            {
+                q: "What is TypeScript and how does it relate to JavaScript?",
+                a: "TypeScript is a superset of JavaScript that adds static type definitions. It compiles to plain JavaScript and provides better tooling, error catching at compile time, and improved code documentation through types.",
+                tags: ["javascript", "typescript", "types", "superset"]
+            },
+            {
+                q: "What are JavaScript frameworks and libraries?",
+                a: "Frameworks provide a complete structure for building applications (Angular, Vue), while libraries provide specific functionality (React, Lodash). They speed up development, provide tested solutions, and establish conventions.",
+                tags: ["javascript", "frameworks", "libraries", "development"]
+            },
+            {
+                q: "What is Node.js?",
+                a: "Node.js is a JavaScript runtime built on Chrome's V8 engine that allows JavaScript to run on servers. It uses an event-driven, non-blocking I/O model and includes npm (Node Package Manager) for package management.",
+                tags: ["javascript", "nodejs", "server-side", "runtime"]
+            },
+            {
+                q: "What is npm and package management?",
+                a: "npm (Node Package Manager) is the default package manager for Node.js. It allows installing, updating, and managing JavaScript packages and dependencies. package.json defines project dependencies and scripts.",
+                tags: ["javascript", "npm", "package-management", "dependencies"]
+            },
+            {
+                q: "What are JavaScript build tools?",
+                a: "Build tools automate development tasks like compilation, minification, testing, and deployment. Popular tools include Webpack, Gulp, Grunt, Rollup, and Vite. They improve development workflow and optimize production builds.",
+                tags: ["javascript", "build-tools", "automation", "workflow"]
+            },
+            {
+                q: "What is Progressive Web App (PWA) development with JavaScript?",
+                a: "PWAs are web applications that use modern web capabilities to provide app-like experiences. They use Service Workers for offline functionality, Web App Manifest for installation, and responsive design for cross-platform compatibility.",
+                tags: ["javascript", "pwa", "service-workers", "offline"]
+            },
+            {
+                q: "What are Service Workers?",
+                a: "Service Workers are scripts that run in the background, separate from web pages. They enable features like offline functionality, background sync, and push notifications. They act as a proxy between web apps and the network.",
+                tags: ["javascript", "service-workers", "offline", "background"]
+            },
+            {
+                q: "What is the Fetch API?",
+                a: "The Fetch API provides a modern interface for making HTTP requests. It returns promises and offers more flexibility than XMLHttpRequest. It supports request/response objects, streaming, and better error handling.",
+                tags: ["javascript", "fetch", "http", "api"]
+            },
+            {
+                q: "What are JavaScript security best practices?",
+                a: "Key practices include: validating input, sanitizing output, using HTTPS, implementing CSP, avoiding eval(), protecting against XSS and CSRF, using secure authentication, and keeping dependencies updated.",
+                tags: ["javascript", "security", "best-practices", "xss"]
+            },
+            {
+                q: "What is Cross-Site Scripting (XSS) and how to prevent it?",
+                a: "XSS is a security vulnerability where malicious scripts are injected into web pages. Prevention includes input validation, output encoding, Content Security Policy (CSP), and using frameworks that automatically escape output.",
+                tags: ["javascript", "xss", "security", "prevention"]
+            },
+            {
+                q: "What is Cross-Origin Resource Sharing (CORS)?",
+                a: "CORS is a mechanism that allows restricted resources on a web page to be requested from another domain. It uses HTTP headers to tell browsers to give a web application running at one origin access to selected resources from a different origin.",
+                tags: ["javascript", "cors", "security", "cross-origin"]
+            },
+            {
+                q: "What are JavaScript accessibility considerations?",
+                a: "Accessibility involves making web content usable by people with disabilities. Key considerations include semantic HTML, ARIA attributes, keyboard navigation, screen reader compatibility, and proper focus management in dynamic content.",
+                tags: ["javascript", "accessibility", "a11y", "inclusive"]
+            },
+            {
+                q: "What is the history of JavaScript?",
+                a: "JavaScript was created by Brendan Eich at Netscape in 1995 in just 10 days. Originally called Mocha, then LiveScript, it was renamed JavaScript for marketing reasons. It became an ECMA standard (ECMAScript) in 1997.",
+                tags: ["javascript", "history", "brendan-eich", "ecmascript"]
+            },
+            {
+                q: "What are the major ECMAScript versions and their features?",
+                a: "ES5 (2009): strict mode, JSON support. ES6/ES2015: classes, modules, arrow functions, promises. ES2016: Array.includes, exponentiation. ES2017: async/await. ES2018: rest/spread for objects. ES2019: Array.flat, Object.fromEntries.",
+                tags: ["javascript", "ecmascript", "versions", "features"]
+            },
+            {
+                q: "What is the difference between JavaScript and Java?",
+                a: "Despite similar names, they're completely different languages. JavaScript is interpreted, dynamically typed, and primarily for web development. Java is compiled, statically typed, and used for enterprise applications. They have different syntax and paradigms.",
+                tags: ["javascript", "java", "comparison", "differences"]
+            },
+            {
+                q: "What are JavaScript engines and how do they work?",
+                a: "JavaScript engines parse, compile, and execute JavaScript code. They include a parser (creates AST), compiler (generates bytecode/machine code), and runtime (executes code). Examples include V8 (Chrome), SpiderMonkey (Firefox), and JavaScriptCore (Safari).",
+                tags: ["javascript", "engines", "compilation", "execution"]
+            },
+            {
+                q: "What is Just-In-Time (JIT) compilation?",
+                a: "JIT compilation compiles code during execution rather than beforehand. JavaScript engines use JIT to optimize frequently executed code paths, converting interpreted code to optimized machine code for better performance.",
+                tags: ["javascript", "jit", "compilation", "optimization"]
+            },
+            {
+                q: "What are JavaScript benchmarks and performance testing?",
+                a: "Benchmarks measure JavaScript performance across different engines and environments. Tools include JSPerf, Benchmark.js, and browser dev tools. Performance testing involves measuring execution time, memory usage, and optimization effectiveness.",
+                tags: ["javascript", "benchmarks", "performance", "testing"]
+            },
+            {
+                q: "What is the future of JavaScript?",
+                a: "JavaScript continues evolving with annual ECMAScript releases, WebAssembly integration, improved performance, new APIs, and expanding beyond browsers to servers, mobile, desktop, and IoT. Proposals include pattern matching, decorators, and temporal API.",
+                tags: ["javascript", "future", "evolution", "proposals"]
+            },
+            {
+                q: "What are JavaScript code splitting techniques?",
+                a: "Code splitting divides code into smaller chunks loaded on demand. Techniques include dynamic imports, route-based splitting, and component-based splitting. It reduces initial bundle size and improves loading performance.",
+                tags: ["javascript", "code-splitting", "performance", "optimization"]
+            },
+            {
+                q: "What is lazy loading in JavaScript?",
+                a: "Lazy loading defers loading of resources until they're needed. It can be applied to images, components, modules, and routes. Techniques include Intersection Observer API, dynamic imports, and conditional loading based on user interaction.",
+                tags: ["javascript", "lazy-loading", "performance", "optimization"]
+            },
+            {
+                q: "What are JavaScript micro-frontends?",
+                a: "Micro-frontends extend microservices to frontend development, allowing teams to work independently on different parts of a web application. Each team can choose their own technology stack and deploy independently.",
+                tags: ["javascript", "micro-frontends", "architecture", "scalability"]
+            },
+            {
+                q: "What is Server-Side Rendering (SSR) in JavaScript?",
+                a: "SSR renders JavaScript applications on the server before sending HTML to the client. It improves initial page load time, SEO, and provides better user experience. Frameworks like Next.js and Nuxt.js provide SSR capabilities.",
+                tags: ["javascript", "ssr", "rendering", "performance"]
+            },
+            {
+                q: "What is Static Site Generation (SSG)?",
+                a: "SSG pre-builds pages at build time, generating static HTML files. It combines benefits of static sites (performance, security) with dynamic capabilities. Tools like Gatsby, Next.js, and Nuxt.js support SSG.",
+                tags: ["javascript", "ssg", "static", "jamstack"]
+            },
+            {
+                q: "What is the JAMstack architecture?",
+                a: "JAMstack (JavaScript, APIs, Markup) is a modern web architecture that pre-builds markup, enhances with JavaScript, and uses APIs for dynamic functionality. It provides better performance, security, and developer experience.",
+                tags: ["javascript", "jamstack", "architecture", "modern"]
+            },
+            {
+                q: "What are JavaScript headless CMS solutions?",
+                a: "Headless CMS separates content management from presentation layer, delivering content via APIs. JavaScript applications consume this content to build user interfaces. Examples include Strapi, Contentful, and Sanity.",
+                tags: ["javascript", "headless-cms", "api", "content"]
+            },
+            {
+                q: "What is GraphQL and how does it work with JavaScript?",
+                a: "GraphQL is a query language and runtime for APIs that allows clients to request exactly the data they need. JavaScript clients use libraries like Apollo Client or Relay to interact with GraphQL servers efficiently.",
+                tags: ["javascript", "graphql", "api", "queries"]
+            },
+            {
+                q: "What are JavaScript state management patterns?",
+                a: "State management patterns help organize application state. Patterns include Flux, Redux, MobX, and Context API. They provide predictable state updates, time-travel debugging, and better application architecture.",
+                tags: ["javascript", "state-management", "redux", "patterns"]
+            },
+            {
+                q: "What is Redux and how does it work?",
+                a: "Redux is a predictable state container for JavaScript apps. It uses a single store, actions to describe changes, and reducers to specify how state changes. It follows principles of immutability and unidirectional data flow.",
+                tags: ["javascript", "redux", "state", "flux"]
+            },
+            {
+                q: "What are JavaScript component architectures?",
+                a: "Component architectures organize UI into reusable, composable pieces. Patterns include container/presentational components, higher-order components, render props, and hooks. They promote reusability and maintainability.",
+                tags: ["javascript", "components", "architecture", "patterns"]
+            },
+            {
+                q: "What is reactive programming in JavaScript?",
+                a: "Reactive programming is a paradigm focused on data streams and change propagation. Libraries like RxJS provide observables for handling asynchronous data streams, events, and complex data transformations.",
+                tags: ["javascript", "reactive", "rxjs", "streams"]
+            },
+            {
+                q: "What are JavaScript observables?",
+                a: "Observables represent streams of data that can be observed over time. They provide operators for transforming, filtering, and combining streams. RxJS is the most popular observable library for JavaScript.",
+                tags: ["javascript", "observables", "rxjs", "streams"]
+            },
+            {
+                q: "What is functional reactive programming (FRP)?",
+                a: "FRP combines functional programming with reactive programming. It treats time-varying values as first-class citizens and uses pure functions to transform data streams. It's useful for handling complex asynchronous interactions.",
+                tags: ["javascript", "frp", "functional", "reactive"]
+            },
+            {
+                q: "What are JavaScript animation techniques?",
+                a: "Animation techniques include CSS transitions/animations, requestAnimationFrame, Web Animations API, and libraries like GSAP or Framer Motion. Each has different performance characteristics and use cases.",
+                tags: ["javascript", "animation", "performance", "ui"]
+            },
+            {
+                q: "What is the Web Animations API?",
+                a: "The Web Animations API provides a unified model for animations on the web. It allows creating and controlling animations with JavaScript, offering more control than CSS animations and better performance than manual animation loops.",
+                tags: ["javascript", "web-animations", "api", "performance"]
+            },
+            {
+                q: "What are JavaScript canvas and WebGL?",
+                a: "Canvas provides a 2D drawing context for graphics and animations. WebGL provides 3D graphics capabilities using GPU acceleration. Both are useful for games, data visualization, and interactive graphics applications.",
+                tags: ["javascript", "canvas", "webgl", "graphics"]
+            },
+            {
+                q: "What is WebAssembly and its relationship with JavaScript?",
+                a: "WebAssembly (WASM) is a binary instruction format that runs at near-native speed in browsers. JavaScript can load and interact with WASM modules, enabling high-performance applications and porting existing code to the web.",
+                tags: ["javascript", "webassembly", "performance", "interop"]
+            },
+            {
+                q: "What are JavaScript game development techniques?",
+                a: "Game development uses canvas/WebGL for rendering, requestAnimationFrame for game loops, Web Audio API for sound, and techniques like object pooling, spatial partitioning, and delta time for performance optimization.",
+                tags: ["javascript", "game-development", "canvas", "performance"]
+            },
+            {
+                q: "What is the Web Audio API?",
+                a: "The Web Audio API provides powerful audio processing capabilities including audio synthesis, effects processing, spatial audio, and real-time analysis. It's used for games, music applications, and interactive audio experiences.",
+                tags: ["javascript", "web-audio", "api", "sound"]
+            },
+            {
+                q: "What are JavaScript data visualization libraries?",
+                a: "Popular libraries include D3.js for custom visualizations, Chart.js for simple charts, Three.js for 3D graphics, and Observable Plot for grammar of graphics. Each serves different visualization needs and complexity levels.",
+                tags: ["javascript", "data-visualization", "d3", "charts"]
+            },
+            {
+                q: "What is D3.js and how does it work?",
+                a: "D3.js is a library for creating data-driven documents. It binds data to DOM elements and applies data-driven transformations. It provides powerful tools for creating custom, interactive visualizations using web standards.",
+                tags: ["javascript", "d3", "data-binding", "visualization"]
+            },
+            {
+                q: "What are JavaScript machine learning libraries?",
+                a: "Libraries like TensorFlow.js, ML5.js, and Brain.js enable machine learning in browsers and Node.js. They support neural networks, computer vision, natural language processing, and model training/inference.",
+                tags: ["javascript", "machine-learning", "tensorflow", "ai"]
+            },
+            {
+                q: "What is TensorFlow.js?",
+                a: "TensorFlow.js is a library for machine learning in JavaScript. It can run pre-trained models, train new models, and perform inference in browsers and Node.js. It supports both high-level and low-level APIs.",
+                tags: ["javascript", "tensorflow", "machine-learning", "neural-networks"]
+            },
+            {
+                q: "What are JavaScript blockchain and cryptocurrency applications?",
+                a: "JavaScript is used for blockchain development with libraries like Web3.js for Ethereum interaction, creating DApps, smart contract interfaces, cryptocurrency wallets, and blockchain data visualization.",
+                tags: ["javascript", "blockchain", "web3", "cryptocurrency"]
+            },
+            {
+                q: "What is Web3.js?",
+                a: "Web3.js is a library that allows interaction with Ethereum blockchain from JavaScript applications. It provides APIs for sending transactions, interacting with smart contracts, and accessing blockchain data.",
+                tags: ["javascript", "web3", "ethereum", "blockchain"]
+            },
+            {
+                q: "What are JavaScript IoT (Internet of Things) applications?",
+                a: "JavaScript runs on IoT devices using platforms like Node.js, Johnny-Five for hardware control, and Espruino for microcontrollers. It enables rapid prototyping and web-based interfaces for IoT systems.",
+                tags: ["javascript", "iot", "hardware", "embedded"]
+            },
+            {
+                q: "What is Electron and desktop application development?",
+                a: "Electron enables building desktop applications using web technologies. It combines Chromium and Node.js, allowing JavaScript applications to access native OS APIs. Popular apps include VS Code, Discord, and Slack.",
+                tags: ["javascript", "electron", "desktop", "cross-platform"]
+            },
+            {
+                q: "What are JavaScript mobile development frameworks?",
+                a: "Frameworks like React Native, Ionic, and Cordova/PhoneGap enable mobile app development with JavaScript. They provide access to native device features while sharing code between platforms.",
+                tags: ["javascript", "mobile", "react-native", "cross-platform"]
+            },
+            {
+                q: "What is React Native?",
+                a: "React Native is a framework for building native mobile apps using React and JavaScript. It renders to native components rather than web views, providing near-native performance and user experience.",
+                tags: ["javascript", "react-native", "mobile", "native"]
+            },
+            {
+                q: "What are JavaScript serverless computing platforms?",
+                a: "Serverless platforms like AWS Lambda, Vercel Functions, and Netlify Functions allow running JavaScript code without managing servers. They're ideal for APIs, microservices, and event-driven architectures.",
+                tags: ["javascript", "serverless", "lambda", "functions"]
+            },
+            {
+                q: "What is edge computing with JavaScript?",
+                a: "Edge computing runs JavaScript code closer to users for reduced latency. Platforms like Cloudflare Workers, Deno Deploy, and Vercel Edge Functions enable global code execution at edge locations.",
+                tags: ["javascript", "edge-computing", "performance", "cdn"]
+            },
+            {
+                q: "What are JavaScript containerization and Docker?",
+                a: "Containerization packages JavaScript applications with their dependencies. Docker enables consistent deployment across environments. Node.js applications are commonly containerized for microservices and cloud deployment.",
+                tags: ["javascript", "docker", "containers", "deployment"]
+            },
+            {
+                q: "What is continuous integration/deployment (CI/CD) for JavaScript?",
+                a: "CI/CD automates testing, building, and deployment of JavaScript applications. Tools include GitHub Actions, Jenkins, and GitLab CI. Processes include automated testing, code quality checks, and deployment pipelines.",
+                tags: ["javascript", "ci-cd", "automation", "deployment"]
+            },
+            {
+                q: "What are JavaScript monitoring and observability tools?",
+                a: "Tools like Sentry for error tracking, New Relic for performance monitoring, and LogRocket for session replay help monitor JavaScript applications in production. They provide insights into errors, performance, and user behavior.",
+                tags: ["javascript", "monitoring", "observability", "debugging"]
+            },
+            {
+                q: "What is A/B testing in JavaScript applications?",
+                a: "A/B testing compares different versions of features to determine which performs better. JavaScript libraries like Optimizely, VWO, and custom implementations enable feature flagging and statistical analysis of user behavior.",
+                tags: ["javascript", "ab-testing", "experimentation", "analytics"]
+            },
+            {
+                q: "What are JavaScript internationalization (i18n) techniques?",
+                a: "i18n involves adapting applications for different languages and regions. JavaScript provides Intl API for formatting dates, numbers, and currencies. Libraries like react-i18next and FormatJS help manage translations.",
+                tags: ["javascript", "i18n", "localization", "intl"]
+            },
+            {
+                q: "What is the Intl API in JavaScript?",
+                a: "The Intl API provides locale-sensitive string comparison, number formatting, date/time formatting, and relative time formatting. It's built into modern JavaScript engines and supports internationalization without external libraries.",
+                tags: ["javascript", "intl", "internationalization", "formatting"]
+            },
+            {
+                q: "What are JavaScript code review best practices?",
+                a: "Best practices include reviewing for logic errors, security vulnerabilities, performance issues, code style consistency, test coverage, and documentation. Tools like GitHub PR reviews, SonarQube, and CodeClimate assist in code review processes.",
+                tags: ["javascript", "code-review", "best-practices", "quality"]
+            },
+            {
+                q: "What is technical debt in JavaScript projects?",
+                a: "Technical debt refers to shortcuts taken during development that may slow future development. It includes outdated dependencies, poor code structure, lack of tests, and deprecated APIs. Regular refactoring helps manage technical debt.",
+                tags: ["javascript", "technical-debt", "refactoring", "maintenance"]
+            },
+            {
+                q: "What are JavaScript documentation tools and practices?",
+                a: "Documentation tools include JSDoc for code comments, GitBook for project documentation, and Storybook for component documentation. Good practices include clear README files, API documentation, and code examples.",
+                tags: ["javascript", "documentation", "jsdoc", "best-practices"]
+            },
+            {
+                q: "What is pair programming in JavaScript development?",
+                a: "Pair programming involves two developers working together on the same code. One writes code (driver) while the other reviews and guides (navigator). It improves code quality, knowledge sharing, and reduces bugs.",
+                tags: ["javascript", "pair-programming", "collaboration", "methodology"]
+            },
+            {
+                q: "What are JavaScript career paths and specializations?",
+                a: "Career paths include frontend developer, backend developer (Node.js), full-stack developer, mobile developer (React Native), game developer, and specialized roles in areas like data visualization, machine learning, or blockchain development.",
+                tags: ["javascript", "career", "specialization", "development"]
+            },
+            {
+                q: "What skills are important for JavaScript developers?",
+                a: "Core skills include JavaScript fundamentals, DOM manipulation, async programming, frameworks/libraries, testing, debugging, version control (Git), build tools, and soft skills like problem-solving and communication.",
+                tags: ["javascript", "skills", "developer", "requirements"]
+            },
+            {
+                q: "What are common JavaScript interview question categories?",
+                a: "Categories include language fundamentals, ES6+ features, async programming, DOM manipulation, frameworks, testing, performance optimization, security, design patterns, and problem-solving coding challenges.",
+                tags: ["javascript", "interview", "categories", "preparation"]
+            },
+            {
+                q: "How do you prepare for JavaScript technical interviews?",
+                a: "Preparation involves studying fundamentals, practicing coding problems, understanding popular frameworks, reviewing system design concepts, preparing project explanations, and practicing whiteboard coding and communication skills.",
+                tags: ["javascript", "interview", "preparation", "technical"]
+            },
+            {
+                q: "What are JavaScript coding challenge platforms?",
+                a: "Popular platforms include LeetCode, HackerRank, Codewars, CodeSignal, and FreeCodeCamp. They provide practice problems ranging from basic algorithms to complex system design challenges.",
+                tags: ["javascript", "coding-challenges", "practice", "algorithms"]
+            },
+            {
+                q: "What is the importance of algorithms and data structures in JavaScript?",
+                a: "Understanding algorithms and data structures is crucial for writing efficient code, solving complex problems, and performing well in technical interviews. JavaScript provides built-in data structures and supports implementing custom ones.",
+                tags: ["javascript", "algorithms", "data-structures", "efficiency"]
+            },
+            {
+                q: "What are common JavaScript algorithm implementations?",
+                a: "Common implementations include sorting algorithms (quicksort, mergesort), searching algorithms (binary search), graph algorithms (BFS, DFS), dynamic programming solutions, and tree traversal algorithms.",
+                tags: ["javascript", "algorithms", "implementation", "problem-solving"]
+            },
+            {
+                q: "What is Big O notation and its relevance to JavaScript?",
+                a: "Big O notation describes algorithm time and space complexity. It's important for analyzing JavaScript code performance, choosing appropriate data structures, and optimizing algorithms for better scalability.",
+                tags: ["javascript", "big-o", "complexity", "performance"]
+            },
+            {
+                q: "What are JavaScript system design considerations?",
+                a: "System design involves scalability, performance, security, maintainability, and user experience. Considerations include architecture patterns, database design, API design, caching strategies, and deployment strategies.",
+                tags: ["javascript", "system-design", "architecture", "scalability"]
+            },
+            {
+                q: "What is the role of JavaScript in modern web architecture?",
+                a: "JavaScript is central to modern web development, powering frontend interfaces, backend services (Node.js), mobile apps, desktop applications, and emerging technologies like IoT and blockchain applications.",
+                tags: ["javascript", "web-architecture", "modern", "full-stack"]
+            },
+            {
+                q: "What are emerging trends in JavaScript development?",
+                a: "Trends include WebAssembly integration, edge computing, micro-frontends, serverless architectures, AI/ML integration, blockchain development, and improved developer tooling with better performance and developer experience.",
+                tags: ["javascript", "trends", "emerging", "future"]
+            },
+            {
+                q: "What is the JavaScript community and ecosystem?",
+                a: "The JavaScript community is one of the largest in programming, with extensive open-source contributions, conferences, meetups, and online resources. The ecosystem includes npm packages, frameworks, tools, and educational content.",
+                tags: ["javascript", "community", "ecosystem", "open-source"]
+            },
+            {
+                q: "How do you stay updated with JavaScript developments?",
+                a: "Stay updated through official ECMAScript proposals, following JavaScript blogs (MDN, JavaScript Weekly), attending conferences, participating in communities (Reddit, Stack Overflow), and experimenting with new features and tools.",
+                tags: ["javascript", "learning", "updates", "community"]
+            },
+            {
+                q: "What are JavaScript learning resources for different levels?",
+                a: "Beginners: MDN, freeCodeCamp, Codecademy. Intermediate: You Don't Know JS, JavaScript.info. Advanced: ECMAScript specifications, conference talks, open-source contributions. Practice: coding challenges, personal projects.",
+                tags: ["javascript", "learning", "resources", "education"]
+            },
+            {
+                q: "What is the importance of contributing to JavaScript open source?",
+                a: "Contributing to open source improves coding skills, builds reputation, provides networking opportunities, gives back to the community, and offers real-world experience with large codebases and collaborative development.",
+                tags: ["javascript", "open-source", "contribution", "community"]
+            },
+            {
+                q: "What are JavaScript mentorship and learning opportunities?",
+                a: "Opportunities include coding bootcamps, online courses, mentorship programs, internships, hackathons, meetups, conferences, and contributing to open-source projects. Many offer structured learning paths and community support.",
+                tags: ["javascript", "mentorship", "learning", "opportunities"]
+            },
+            {
+                q: "What is the global impact of JavaScript?",
+                a: "JavaScript has democratized software development, enabling millions to build web applications, mobile apps, and server applications. It has driven the growth of the internet, e-commerce, social media, and digital transformation across industries.",
+                tags: ["javascript", "impact", "global", "technology"]
+            },
+            {
+                q: "What are JavaScript array methods and their uses?",
+                a: "Key array methods include map() for transformation, filter() for filtering, reduce() for aggregation, forEach() for iteration, find() for searching, sort() for ordering, push/pop for stack operations, and slice/splice for manipulation.",
+                tags: ["javascript", "arrays", "methods", "functional"]
+            },
+            {
+                q: "What is the difference between slice() and splice()?",
+                a: "slice() returns a shallow copy of a portion of an array without modifying the original. splice() changes the original array by removing/adding elements and returns an array of removed elements.",
+                tags: ["javascript", "arrays", "slice", "splice"]
+            },
+            {
+                q: "What are JavaScript string methods?",
+                a: "Common string methods include charAt(), substring(), slice(), indexOf(), replace(), split(), trim(), toLowerCase(), toUpperCase(), includes(), startsWith(), endsWith(), and template literal interpolation.",
+                tags: ["javascript", "strings", "methods", "manipulation"]
+            },
+            {
+                q: "What is the difference between substring() and substr()?",
+                a: "substring(start, end) extracts characters between two indices. substr(start, length) extracts a specified number of characters from a start position. substr() is deprecated in favor of substring() and slice().",
+                tags: ["javascript", "strings", "substring", "substr"]
+            },
+            {
+                q: "What are JavaScript object methods?",
+                a: "Key object methods include Object.keys(), Object.values(), Object.entries(), Object.assign(), Object.create(), Object.freeze(), Object.seal(), hasOwnProperty(), and propertyIsEnumerable().",
+                tags: ["javascript", "objects", "methods", "properties"]
+            },
+            {
+                q: "What is the difference between Object.freeze() and Object.seal()?",
+                a: "Object.freeze() makes an object completely immutable - no properties can be added, removed, or modified. Object.seal() prevents adding/removing properties but allows modifying existing property values.",
+                tags: ["javascript", "objects", "freeze", "seal", "immutability"]
+            },
+            {
+                q: "What are JavaScript date and time operations?",
+                a: "JavaScript Date object provides methods for date/time manipulation: new Date(), getTime(), getFullYear(), getMonth(), getDate(), setDate(), toISOString(), and libraries like Moment.js or date-fns for advanced operations.",
+                tags: ["javascript", "date", "time", "manipulation"]
+            },
+            {
+                q: "What is the difference between setTimeout() and setInterval()?",
+                a: "setTimeout() executes a function once after a specified delay. setInterval() repeatedly executes a function at specified intervals. Both return IDs that can be used with clearTimeout()/clearInterval() to cancel execution.",
+                tags: ["javascript", "timers", "async", "scheduling"]
+            },
+            {
+                q: "What are JavaScript math operations and the Math object?",
+                a: "The Math object provides mathematical functions: Math.round(), Math.floor(), Math.ceil(), Math.random(), Math.max(), Math.min(), Math.abs(), Math.pow(), Math.sqrt(), and constants like Math.PI.",
+                tags: ["javascript", "math", "calculations", "numbers"]
+            },
+            {
+                q: "What is NaN and how do you check for it?",
+                a: "NaN (Not a Number) represents an invalid number. Use Number.isNaN() to check for NaN values. The global isNaN() function coerces values to numbers first, which can give unexpected results.",
+                tags: ["javascript", "nan", "numbers", "validation"]
+            },
+            {
+                q: "What are JavaScript type conversion methods?",
+                a: "Type conversion methods include Number(), String(), Boolean(), parseInt(), parseFloat(), toString(), valueOf(), and implicit coercion through operators. Understanding coercion rules is crucial for avoiding bugs.",
+                tags: ["javascript", "type-conversion", "coercion", "casting"]
+            },
+            {
+                q: "What is the difference between parseInt() and Number()?",
+                a: "parseInt() parses a string and returns an integer, stopping at the first non-numeric character. Number() converts the entire value to a number, returning NaN if any part is invalid.",
+                tags: ["javascript", "parsing", "numbers", "conversion"]
+            },
+            {
+                q: "What are JavaScript conditional statements and operators?",
+                a: "Conditional statements include if/else, switch, and ternary operator (?:). Logical operators include && (AND), || (OR), ! (NOT). Comparison operators include ==, ===, !=, !==, <, >, <=, >=.",
+                tags: ["javascript", "conditionals", "operators", "logic"]
+            },
+            {
+                q: "What is the ternary operator and when to use it?",
+                a: "The ternary operator (condition ? value1 : value2) is a shorthand for simple if/else statements. Use it for simple conditional assignments or expressions, but avoid nesting for readability.",
+                tags: ["javascript", "ternary", "conditionals", "syntax"]
+            },
+            {
+                q: "What are JavaScript loop types and their use cases?",
+                a: "Loop types include for (counting), while (condition-based), do-while (execute at least once), for...in (object properties), for...of (iterable values), and array methods like forEach(), map(), filter().",
+                tags: ["javascript", "loops", "iteration", "control-flow"]
+            },
+            {
+                q: "What is the difference between break and continue?",
+                a: "break exits the entire loop immediately. continue skips the current iteration and moves to the next one. Both can be used with labels to control nested loops.",
+                tags: ["javascript", "break", "continue", "loops"]
+            },
+            {
+                q: "What are JavaScript function parameters and arguments?",
+                a: "Functions can have default parameters, rest parameters (...args), and destructured parameters. The arguments object (in non-arrow functions) contains all passed arguments. Modern code prefers rest parameters.",
+                tags: ["javascript", "functions", "parameters", "arguments"]
+            },
+            {
+                q: "What are JavaScript function types?",
+                a: "Function types include function declarations, function expressions, arrow functions, anonymous functions, named function expressions, IIFE (Immediately Invoked Function Expressions), and generator functions.",
+                tags: ["javascript", "functions", "types", "declarations"]
+            },
+            {
+                q: "What is an IIFE (Immediately Invoked Function Expression)?",
+                a: "IIFE is a function that runs immediately after being defined. Syntax: (function(){})() or (()=>{})(). It creates a private scope, avoiding global namespace pollution and was commonly used before modules.",
+                tags: ["javascript", "iife", "scope", "patterns"]
+            },
+            {
+                q: "What are JavaScript callback functions?",
+                a: "Callbacks are functions passed as arguments to other functions and executed at a specific time. They're used for asynchronous operations, event handling, and higher-order functions like map(), filter().",
+                tags: ["javascript", "callbacks", "async", "functions"]
+            },
+            {
+                q: "What is callback hell and how to avoid it?",
+                a: "Callback hell is deeply nested callbacks that make code hard to read and maintain. Solutions include using promises, async/await, modularizing code into named functions, and using libraries like async.js.",
+                tags: ["javascript", "callback-hell", "promises", "async"]
+            },
+            {
+                q: "What are JavaScript promise methods?",
+                a: "Promise methods include Promise.resolve(), Promise.reject(), Promise.all(), Promise.allSettled(), Promise.race(), Promise.any(), then(), catch(), and finally(). They handle multiple promises and error scenarios.",
+                tags: ["javascript", "promises", "methods", "async"]
+            },
+            {
+                q: "What is the difference between Promise.all() and Promise.allSettled()?",
+                a: "Promise.all() fails fast - if any promise rejects, the entire operation fails. Promise.allSettled() waits for all promises to complete regardless of their outcome, returning results for all.",
+                tags: ["javascript", "promises", "all", "allsettled"]
+            },
+            {
+                q: "What are JavaScript error types?",
+                a: "Common error types include SyntaxError (invalid syntax), ReferenceError (undefined variable), TypeError (wrong type), RangeError (invalid range), URIError (URI encoding), and custom Error objects.",
+                tags: ["javascript", "errors", "types", "debugging"]
+            },
+            {
+                q: "What is error propagation and handling strategies?",
+                a: "Errors propagate up the call stack until caught. Strategies include try/catch blocks, promise .catch(), async/await error handling, global error handlers, and proper error logging and monitoring.",
+                tags: ["javascript", "error-handling", "propagation", "strategies"]
+            },
+            {
+                q: "What are JavaScript regular expression flags?",
+                a: "RegExp flags include g (global), i (case-insensitive), m (multiline), s (dotAll), u (unicode), y (sticky). They modify how patterns are matched and can be combined for complex matching behavior.",
+                tags: ["javascript", "regex", "flags", "patterns"]
+            },
+            {
+                q: "What are JavaScript regular expression methods?",
+                a: "RegExp methods include test() (boolean match), exec() (detailed match), and string methods match(), search(), replace(), split() that work with regular expressions for pattern matching and manipulation.",
+                tags: ["javascript", "regex", "methods", "matching"]
+            },
+            {
+                q: "What is JSON.stringify() and its parameters?",
+                a: "JSON.stringify(value, replacer, space) converts JavaScript values to JSON strings. The replacer can filter properties, and space adds indentation. It handles circular references and has limitations with functions and undefined.",
+                tags: ["javascript", "json", "stringify", "serialization"]
+            },
+            {
+                q: "What are JavaScript event types and handling?",
+                a: "Event types include mouse events (click, mouseover), keyboard events (keydown, keyup), form events (submit, change), window events (load, resize), and custom events. Handle with addEventListener().",
+                tags: ["javascript", "events", "dom", "handling"]
+            },
+            {
+                q: "What is event delegation in JavaScript?",
+                a: "Event delegation uses event bubbling to handle events on parent elements instead of individual child elements. It's efficient for dynamic content and reduces memory usage by having fewer event listeners.",
+                tags: ["javascript", "event-delegation", "bubbling", "performance"]
+            },
+            {
+                q: "What are JavaScript DOM manipulation methods?",
+                a: "DOM methods include getElementById(), querySelector(), createElement(), appendChild(), removeChild(), innerHTML, textContent, setAttribute(), classList.add/remove/toggle(), and modern methods like closest().",
+                tags: ["javascript", "dom", "manipulation", "methods"]
+            },
+            {
+                q: "What is the difference between innerHTML and textContent?",
+                a: "innerHTML gets/sets HTML content including tags and can execute scripts. textContent gets/sets only text content, ignoring HTML tags and is safer against XSS attacks. Use textContent for plain text.",
+                tags: ["javascript", "dom", "innerHTML", "textContent"]
+            },
+            {
+                q: "What are JavaScript form validation techniques?",
+                a: "Form validation includes HTML5 validation attributes, custom JavaScript validation, real-time validation, server-side validation, and libraries like Joi or Yup. Always validate on both client and server sides.",
+                tags: ["javascript", "forms", "validation", "security"]
+            },
+            {
+                q: "What is local storage vs session storage vs cookies?",
+                a: "localStorage persists until cleared, sessionStorage lasts for the session, cookies are sent with HTTP requests and have expiration dates. Each has different size limits and use cases for data persistence.",
+                tags: ["javascript", "storage", "persistence", "cookies"]
+            },
+            {
+                q: "What are JavaScript AJAX and XMLHttpRequest?",
+                a: "AJAX enables asynchronous communication with servers. XMLHttpRequest is the traditional API, while fetch() is the modern alternative. Both handle HTTP requests, responses, and enable dynamic content updates.",
+                tags: ["javascript", "ajax", "xhr", "http"]
+            },
+            {
+                q: "What are JavaScript URL and URLSearchParams APIs?",
+                a: "URL API parses and constructs URLs. URLSearchParams handles query string parameters. They provide methods for URL manipulation, parameter extraction, and building URLs programmatically.",
+                tags: ["javascript", "url", "api", "parameters"]
+            },
+            {
+                q: "What is the History API in JavaScript?",
+                a: "History API allows manipulation of browser history without page reloads. Methods include pushState(), replaceState(), and popstate event. It's essential for single-page applications and client-side routing.",
+                tags: ["javascript", "history", "api", "spa"]
+            },
+            {
+                q: "What are JavaScript geolocation and device APIs?",
+                a: "Browser APIs include Geolocation API for location, Device Orientation API for motion, Battery API for power status, and Vibration API for haptic feedback. They enable rich, device-aware web applications.",
+                tags: ["javascript", "apis", "geolocation", "device"]
+            },
+            {
+                q: "What is the Intersection Observer API?",
+                a: "Intersection Observer API asynchronously observes changes in element visibility within the viewport. It's used for lazy loading, infinite scrolling, and triggering animations when elements come into view.",
+                tags: ["javascript", "intersection-observer", "performance", "lazy-loading"]
+            },
+            {
+                q: "What are JavaScript performance measurement APIs?",
+                a: "Performance APIs include Performance.now() for high-resolution timing, Performance Observer for monitoring metrics, User Timing API for custom marks, and Navigation Timing API for page load metrics.",
+                tags: ["javascript", "performance", "measurement", "timing"]
+            },
+            {
+                q: "What is the Mutation Observer API?",
+                a: "Mutation Observer API watches for changes to the DOM tree. It's more efficient than deprecated mutation events and is used for detecting dynamic content changes, form validation, and UI framework internals.",
+                tags: ["javascript", "mutation-observer", "dom", "monitoring"]
+            },
+            {
+                q: "What are JavaScript cryptography APIs?",
+                a: "Web Crypto API provides cryptographic operations including hashing, encryption, decryption, and key generation. It supports algorithms like AES, RSA, ECDSA, and SHA for secure client-side cryptography.",
+                tags: ["javascript", "crypto", "security", "encryption"]
+            },
+            {
+                q: "What is the Payment Request API?",
+                a: "Payment Request API provides a consistent checkout experience across browsers and payment methods. It handles payment method selection, shipping addresses, and integrates with various payment providers.",
+                tags: ["javascript", "payment", "api", "ecommerce"]
+            },
+            {
+                q: "What are JavaScript notification APIs?",
+                a: "Notification API displays system notifications to users. It requires permission, supports actions, and works with Service Workers for background notifications. Used for real-time updates and engagement.",
+                tags: ["javascript", "notifications", "api", "engagement"]
+            },
+            {
+                q: "What is the File API in JavaScript?",
+                a: "File API enables reading local files selected by users. It includes FileReader for reading file contents, File objects for file metadata, and drag-and-drop support for file uploads and processing.",
+                tags: ["javascript", "file", "api", "upload"]
+            },
+            {
+                q: "What are JavaScript media APIs?",
+                a: "Media APIs include HTMLMediaElement for audio/video control, MediaRecorder for recording, getUserMedia for camera/microphone access, and Web Audio API for advanced audio processing and synthesis.",
+                tags: ["javascript", "media", "audio", "video"]
+            },
+            {
+                q: "What is the Canvas API and its uses?",
+                a: "Canvas API provides 2D drawing context for graphics, animations, and image manipulation. It's used for games, data visualization, image editing, and creating dynamic graphics programmatically.",
+                tags: ["javascript", "canvas", "graphics", "2d"]
+            },
+            {
+                q: "What are JavaScript animation libraries and techniques?",
+                a: "Animation libraries include GSAP, Anime.js, Framer Motion, and Lottie. Techniques include CSS transitions, requestAnimationFrame loops, Web Animations API, and physics-based animations for smooth user experiences.",
+                tags: ["javascript", "animation", "libraries", "ui"]
+            },
+            {
+                q: "What is progressive enhancement in JavaScript?",
+                a: "Progressive enhancement starts with basic functionality and adds JavaScript enhancements. It ensures accessibility, graceful degradation, and works without JavaScript. Core content and functionality remain available to all users.",
+                tags: ["javascript", "progressive-enhancement", "accessibility", "best-practices"]
+            },
+            {
+                q: "What are JavaScript feature detection techniques?",
+                a: "Feature detection checks if browser features exist before using them. Techniques include checking for object/method existence, using libraries like Modernizr, and providing fallbacks for unsupported features.",
+                tags: ["javascript", "feature-detection", "compatibility", "fallbacks"]
+            }
+        ];
 
         // Function to download all questions as PDF
         function downloadPDF() {

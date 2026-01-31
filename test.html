@@ -587,7 +587,10 @@ main {
 
     <div id="footer"></div>
 
-    <script>
+    <script type="module">
+        import { authService } from './firebase-auth.js';
+        import { quizService } from './firebase-quiz.js';
+
         // Copy Protection - Disable right-click, copy, paste, text selection
         (function() {
             // Disable right-click context menu
@@ -690,63 +693,6 @@ main {
             document.head.appendChild(style);
         })();
 
-        // Load domains from index.html topics
-        const topics = [
-            { icon: "fa-code", title: "Programming Basics", category: "Fundamentals" },
-            { icon: "fa-cubes", title: "OOP Concepts", category: "Fundamentals" },
-            { icon: "fa-layer-group", title: "Data Structures", category: "Algorithms" },
-            { icon: "fa-diagram-project", title: "Algorithms", category: "Algorithms" },
-            { icon: "fa-laptop-code", title: "Web Development", category: "Web" },
-            { icon: "fa-html5", title: "HTML5", category: "Web" },
-            { icon: "fa-css3-alt", title: "CSS3", category: "Web" },
-            { icon: "fa-js", title: "JavaScript", category: "Programming" },
-            { icon: "fa-react", title: "React JS", category: "Frontend" },
-            { icon: "fa-server", title: "Backend Development", category: "Backend" },
-            { icon: "fa-node-js", title: "Node.js", category: "Backend" },
-            { icon: "fa-database", title: "SQL", category: "Database" },
-            { icon: "fa-leaf", title: "MongoDB", category: "Database" },
-            { icon: "fa-sitemap", title: "System Design", category: "Architecture" },
-            { icon: "fa-cloud", title: "Cloud Computing", category: "DevOps" },
-            { icon: "fa-aws", title: "AWS", category: "Cloud" },
-            { icon: "fa-docker", title: "Docker", category: "DevOps" },
-            { icon: "fa-shield-halved", title: "Cyber Security", category: "Security" },
-            { icon: "fa-terminal", title: "Linux", category: "DevOps" },
-            { icon: "fa-code-branch", title: "Git & GitHub", category: "Tools" },
-            { icon: "fa-user-tie", title: "HR Interview", category: "Interview" },
-            { icon: "fa-brain", title: "Problem Solving", category: "Algorithms" },
-            { icon: "fa-python", title: "Python", category: "Programming" },
-            { icon: "fa-java", title: "Java", category: "Programming" },
-            { icon: "fa-php", title: "PHP", category: "Backend" },
-            { icon: "fa-c", title: "C / C++", category: "Programming" },
-            { icon: "fa-flutter", title: "Flutter", category: "Mobile" },
-            { icon: "fa-link", title: "Blockchain", category: "Emerging Tech" },
-            { icon: "fa-robot", title: "AI Concepts", category: "AI/ML" },
-            { icon: "fa-chart-line", title: "Data Science", category: "AI/ML" },
-            { icon: "fa-microchip", title: "Machine Learning", category: "AI/ML" },
-            { icon: "fa-network-wired", title: "Computer Networks", category: "Networking" },
-            { icon: "fa-desktop", title: "Operating Systems", category: "Fundamentals" },
-            { icon: "fa-vial", title: "Manual Testing", category: "Testing" },
-            { icon: "fa-gear", title: "Automation Testing", category: "Testing" },
-            { icon: "fa-lock", title: "API Security", category: "Security" },
-            { icon: "fa-user-shield", title: "Authentication", category: "Security" },
-            { icon: "fa-key", title: "JWT & OAuth", category: "Security" },
-            { icon: "fa-project-diagram", title: "Low Level Design", category: "Design" },
-            { icon: "fa-building", title: "High Level Design", category: "Design" },
-            { icon: "fa-clipboard-check", title: "SDLC", category: "Process" },
-            { icon: "fa-people-group", title: "Agile & Scrum", category: "Process" },
-            { icon: "fa-search", title: "MCQs", category: "Practice" },
-            { icon: "fa-file-lines", title: "Resume Preparation", category: "Career" },
-            { icon: "fa-comments", title: "Behavioral Questions", category: "Interview" },
-            { icon: "fa-laptop", title: "Scenario Based Questions", category: "Interview" },
-            { icon: "fa-terminal", title: "Shell Scripting", category: "DevOps" },
-            { icon: "fa-server", title: "Microservices", category: "Architecture" },
-            { icon: "fa-cloud-arrow-up", title: "CI / CD", category: "DevOps" },
-            { icon: "fa-database", title: "Database Design", category: "Database" },
-            { icon: "fa-layer-group", title: "Design Patterns", category: "Design" },
-            { icon: "fa-memory", title: "Caching", category: "Performance" },
-            { icon: "fa-diagram-project", title: "Software Architecture", category: "Architecture" }
-        ];
-
         // Quiz State
         let quizState = {
             domain: null,
@@ -754,48 +700,18 @@ main {
             questions: [],
             currentQuestion: 0,
             answers: {},
-            score: 0
+            score: 0,
+            startTime: null
         };
-
-        // API Endpoint (adjust if needed)
-        const API_URL = 'http://localhost:3000/api';
         
         // Check authentication on page load
-        async function checkAuth() {
-            try {
-                const response = await fetch(`${API_URL}/auth/status`, {
-                    credentials: 'include'
-                });
-                
-                if (!response.ok) {
-                    // If server returns error, save current URL and redirect to login
-                    sessionStorage.setItem('returnUrl', window.location.href);
-                    window.location.href = 'login.html';
-                    return false;
-                }
-                
-                const data = await response.json();
-                
-                if (!data.authenticated) {
-                    // Redirect to login if not authenticated, save return URL
-                    sessionStorage.setItem('returnUrl', window.location.href);
-                    window.location.href = 'login.html';
-                    return false;
-                }
-                
-                // Store user info
-                if (data.user) {
-                    sessionStorage.setItem('user', JSON.stringify(data.user));
-                    sessionStorage.setItem('isLoggedIn', 'true');
-                }
-                return true;
-            } catch (error) {
-                console.error('Auth check failed:', error);
-                // If server is not running or connection fails, redirect to login
+        function checkAuth() {
+            if (!authService.isAuthenticated()) {
                 sessionStorage.setItem('returnUrl', window.location.href);
                 window.location.href = 'login.html';
                 return false;
             }
+            return true;
         }
 
         // Load domains on page load
@@ -803,43 +719,20 @@ main {
             const domainsGrid = document.getElementById('domainsGrid');
             domainsGrid.innerHTML = '';
             
-            // Check if there's a saved domain/difficulty selection from login redirect
-            const savedDomain = sessionStorage.getItem('selectedDomain');
-            const savedDifficulty = sessionStorage.getItem('selectedDifficulty');
+            const topics = quizService.getAvailableTopics();
             
             topics.forEach(topic => {
                 const card = document.createElement('div');
                 card.className = 'domain-card';
-                card.dataset.domain = topic.title;
+                card.dataset.domain = topic.id;
                 card.innerHTML = `
-                    <div class="domain-icon"><i class="fas ${topic.icon}"></i></div>
-                    <h3>${topic.title}</h3>
-                    <p>${topic.category}</p>
+                    <div class="domain-icon"><i class="${topic.icon}"></i></div>
+                    <h3>${topic.name}</h3>
+                    <p>Test your knowledge</p>
                 `;
-                card.addEventListener('click', async () => {
-                    // Quick auth check - if not authenticated, save domain and redirect
-                    try {
-                        const authResponse = await fetch(`${API_URL}/auth/status`, {
-                            credentials: 'include'
-                        });
-                        const authData = await authResponse.json();
-                        
-                        if (!authData.authenticated) {
-                            // Save selected domain before redirecting
-                            sessionStorage.setItem('selectedDomain', card.dataset.domain);
-                            sessionStorage.setItem('returnUrl', window.location.href);
-                            window.location.href = 'login.html';
-                            return;
-                        }
-                    } catch (error) {
-                        // If auth check fails, save domain and redirect
-                        sessionStorage.setItem('selectedDomain', card.dataset.domain);
-                        sessionStorage.setItem('returnUrl', window.location.href);
-                        window.location.href = 'login.html';
-                        return;
-                    }
+                card.addEventListener('click', () => {
+                    if (!checkAuth()) return;
                     
-                    // User is authenticated, proceed with domain selection
                     document.querySelectorAll('.domain-card').forEach(c => c.classList.remove('selected'));
                     card.classList.add('selected');
                     quizState.domain = card.dataset.domain;
@@ -851,62 +744,23 @@ main {
                 });
                 domainsGrid.appendChild(card);
             });
-            
-            // If there's a saved domain, auto-select it and show difficulty selection
-            if (savedDomain) {
-                const savedCard = Array.from(document.querySelectorAll('.domain-card')).find(
-                    c => c.dataset.domain === savedDomain
-                );
-                if (savedCard) {
-                    savedCard.classList.add('selected');
-                    quizState.domain = savedDomain;
-                    
-                    // Remove saved domain from storage
-                    sessionStorage.removeItem('selectedDomain');
-                    
-                    setTimeout(() => {
-                        document.getElementById('domainSelection').classList.add('hidden');
-                        document.getElementById('difficultySelection').classList.remove('hidden');
-                        
-                        // If there's also a saved difficulty, auto-select it and start quiz
-                        if (savedDifficulty) {
-                            const savedDifficultyBtn = document.querySelector(
-                                `.difficulty-btn[data-difficulty="${savedDifficulty}"]`
-                            );
-                            if (savedDifficultyBtn) {
-                                savedDifficultyBtn.classList.add('selected');
-                                quizState.difficulty = savedDifficulty;
-                                sessionStorage.removeItem('selectedDifficulty');
-                                // Auto-start quiz after a brief delay
-                                setTimeout(() => {
-                                    startQuiz();
-                                }, 500);
-                            }
-                        }
-                    }, 300);
-                }
-            }
         }
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Check authentication first - this will redirect if not authenticated
-            const isAuthenticated = await checkAuth();
-            if (isAuthenticated) {
+        document.addEventListener('DOMContentLoaded', () => {
+            if (checkAuth()) {
                 loadDomains();
             }
-            // If not authenticated, checkAuth() already redirected to login
         });
-
-        // Domain selection is now handled in loadDomains() function
 
         // Difficulty Selection
         document.querySelectorAll('.difficulty-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                // No need to check auth here - already checked on page load
+                if (!checkAuth()) return;
+                
                 document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('selected'));
                 btn.classList.add('selected');
-                quizState.difficulty = btn.dataset.difficulty;
+                quizState.difficulty = btn.dataset.difficulty.toLowerCase();
                 
                 startQuiz();
             });
@@ -927,56 +781,26 @@ main {
             document.getElementById('errorMessage').classList.add('hidden');
 
             try {
-                const response = await fetch(`${API_URL}/generate-quiz`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: 'include',
-                    body: JSON.stringify({
-                        domain: quizState.domain,
-                        difficulty: quizState.difficulty
-                    })
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({}));
-                    
-                    // If authentication error, save state and redirect to login
-                    if (response.status === 401) {
-                        sessionStorage.setItem('selectedDomain', quizState.domain);
-                        sessionStorage.setItem('selectedDifficulty', quizState.difficulty);
-                        sessionStorage.setItem('returnUrl', window.location.href);
-                        window.location.href = 'login.html';
-                        return;
-                    }
-                    
-                    throw new Error(errorData.message || `Server error: ${response.status}`);
-                }
-
-                const data = await response.json();
+                const result = await quizService.generateQuizQuestions(
+                    quizState.domain, 
+                    quizState.difficulty, 
+                    10
+                );
                 
-                if (!data.questions || !Array.isArray(data.questions)) {
-                    throw new Error('Invalid quiz data received');
+                if (!result.success || !result.questions) {
+                    throw new Error('Failed to generate quiz questions');
                 }
 
-                quizState.questions = data.questions;
+                quizState.questions = result.questions;
                 quizState.currentQuestion = 0;
                 quizState.answers = {};
+                quizState.startTime = new Date();
 
                 document.getElementById('loadingSection').classList.add('hidden');
                 displayQuestion();
             } catch (error) {
                 document.getElementById('loadingSection').classList.add('hidden');
-                
-                let errorMessage = 'Failed to generate quiz. ';
-                if (error.message.includes('Failed to fetch') || error.message.includes('ERR_CONNECTION_REFUSED')) {
-                    errorMessage += 'The server is not running. Please start the backend server by running "npm start" in the project directory.';
-                } else {
-                    errorMessage += error.message || 'Please try again.';
-                }
-                
-                showError(errorMessage);
+                showError('Failed to generate quiz. Please try again.');
                 document.getElementById('difficultySelection').classList.remove('hidden');
             }
         }
@@ -1039,15 +863,9 @@ main {
                 btn.classList.remove('selected');
             });
             
-            const clickedBtn = event.target.closest('.option-btn');
-            if (clickedBtn) {
-                clickedBtn.classList.add('selected');
-            } else {
-                // Fallback: find button by index
-                const options = document.querySelectorAll('.option-btn');
-                if (options[index]) {
-                    options[index].classList.add('selected');
-                }
+            const options = document.querySelectorAll('.option-btn');
+            if (options[index]) {
+                options[index].classList.add('selected');
             }
         }
 
@@ -1068,8 +886,9 @@ main {
         });
 
         // Submit Quiz
-        document.getElementById('submitQuizBtn').addEventListener('click', () => {
+        document.getElementById('submitQuizBtn').addEventListener('click', async () => {
             calculateScore();
+            await saveQuizResults();
             showResults();
         });
 
@@ -1084,8 +903,32 @@ main {
             quizState.score = correct;
         }
 
+        // Save Quiz Results to Firebase
+        async function saveQuizResults() {
+            try {
+                const user = authService.getCurrentUser();
+                if (!user) return;
+
+                const timeSpent = quizState.startTime ? 
+                    Math.round((new Date() - quizState.startTime) / 1000) : 0;
+
+                const quizData = {
+                    topic: quizState.domain,
+                    questions: quizState.questions,
+                    answers: quizState.answers,
+                    score: quizState.score,
+                    totalQuestions: quizState.questions.length,
+                    timeSpent: timeSpent
+                };
+
+                await quizService.saveQuizAttempt(user.uid, quizData);
+            } catch (error) {
+                console.error('Error saving quiz results:', error);
+            }
+        }
+
         // Show Results
-        async function showResults() {
+        function showResults() {
             const totalQuestions = quizState.questions.length;
             const percentage = Math.round((quizState.score / totalQuestions) * 100);
             
@@ -1108,60 +951,13 @@ main {
             }
             document.getElementById('scoreDescription').textContent = description;
             
-            // Send results via email
-            await sendResultsEmail(totalQuestions, percentage);
-        }
-        
-        // Send quiz results via email
-        async function sendResultsEmail(totalQuestions, percentage) {
-            try {
-                // Prepare questions with correct answers for email
-                const questionsForEmail = quizState.questions.map((q, index) => ({
-                    question: q.question,
-                    options: q.options,
-                    correctAnswer: q.correctAnswer
-                }));
-                
-                const response = await fetch(`${API_URL}/send-results`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: 'include',
-                    body: JSON.stringify({
-                        domain: quizState.domain,
-                        difficulty: quizState.difficulty,
-                        score: quizState.score,
-                        total: totalQuestions,
-                        questions: questionsForEmail,
-                        answers: quizState.answers
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok && data.emailSent) {
-                    // Show email confirmation
-                    const emailStatus = document.getElementById('emailStatus');
-                    emailStatus.innerHTML = `
-                        <div style="background: rgba(16, 185, 129, 0.1); border: 2px solid var(--success); color: var(--success); padding: 1rem; border-radius: 8px; text-align: center;">
-                            <i class="fas fa-check-circle"></i> Quiz results have been sent to your email!
-                        </div>
-                    `;
-                } else {
-                    console.error('Email sending failed:', data);
-                    // Show optional message
-                    const emailStatus = document.getElementById('emailStatus');
-                    emailStatus.innerHTML = `
-                        <div style="background: rgba(239, 68, 68, 0.1); border: 2px solid var(--danger); color: var(--danger); padding: 1rem; border-radius: 8px; text-align: center; font-size: 0.9rem;">
-                            <i class="fas fa-info-circle"></i> Email could not be sent, but your results are saved.
-                        </div>
-                    `;
-                }
-            } catch (error) {
-                console.error('Error sending email:', error);
-                // Don't show error to user, email is optional
-            }
+            // Show success message
+            const emailStatus = document.getElementById('emailStatus');
+            emailStatus.innerHTML = `
+                <div style="background: rgba(16, 185, 129, 0.1); border: 2px solid var(--success); color: var(--success); padding: 1rem; border-radius: 8px; text-align: center;">
+                    <i class="fas fa-check-circle"></i> Quiz results saved successfully!
+                </div>
+            `;
         }
 
         // Restart Quiz
@@ -1172,7 +968,8 @@ main {
                 questions: [],
                 currentQuestion: 0,
                 answers: {},
-                score: 0
+                score: 0,
+                startTime: null
             };
             
             document.getElementById('resultsSection').classList.remove('active');

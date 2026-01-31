@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React.js - 150+ Essential Interview Questions & Answers</title>
+    <meta name="description" content="Master React.js with 150+ essential interview questions, detailed answers, and real-world code examples. Perfect for interview preparation and skill building for students and professionals.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="layout.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #7c3aed;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9fafb;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        #header {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Box */
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            align-self: flex-start;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar h2 i {
+            color: var(--primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            color: var(--gray);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .toc-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .toc-hidden {
+            display: none;
+        }
+
+        .toc-toggle-btn {
+            margin-left: auto;
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .toc-toggle-btn:hover {
+            background: rgba(37, 99, 235, 0.15);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .breadcrumbs {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumbs span {
+            color: var(--gray);
+        }
+
+        /* Question Box Styles */
+        .q-box {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: var(--transition);
+        }
+
+        .q-box:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .q-box h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .q-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .q-number {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .q-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .q-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn i {
+            font-size: 0.9em;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        /* Answer Styles */
+        .answer {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .answer-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .answer-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .answer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .answer-section h4 i {
+            color: var(--primary);
+        }
+
+        .answer-section p {
+            margin-bottom: 1rem;
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        /* Code Block Styles */
+        pre {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        pre code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0f172a;
+            padding: 0.5rem 1rem;
+            border-radius: 6px 6px 0 0;
+            margin: 0;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #94a3b8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+
+        .page-info {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 2rem;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            header p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .search-box input {
+                padding: 0.75rem 1rem 0.75rem 2.25rem;
+                font-size: 0.95rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .main-content, .sidebar {
+                padding: 1rem;
+            }
+
+            .q-box {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .q-box h3 {
+                font-size: 1.1rem;
+                line-height: 1.3;
+            }
+
+            .q-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .q-tags {
+                margin-bottom: 0.75rem;
+            }
+
+            .q-tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1.5rem 0.75rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0.75rem;
+            }
+
+            .main-content, .sidebar {
+                padding: 0.75rem;
+            }
+
+            .q-box {
+                padding: 0.75rem;
+            }
+
+            .q-box h3 {
+                font-size: 1rem;
+            }
+
+            .sidebar h2 {
+                font-size: 1rem;
+            }
+
+            .toc-link {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .q-number {
+                width: 24px;
+                height: 24px;
+                font-size: 0.7rem;
+            }
+
+            .q-tag {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.5rem;
+            }
+
+            pre {
+                padding: 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .code-header {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.7rem;
+            }
+
+            .copy-btn {
+                padding: 0.2rem 0.5rem;
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .mobile-sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            background: white;
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-sidebar-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-sidebar-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-sidebar-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .mobile-sidebar.active {
+            right: 0;
+        }
+
+        .mobile-sidebar-overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-sidebar .sidebar {
+                display: block;
+                position: static;
+                margin: 0;
+                padding: 1rem;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .btn, .toc-link, .copy-btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .toc-link {
+                padding: 0.75rem;
+            }
+
+            .q-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Improved mobile typography */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .q-box p, .answer-section p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+        }
+
+        /* Better mobile spacing */
+        @media (max-width: 768px) {
+            .q-box {
+                border-radius: 8px;
+            }
+
+            .main-content {
+                border-radius: 8px;
+            }
+
+            .sidebar {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <header>
+        <div class="header-content">
+            <h1>React.js</h1>
+            <p>Master Modern React.js with 150+ essential interview questions, detailed answers, and real-world code examples for students and professionals</p>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search questions...">
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <h3><i class="fas fa-list"></i> Menu</h3>
+            <button class="mobile-sidebar-close" id="mobileSidebarClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h2><i class="fas fa-list"></i> Table of Contents <button class="toc-toggle-btn" id="tocToggleBtnMobile" type="button" aria-label="Toggle table of contents"><i class="fas fa-bars"></i></button></h2>
+                <ul class="toc-list toc-hidden" id="tocListMobile">
+                    <!-- Filled by JavaScript -->
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h2><i class="fas fa-link"></i> Quick Links</h2>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="/" class="toc-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-book"></i> All Topics</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link" onclick="downloadPDF()"><i class="fas fa-download"></i> Download PDF</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-question-circle"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar with Table of Contents -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2><i class="fas fa-list"></i> Table of Contents <button class="toc-toggle-btn" id="tocToggleBtn" type="button" aria-label="Toggle table of contents"><i class="fas fa-bars"></i></button></h2>
+                <ul class="toc-list toc-hidden" id="tocList">
+                    <!-- Filled by JavaScript -->
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h2><i class="fas fa-link"></i> Quick Links</h2>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="/" class="toc-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-book"></i> All Topics</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link" onclick="downloadPDF()"><i class="fas fa-download"></i> Download PDF</a></li>
+                    <li class="toc-item"><a href="#" class="toc-link"><i class="fas fa-question-circle"></i> About</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="breadcrumbs">
+                <a href="/">Home</a>
+                <span>/</span>
+                <a href="#">Topics</a>
+                <span>/</span>
+                <span>React.js</span>
+            </div>
+            
+            <h2 style="margin-bottom: 2rem;">163 Essential React.js Interview Questions</h2>
+            
+            <!-- Adsterra Ad Placement - Top -->
+            <div style="text-align: center; margin: 2rem 0;">
+                <script>
+  atOptions = {
+    'key' : '30e0f65d6b0b49e9f4a86a454e6d5a48',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/30e0f65d6b0b49e9f4a86a454e6d5a48/invoke.js"></script> </div>
+            
+            <div id="questionsContainer">
+                <!-- Questions will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="pagination">
+                <button class="btn" id="prevPage"><i class="fas fa-chevron-left"></i> Previous</button>
+                <span id="pageInfo" class="page-info">Page 1 of 12</span>
+                <button class="btn" id="nextPage">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div id="footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        // Initialize syntax highlighting
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+
+        // Pagination variables
+        let currentPage = 1;
+        const questionsPerPage = 5; // Changed to show 5 questions per page
+        let currentQuestions = [];
+
+        // Questions data
+        const data = [
+            {
+                q: "What is React.js?",
+                a: "React.js is a JavaScript library for building user interfaces, particularly web applications. Created by Facebook, it uses a component-based architecture and virtual DOM for efficient rendering. React follows a declarative programming paradigm and enables building reusable UI components.",
+                tags: ["react", "basics", "library"]
+            },
+            {
+                q: "What are the key features of React?",
+                a: "Key features include Virtual DOM for performance, Component-based architecture, JSX syntax, Unidirectional data flow, Reusability, Developer tools, Strong community support, and Server-side rendering capabilities.",
+                tags: ["react", "features", "basics"]
+            },
+            {
+                q: "What is JSX?",
+                a: "JSX (JavaScript XML) is a syntax extension for JavaScript that allows writing HTML-like code within JavaScript. It gets transpiled to React.createElement() calls by tools like Babel. JSX makes React components more readable and easier to write.",
+                tags: ["react", "jsx", "syntax"]
+            },
+            {
+                q: "What is the Virtual DOM?",
+                a: "Virtual DOM is a JavaScript representation of the actual DOM kept in memory. React creates a virtual copy of the real DOM, compares changes (diffing), and updates only the parts that changed (reconciliation). This makes React applications faster.",
+                tags: ["react", "virtual-dom", "performance"]
+            },
+            {
+                q: "What are React components?",
+                a: "Components are independent, reusable pieces of UI that return JSX. They can be functional (using hooks) or class-based. Components accept props as input and return elements describing what should appear on screen.",
+                tags: ["react", "components", "basics"]
+            },
+            {
+                q: "What is the difference between functional and class components?",
+                a: "Functional components are JavaScript functions that return JSX and use hooks for state and lifecycle. Class components extend React.Component and use this.state and lifecycle methods. Functional components are preferred in modern React.",
+                tags: ["react", "components", "functional", "class"]
+            },
+            {
+                q: "What are props in React?",
+                a: "Props (properties) are read-only data passed from parent to child components. They allow components to be dynamic and reusable. Props are immutable within the receiving component and follow unidirectional data flow.",
+                tags: ["react", "props", "data-flow"]
+            },
+            {
+                q: "What is state in React?",
+                a: "State is mutable data that belongs to a component and can change over time. When state changes, React re-renders the component. State should be treated as immutable and updated using setState() or useState() hook.",
+                tags: ["react", "state", "data"]
+            },
+            {
+                q: "What are React hooks?",
+                a: "Hooks are functions that let you use state and lifecycle features in functional components. Common hooks include useState, useEffect, useContext, useReducer, useMemo, and useCallback. They follow rules like only calling at the top level.",
+                tags: ["react", "hooks", "functional"]
+            },
+            {
+                q: "What is useState hook?",
+                a: "useState is a hook that adds state to functional components. It returns an array with current state value and a setter function. The setter function triggers re-renders when state changes.",
+                tags: ["react", "hooks", "usestate", "state"]
+            },
+            {
+                q: "What is useEffect hook?",
+                a: "useEffect performs side effects in functional components like data fetching, subscriptions, or DOM manipulation. It runs after render and can optionally clean up. Dependencies array controls when it runs.",
+                tags: ["react", "hooks", "useeffect", "lifecycle"]
+            },
+            {
+                q: "What is the component lifecycle in React?",
+                a: "Component lifecycle includes Mounting (componentDidMount), Updating (componentDidUpdate), and Unmounting (componentWillUnmount) phases. In functional components, useEffect handles lifecycle events with different dependency patterns.",
+                tags: ["react", "lifecycle", "components"]
+            },
+            {
+                q: "What is React Router?",
+                a: "React Router is a library for handling routing in React applications. It enables navigation between different components/pages without page refresh. Key components include BrowserRouter, Route, Link, and Switch/Routes.",
+                tags: ["react", "routing", "navigation"]
+            },
+            {
+                q: "What is Redux?",
+                a: "Redux is a predictable state container for JavaScript apps, commonly used with React. It centralizes application state in a single store, uses actions to describe changes, and reducers to specify how state updates.",
+                tags: ["react", "redux", "state-management"]
+            },
+            {
+                q: "What is Context API?",
+                a: "Context API provides a way to share data between components without prop drilling. It creates a context object with Provider and Consumer components. useContext hook simplifies consuming context in functional components.",
+                tags: ["react", "context", "state-management"]
+            },
+            {
+                q: "What are controlled and uncontrolled components?",
+                a: "Controlled components have their form data handled by React state - the component controls the input value. Uncontrolled components store form data in the DOM itself, accessed via refs. Controlled components are preferred.",
+                tags: ["react", "forms", "controlled", "uncontrolled"]
+            },
+            {
+                q: "What are refs in React?",
+                a: "Refs provide a way to access DOM nodes or component instances directly. Created using useRef() hook or React.createRef(). Common uses include focusing inputs, triggering animations, or integrating third-party libraries.",
+                tags: ["react", "refs", "dom"]
+            },
+            {
+                q: "What is prop drilling and how to avoid it?",
+                a: "Prop drilling is passing props through multiple component levels to reach deeply nested components. Solutions include Context API, Redux, component composition, or custom hooks to avoid unnecessary prop passing.",
+                tags: ["react", "prop-drilling", "context", "patterns"]
+            },
+            {
+                q: "What are Higher-Order Components (HOCs)?",
+                a: "HOCs are functions that take a component and return a new component with additional props or behavior. They're used for code reuse, logic abstraction, and cross-cutting concerns like authentication or logging.",
+                tags: ["react", "hoc", "patterns", "reusability"]
+            },
+            {
+                q: "What are render props?",
+                a: "Render props is a pattern where a component receives a function as a prop that returns JSX. This function is called in the component's render method, allowing dynamic rendering and logic sharing between components.",
+                tags: ["react", "render-props", "patterns"]
+            },
+            {
+                q: "What is React.memo?",
+                a: "React.memo is a higher-order component that memoizes functional components. It prevents unnecessary re-renders by doing shallow comparison of props. Use it for performance optimization when components receive same props frequently.",
+                tags: ["react", "memo", "performance", "optimization"]
+            },
+            {
+                q: "What is useMemo hook?",
+                a: "useMemo memoizes expensive calculations and returns cached result if dependencies haven't changed. It helps optimize performance by avoiding unnecessary computations on every render.",
+                tags: ["react", "hooks", "usememo", "performance"]
+            },
+            {
+                q: "What is useCallback hook?",
+                a: "useCallback memoizes functions and returns cached version if dependencies haven't changed. It prevents child components from re-rendering when parent passes the same function reference.",
+                tags: ["react", "hooks", "usecallback", "performance"]
+            },
+            {
+                q: "What is useReducer hook?",
+                a: "useReducer is an alternative to useState for complex state logic. It accepts a reducer function and initial state, returns current state and dispatch function. Useful for state with multiple sub-values or complex update logic.",
+                tags: ["react", "hooks", "usereducer", "state"]
+            },
+            {
+                q: "What is useContext hook?",
+                a: "useContext accepts a context object and returns current context value. It's a simpler way to consume context compared to Context.Consumer. The component will re-render when context value changes.",
+                tags: ["react", "hooks", "usecontext", "context"]
+            },
+            {
+                q: "What are custom hooks?",
+                a: "Custom hooks are JavaScript functions that start with 'use' and can call other hooks. They allow extracting component logic into reusable functions, sharing stateful logic between components without changing component hierarchy.",
+                tags: ["react", "hooks", "custom", "reusability"]
+            },
+            {
+                q: "What is React Suspense?",
+                a: "Suspense lets components wait for something before rendering, showing fallback UI during loading. It works with lazy loading, data fetching libraries, and enables better user experience with loading states.",
+                tags: ["react", "suspense", "loading", "async"]
+            },
+            {
+                q: "What is React.lazy?",
+                a: "React.lazy enables dynamic imports for components, allowing code splitting. It returns a component that renders lazily-loaded component. Must be used with Suspense for fallback UI during loading.",
+                tags: ["react", "lazy", "code-splitting", "performance"]
+            },
+            {
+                q: "What are Error Boundaries?",
+                a: "Error Boundaries are React components that catch JavaScript errors in child component tree, log errors, and display fallback UI. They're implemented using componentDidCatch and getDerivedStateFromError lifecycle methods.",
+                tags: ["react", "error-boundaries", "error-handling"]
+            },
+            {
+                q: "What is React Fragment?",
+                a: "React Fragment lets you group multiple elements without adding extra DOM nodes. Use <React.Fragment> or shorthand <> syntax. Useful when component needs to return multiple elements without wrapper div.",
+                tags: ["react", "fragment", "jsx"]
+            },
+            {
+                q: "What are portals in React?",
+                a: "Portals provide a way to render children into DOM node outside parent component's DOM hierarchy. Created using ReactDOM.createPortal(). Useful for modals, tooltips, or dropdowns that need to escape parent container.",
+                tags: ["react", "portals", "dom"]
+            },
+            {
+                q: "What is React StrictMode?",
+                a: "StrictMode is a development tool that highlights potential problems in applications. It enables additional checks like detecting unsafe lifecycles, deprecated APIs, and side effects. Only runs in development mode.",
+                tags: ["react", "strict-mode", "development", "debugging"]
+            },
+            {
+                q: "What is the difference between createElement and cloneElement?",
+                a: "createElement creates new React elements from type, props, and children. cloneElement clones existing element and returns new element with modified props. cloneElement preserves original element's key and ref.",
+                tags: ["react", "createElement", "cloneElement", "api"]
+            },
+            {
+                q: "What are synthetic events in React?",
+                a: "Synthetic events are React's wrapper around native events, providing consistent API across browsers. They have same interface as native events but with cross-browser compatibility and additional features like event pooling.",
+                tags: ["react", "events", "synthetic", "cross-browser"]
+            },
+            {
+                q: "What is event delegation in React?",
+                a: "React uses event delegation by attaching single event listener to document root and managing all events through event bubbling. This improves performance and memory usage compared to attaching listeners to individual elements.",
+                tags: ["react", "events", "delegation", "performance"]
+            },
+            {
+                q: "What are keys in React and why are they important?",
+                a: "Keys are special attributes that help React identify which items have changed, added, or removed in lists. They should be stable, predictable, and unique among siblings. Keys improve reconciliation performance and prevent rendering bugs.",
+                tags: ["react", "keys", "lists", "performance"]
+            },
+            {
+                q: "What is reconciliation in React?",
+                a: "Reconciliation is the process React uses to update the DOM efficiently. It compares (diffs) current virtual DOM tree with previous version and calculates minimum changes needed to update real DOM.",
+                tags: ["react", "reconciliation", "virtual-dom", "performance"]
+            },
+            {
+                q: "What is React Fiber?",
+                a: "React Fiber is the new reconciliation algorithm that enables incremental rendering. It can pause, abort, or restart rendering work, prioritize updates, and improve user experience by keeping applications responsive.",
+                tags: ["react", "fiber", "reconciliation", "performance"]
+            },
+            {
+                q: "What are React DevTools?",
+                a: "React DevTools is a browser extension for debugging React applications. It provides component tree inspection, props/state viewing, profiling performance, and hooks debugging. Available for Chrome and Firefox.",
+                tags: ["react", "devtools", "debugging", "development"]
+            },
+            {
+                q: "What is Server-Side Rendering (SSR) in React?",
+                a: "SSR renders React components on server and sends HTML to client. Benefits include better SEO, faster initial page load, and improved performance on slow devices. Frameworks like Next.js provide SSR capabilities.",
+                tags: ["react", "ssr", "server-side", "performance"]
+            },
+            {
+                q: "What is Static Site Generation (SSG)?",
+                a: "SSG pre-renders pages at build time, generating static HTML files. It combines benefits of static sites (performance, SEO) with React's dynamic capabilities. Gatsby and Next.js support SSG.",
+                tags: ["react", "ssg", "static", "performance"]
+            },
+            {
+                q: "What is Next.js?",
+                a: "Next.js is a React framework that provides features like SSR, SSG, automatic code splitting, optimized performance, and built-in routing. It simplifies React application development with zero-config setup.",
+                tags: ["react", "nextjs", "framework", "ssr"]
+            },
+            {
+                q: "What is Gatsby?",
+                a: "Gatsby is a React-based framework for building fast, static websites. It uses GraphQL for data layer, provides excellent performance optimizations, and generates static files that can be deployed anywhere.",
+                tags: ["react", "gatsby", "static", "graphql"]
+            },
+            {
+                q: "What is React Testing Library?",
+                a: "React Testing Library is a testing utility that focuses on testing components from user's perspective. It encourages testing behavior rather than implementation details and provides simple, accessible queries.",
+                tags: ["react", "testing", "library", "user-centric"]
+            },
+            {
+                q: "What is Enzyme?",
+                a: "Enzyme is a JavaScript testing utility for React that makes it easier to test component output, manipulate, and traverse components. It provides shallow, mount, and render methods for different testing scenarios.",
+                tags: ["react", "testing", "enzyme", "utility"]
+            },
+            {
+                q: "What are the testing best practices in React?",
+                a: "Best practices include testing user interactions, avoiding implementation details, using React Testing Library, writing integration tests, mocking external dependencies, and testing error states and edge cases.",
+                tags: ["react", "testing", "best-practices", "quality"]
+            },
+            {
+                q: "What is React performance optimization?",
+                a: "Performance optimization techniques include using React.memo, useMemo, useCallback, code splitting with React.lazy, avoiding inline objects/functions, optimizing bundle size, and using production builds.",
+                tags: ["react", "performance", "optimization", "best-practices"]
+            },
+            {
+                q: "What are React design patterns?",
+                a: "Common patterns include Container/Presentational components, Higher-Order Components, Render Props, Compound Components, Provider Pattern, and Custom Hooks. These patterns promote reusability and maintainability.",
+                tags: ["react", "patterns", "architecture", "best-practices"]
+            },
+            {
+                q: "What is the Container/Presentational pattern?",
+                a: "This pattern separates components into Containers (handle logic, state, data fetching) and Presentational components (handle UI rendering, receive data via props). It promotes separation of concerns and reusability.",
+                tags: ["react", "patterns", "container", "presentational"]
+            },
+            {
+                q: "What are Compound Components?",
+                a: "Compound Components is a pattern where components work together to form a complete UI. Parent component manages state and provides context, while child components handle specific parts. Examples include Select/Option or Tabs/Tab.",
+                tags: ["react", "patterns", "compound", "composition"]
+            },
+            {
+                q: "What is React state management?",
+                a: "State management involves handling application state across components. Options include local state (useState), Context API, Redux, Zustand, Recoil, or MobX. Choice depends on application complexity and requirements.",
+                tags: ["react", "state-management", "redux", "context"]
+            },
+            {
+                q: "What is the difference between Redux and Context API?",
+                a: "Redux provides predictable state container with time-travel debugging, middleware support, and dev tools. Context API is built into React, simpler for small apps, but can cause performance issues with frequent updates.",
+                tags: ["react", "redux", "context", "comparison"]
+            },
+            {
+                q: "What are Redux middleware?",
+                a: "Middleware provides extension points between dispatching actions and reaching reducers. Common middleware includes Redux Thunk for async actions, Redux Saga for complex side effects, and Redux Logger for debugging.",
+                tags: ["react", "redux", "middleware", "async"]
+            },
+            {
+                q: "What is Redux Toolkit?",
+                a: "Redux Toolkit is the official, opinionated toolset for efficient Redux development. It includes utilities like createSlice, createAsyncThunk, and configureStore that reduce boilerplate and follow best practices.",
+                tags: ["react", "redux", "toolkit", "modern"]
+            },
+            {
+                q: "What is React Query/TanStack Query?",
+                a: "React Query is a data fetching library that handles server state management, caching, synchronization, and background updates. It simplifies data fetching patterns and provides excellent developer experience.",
+                tags: ["react", "react-query", "data-fetching", "caching"]
+            },
+            {
+                q: "What is SWR?",
+                a: "SWR (stale-while-revalidate) is a data fetching library that focuses on performance, correctness, and stability. It provides features like caching, revalidation, focus tracking, and automatic retries.",
+                tags: ["react", "swr", "data-fetching", "caching"]
+            },
+            {
+                q: "What are React forms and form libraries?",
+                a: "React forms can be handled with controlled components or libraries like Formik, React Hook Form, or Final Form. These libraries provide validation, error handling, and better performance for complex forms.",
+                tags: ["react", "forms", "formik", "validation"]
+            },
+            {
+                q: "What is React Hook Form?",
+                a: "React Hook Form is a performant, flexible forms library with minimal re-renders. It uses uncontrolled components with refs, provides built-in validation, and has excellent TypeScript support.",
+                tags: ["react", "forms", "react-hook-form", "performance"]
+            },
+            {
+                q: "What is Formik?",
+                a: "Formik is a popular form library that helps with form state management, validation, and error handling. It provides components and hooks for building forms with less boilerplate code.",
+                tags: ["react", "forms", "formik", "validation"]
+            },
+            {
+                q: "What are React animations?",
+                a: "React animations can be implemented using CSS transitions, React Transition Group, Framer Motion, React Spring, or Lottie. Each approach has different use cases and performance characteristics.",
+                tags: ["react", "animations", "transitions", "ui"]
+            },
+            {
+                q: "What is Framer Motion?",
+                a: "Framer Motion is a production-ready motion library for React. It provides declarative animations, gestures, drag and drop, and layout animations with simple API and excellent performance.",
+                tags: ["react", "animations", "framer-motion", "gestures"]
+            },
+            {
+                q: "What is React Spring?",
+                a: "React Spring is a spring-physics based animation library. It provides hooks and components for creating smooth, natural animations with spring physics rather than duration-based animations.",
+                tags: ["react", "animations", "react-spring", "physics"]
+            },
+            {
+                q: "What are React UI libraries?",
+                a: "Popular UI libraries include Material-UI (MUI), Ant Design, Chakra UI, React Bootstrap, and Semantic UI React. They provide pre-built components, themes, and design systems for faster development.",
+                tags: ["react", "ui-libraries", "components", "design-systems"]
+            },
+            {
+                q: "What is Material-UI (MUI)?",
+                a: "Material-UI is a React component library implementing Google's Material Design. It provides comprehensive set of components, theming system, and customization options for building modern UIs.",
+                tags: ["react", "material-ui", "mui", "design-system"]
+            },
+            {
+                q: "What is Styled Components?",
+                a: "Styled Components is a CSS-in-JS library that allows writing CSS directly in JavaScript. It provides component-scoped styles, dynamic styling based on props, and automatic vendor prefixing.",
+                tags: ["react", "styled-components", "css-in-js", "styling"]
+            },
+            {
+                q: "What is Emotion?",
+                a: "Emotion is a CSS-in-JS library designed for writing css styles with JavaScript. It provides both string and object styles, excellent performance, and works well with React and other frameworks.",
+                tags: ["react", "emotion", "css-in-js", "styling"]
+            },
+            {
+                q: "What is CSS Modules with React?",
+                a: "CSS Modules provide locally scoped CSS by automatically generating unique class names. They prevent style conflicts, enable component-scoped styling, and work well with React's component architecture.",
+                tags: ["react", "css-modules", "styling", "scoped"]
+            },
+            {
+                q: "What is React Native?",
+                a: "React Native is a framework for building mobile applications using React. It allows sharing code between iOS and Android while rendering to native components, providing near-native performance.",
+                tags: ["react", "react-native", "mobile", "cross-platform"]
+            },
+            {
+                q: "What are the differences between React and React Native?",
+                a: "React is for web applications using HTML/CSS, while React Native is for mobile apps using native components. React Native uses different components (View, Text) and APIs specific to mobile platforms.",
+                tags: ["react", "react-native", "comparison", "mobile"]
+            },
+            {
+                q: "What is Expo in React Native?",
+                a: "Expo is a platform and set of tools for React Native development. It provides managed workflow, over-the-air updates, easy deployment, and access to native APIs without writing native code.",
+                tags: ["react", "react-native", "expo", "development"]
+            },
+            {
+                q: "What are React development tools and workflow?",
+                a: "Development tools include Create React App for bootstrapping, Webpack for bundling, Babel for transpilation, ESLint for linting, Prettier for formatting, and various IDE extensions for better DX.",
+                tags: ["react", "development", "tools", "workflow"]
+            },
+            {
+                q: "What is Create React App?",
+                a: "Create React App is an officially supported way to create single-page React applications. It provides zero-configuration setup with modern build tooling, development server, and production optimizations.",
+                tags: ["react", "create-react-app", "tooling", "setup"]
+            },
+            {
+                q: "What is Vite with React?",
+                a: "Vite is a fast build tool that provides instant server start and lightning-fast HMR. It's becoming popular alternative to Create React App with better performance and modern features.",
+                tags: ["react", "vite", "build-tools", "performance"]
+            },
+            {
+                q: "What are React build and deployment strategies?",
+                a: "Strategies include static hosting (Netlify, Vercel), CDN deployment, containerization with Docker, CI/CD pipelines, and optimizations like code splitting, tree shaking, and bundle analysis.",
+                tags: ["react", "deployment", "build", "optimization"]
+            },
+            {
+                q: "What is React security best practices?",
+                a: "Best practices include sanitizing user input, avoiding dangerouslySetInnerHTML, using HTTPS, implementing proper authentication, validating props, keeping dependencies updated, and following OWASP guidelines.",
+                tags: ["react", "security", "best-practices", "xss"]
+            },
+            {
+                q: "What is XSS prevention in React?",
+                a: "React prevents XSS by default through JSX escaping. Avoid dangerouslySetInnerHTML, sanitize user input, validate props, use Content Security Policy, and be careful with dynamic content and third-party libraries.",
+                tags: ["react", "security", "xss", "prevention"]
+            },
+            {
+                q: "What are React accessibility (a11y) best practices?",
+                a: "Best practices include semantic HTML, proper ARIA attributes, keyboard navigation, focus management, screen reader support, color contrast, and testing with accessibility tools like axe-core.",
+                tags: ["react", "accessibility", "a11y", "inclusive"]
+            },
+            {
+                q: "What is React SEO optimization?",
+                a: "SEO optimization includes Server-Side Rendering, meta tags management, structured data, proper URL structure, image optimization, and using tools like React Helmet for dynamic head management.",
+                tags: ["react", "seo", "optimization", "ssr"]
+            },
+            {
+                q: "What is React Helmet?",
+                a: "React Helmet is a library for managing document head tags in React applications. It allows dynamic modification of title, meta tags, and other head elements for better SEO and social sharing.",
+                tags: ["react", "helmet", "seo", "meta-tags"]
+            },
+            {
+                q: "What are React Progressive Web Apps (PWA)?",
+                a: "PWAs are web applications that provide app-like experience using service workers, web app manifest, and responsive design. React can be used to build PWAs with offline functionality and push notifications.",
+                tags: ["react", "pwa", "service-workers", "offline"]
+            },
+            {
+                q: "What is React code splitting?",
+                a: "Code splitting divides application into smaller chunks loaded on demand. React supports code splitting through dynamic imports, React.lazy, and bundler features, improving initial load time and performance.",
+                tags: ["react", "code-splitting", "performance", "lazy-loading"]
+            },
+            {
+                q: "What is tree shaking in React?",
+                a: "Tree shaking eliminates dead code from bundles by analyzing import/export statements. Modern bundlers like Webpack automatically remove unused code, reducing bundle size and improving performance.",
+                tags: ["react", "tree-shaking", "optimization", "bundling"]
+            },
+            {
+                q: "What are React bundle analysis tools?",
+                a: "Tools include Webpack Bundle Analyzer, Bundle Buddy, and source-map-explorer. They help visualize bundle composition, identify large dependencies, and optimize bundle size for better performance.",
+                tags: ["react", "bundle-analysis", "optimization", "tools"]
+            },
+            {
+                q: "What is React concurrent features?",
+                a: "Concurrent features include Suspense for data fetching, concurrent rendering, automatic batching, transitions, and startTransition API. They improve user experience by keeping applications responsive.",
+                tags: ["react", "concurrent", "suspense", "performance"]
+            },
+            {
+                q: "What are React 18 new features?",
+                a: "React 18 introduced concurrent rendering, automatic batching, Suspense improvements, new hooks (useId, useDeferredValue, useTransition), strict mode changes, and new root API.",
+                tags: ["react", "react-18", "features", "concurrent"]
+            },
+            {
+                q: "What is useTransition hook?",
+                a: "useTransition allows marking state updates as non-urgent transitions. It helps keep UI responsive during expensive operations by allowing React to interrupt and prioritize more urgent updates.",
+                tags: ["react", "hooks", "usetransition", "concurrent"]
+            },
+            {
+                q: "What is useDeferredValue hook?",
+                a: "useDeferredValue defers updating part of UI until more urgent updates finish. It's useful for expensive operations like filtering large lists while keeping input responsive.",
+                tags: ["react", "hooks", "usedeferredvalue", "performance"]
+            },
+            {
+                q: "What is useId hook?",
+                a: "useId generates unique IDs for accessibility attributes and form elements. It ensures IDs are unique across server and client, solving hydration mismatches in SSR applications.",
+                tags: ["react", "hooks", "useid", "accessibility"]
+            },
+            {
+                q: "What are React Server Components?",
+                a: "Server Components run on server and render to a special format that can be streamed to client. They enable zero-bundle-size components, direct database access, and better performance for data-heavy applications.",
+                tags: ["react", "server-components", "ssr", "performance"]
+            },
+            {
+                q: "What is React streaming and Suspense?",
+                a: "Streaming allows sending HTML to browser in chunks as it's generated. Combined with Suspense, it enables progressive page loading where parts of page render as data becomes available.",
+                tags: ["react", "streaming", "suspense", "ssr"]
+            },
+            {
+                q: "What are React micro-frontends?",
+                a: "Micro-frontends architecture splits frontend into smaller, independent applications. React applications can be composed using techniques like Module Federation, single-spa, or iframe-based approaches.",
+                tags: ["react", "micro-frontends", "architecture", "scalability"]
+            },
+            {
+                q: "What is Module Federation with React?",
+                a: "Module Federation allows sharing code and dependencies between separate React applications at runtime. It enables micro-frontend architecture where teams can develop and deploy independently.",
+                tags: ["react", "module-federation", "micro-frontends", "webpack"]
+            },
+            {
+                q: "What are React monorepo strategies?",
+                a: "Monorepo strategies include using tools like Lerna, Nx, or Rush for managing multiple React packages. Benefits include code sharing, consistent tooling, and coordinated releases across projects.",
+                tags: ["react", "monorepo", "architecture", "tooling"]
+            },
+            {
+                q: "What is React TypeScript integration?",
+                a: "TypeScript provides static typing for React applications. It offers better IDE support, catch errors at compile time, and improves code maintainability. React has excellent TypeScript support with built-in types.",
+                tags: ["react", "typescript", "types", "development"]
+            },
+            {
+                q: "What are React TypeScript best practices?",
+                a: "Best practices include typing props and state, using generic components, leveraging utility types, avoiding 'any', using strict mode, and properly typing event handlers and refs.",
+                tags: ["react", "typescript", "best-practices", "types"]
+            },
+            {
+                q: "What is React GraphQL integration?",
+                a: "GraphQL integration can be done using Apollo Client, Relay, or urql. These libraries provide query/mutation hooks, caching, optimistic updates, and excellent developer experience for data fetching.",
+                tags: ["react", "graphql", "apollo", "data-fetching"]
+            },
+            {
+                q: "What is Apollo Client with React?",
+                a: "Apollo Client is a comprehensive GraphQL client that provides caching, error handling, loading states, and React hooks. It simplifies data management and provides excellent developer tools.",
+                tags: ["react", "apollo", "graphql", "client"]
+            },
+            {
+                q: "What are React internationalization (i18n) solutions?",
+                a: "Popular i18n libraries include react-i18next, React Intl, and LinguiJS. They provide translation management, pluralization, date/number formatting, and context-aware translations.",
+                tags: ["react", "i18n", "internationalization", "localization"]
+            },
+            {
+                q: "What is react-i18next?",
+                a: "react-i18next is a powerful internationalization framework for React. It provides hooks, components, and utilities for managing translations, namespaces, and language switching in React applications.",
+                tags: ["react", "i18n", "react-i18next", "translations"]
+            },
+            {
+                q: "What are React debugging techniques?",
+                a: "Debugging techniques include React DevTools, console logging, error boundaries, React Profiler, browser debugger, and testing. Understanding component lifecycle and state flow is crucial for effective debugging.",
+                tags: ["react", "debugging", "devtools", "profiling"]
+            },
+            {
+                q: "What is React Profiler?",
+                a: "React Profiler measures performance of React applications by tracking component render times, identifying performance bottlenecks, and providing insights for optimization. Available in React DevTools.",
+                tags: ["react", "profiler", "performance", "debugging"]
+            },
+            {
+                q: "What are React common mistakes and how to avoid them?",
+                a: "Common mistakes include mutating state directly, missing dependencies in useEffect, using array index as key, not handling loading/error states, and performance anti-patterns. Following React best practices helps avoid these.",
+                tags: ["react", "mistakes", "best-practices", "debugging"]
+            },
+            {
+                q: "What is React community and ecosystem?",
+                a: "React has a vibrant ecosystem with extensive libraries, tools, and community resources. It includes official documentation, conferences, podcasts, blogs, and active communities on GitHub, Discord, and Reddit.",
+                tags: ["react", "community", "ecosystem", "resources"]
+            },
+            {
+                q: "What are React learning resources?",
+                a: "Learning resources include official React documentation, React tutorials, online courses (Udemy, Coursera), books, YouTube channels, and hands-on projects. Building real applications is the best way to learn.",
+                tags: ["react", "learning", "resources", "education"]
+            },
+            {
+                q: "What is the future of React?",
+                a: "React's future includes continued focus on concurrent features, Server Components, improved developer experience, better performance, and ecosystem growth. React team actively works on making React faster and easier to use.",
+                tags: ["react", "future", "roadmap", "development"]
+            },
+            {
+                q: "What are React career opportunities?",
+                a: "React skills open opportunities in frontend development, full-stack development, mobile development (React Native), and specialized roles in performance optimization, accessibility, and developer tooling.",
+                tags: ["react", "career", "opportunities", "jobs"]
+            },
+            {
+                q: "What are React interview preparation tips?",
+                a: "Preparation tips include understanding React fundamentals, practicing coding problems, building projects, studying common patterns, preparing for system design questions, and staying updated with latest React features.",
+                tags: ["react", "interview", "preparation", "tips"]
+            },
+            {
+                q: "What are React coding challenge topics?",
+                a: "Common topics include component implementation, state management, API integration, performance optimization, testing, and building mini-applications like todo lists, weather apps, or e-commerce features.",
+                tags: ["react", "coding", "challenges", "practice"]
+            },
+            {
+                q: "What is React history and evolution?",
+                a: "React was created by Jordan Walke at Facebook in 2013. It evolved from class components to hooks, introduced concurrent features, and continues to innovate with Server Components and improved developer experience.",
+                tags: ["react", "history", "evolution", "facebook"]
+            },
+            {
+                q: "What are React alternatives and comparisons?",
+                a: "Alternatives include Vue.js, Angular, Svelte, and Solid.js. Each has different philosophies, learning curves, and use cases. React's strength lies in its ecosystem, community, and job market.",
+                tags: ["react", "alternatives", "comparison", "frameworks"]
+            },
+            {
+                q: "What is React philosophy and principles?",
+                a: "React follows principles like component composition, unidirectional data flow, declarative programming, and 'learn once, write anywhere'. It emphasizes predictability, testability, and developer experience.",
+                tags: ["react", "philosophy", "principles", "design"]
+            },
+            {
+                q: "What are React enterprise considerations?",
+                a: "Enterprise considerations include scalability, maintainability, team collaboration, code standards, testing strategies, performance monitoring, security practices, and long-term support.",
+                tags: ["react", "enterprise", "scalability", "architecture"]
+            },
+            {
+                q: "What is React contribution and open source?",
+                a: "React is open source with active community contributions. Contributing involves reporting bugs, submitting PRs, improving documentation, and helping with community support. It's a great way to learn and give back.",
+                tags: ["react", "open-source", "contribution", "community"]
+            },
+            {
+                q: "What is React.createElement()?",
+                a: "React.createElement() is the function that JSX compiles to. It creates React elements with type, props, and children. Understanding createElement helps debug JSX issues and write React without JSX.",
+                tags: ["react", "createElement", "jsx", "elements"]
+            },
+            {
+                q: "What are React element vs component vs instance?",
+                a: "Elements are plain objects describing what to render. Components are functions or classes that return elements. Instances are the actual objects created when React renders class components.",
+                tags: ["react", "elements", "components", "instances"]
+            },
+            {
+                q: "What is React.Children utility?",
+                a: "React.Children provides utilities for dealing with props.children. Methods include map, forEach, count, only, and toArray. Useful for manipulating children in compound components.",
+                tags: ["react", "children", "utility", "props"]
+            },
+            {
+                q: "What are React render props vs children as function?",
+                a: "Both patterns pass functions as props to share logic. Render props use a prop (usually 'render'), while children as function uses props.children. Both enable component composition and logic sharing.",
+                tags: ["react", "render-props", "children", "patterns"]
+            },
+            {
+                q: "What is React component composition?",
+                a: "Component composition combines simple components to build complex UIs. It's preferred over inheritance in React. Techniques include props.children, render props, and higher-order components.",
+                tags: ["react", "composition", "patterns", "architecture"]
+            },
+            {
+                q: "What are React controlled vs uncontrolled inputs?",
+                a: "Controlled inputs have values managed by React state. Uncontrolled inputs manage their own state internally, accessed via refs. Controlled inputs provide better control and validation.",
+                tags: ["react", "forms", "controlled", "uncontrolled"]
+            },
+            {
+                q: "What is React defaultProps?",
+                a: "defaultProps defines default values for component props. If parent doesn't pass a prop, the default value is used. Can be defined as static property on class components or default parameters in functional components.",
+                tags: ["react", "defaultProps", "props", "defaults"]
+            },
+            {
+                q: "What is React propTypes?",
+                a: "propTypes provides runtime type checking for React props. It helps catch bugs during development by validating prop types. Replaced by TypeScript in modern React development but still useful for JavaScript projects.",
+                tags: ["react", "propTypes", "validation", "types"]
+            },
+            {
+                q: "What are React lifecycle methods in class components?",
+                a: "Lifecycle methods include componentDidMount, componentDidUpdate, componentWillUnmount, shouldComponentUpdate, getSnapshotBeforeUpdate, and getDerivedStateFromProps. Each serves specific purposes in component lifecycle.",
+                tags: ["react", "lifecycle", "class-components", "methods"]
+            },
+            {
+                q: "What is componentDidMount vs useEffect?",
+                a: "componentDidMount runs once after component mounts. useEffect with empty dependency array mimics this behavior. useEffect is more flexible, handling multiple lifecycle events with different dependency patterns.",
+                tags: ["react", "lifecycle", "componentDidMount", "useEffect"]
+            },
+            {
+                q: "What is shouldComponentUpdate vs React.memo?",
+                a: "shouldComponentUpdate prevents re-renders in class components by returning false. React.memo does the same for functional components with shallow prop comparison. Both optimize performance by preventing unnecessary renders.",
+                tags: ["react", "performance", "shouldComponentUpdate", "memo"]
+            },
+            {
+                q: "What is React.PureComponent?",
+                a: "PureComponent is a base class that implements shouldComponentUpdate with shallow prop and state comparison. It automatically prevents re-renders when props and state haven't changed, improving performance.",
+                tags: ["react", "PureComponent", "performance", "optimization"]
+            },
+            {
+                q: "What is React batching?",
+                a: "Batching groups multiple state updates into single re-render for performance. React 18 introduced automatic batching for all updates, including promises, timeouts, and native event handlers.",
+                tags: ["react", "batching", "performance", "react-18"]
+            },
+            {
+                q: "What is React flushSync?",
+                a: "flushSync forces React to flush updates synchronously, bypassing batching. Use sparingly as it can hurt performance. Useful when you need DOM updates to happen immediately for measurements or third-party integrations.",
+                tags: ["react", "flushSync", "synchronous", "dom"]
+            },
+            {
+                q: "What are React synthetic events vs native events?",
+                a: "Synthetic events wrap native events with consistent API across browsers. They provide same interface but with React-specific features like event pooling (removed in React 17) and automatic event delegation.",
+                tags: ["react", "events", "synthetic", "native"]
+            },
+            {
+                q: "What is React event pooling?",
+                a: "Event pooling (removed in React 17) reused event objects for performance. Events were nullified after handlers ran. React 17+ removed pooling due to modern browser performance and developer confusion.",
+                tags: ["react", "events", "pooling", "performance"]
+            },
+            {
+                q: "What is React.forwardRef?",
+                a: "forwardRef passes refs through components to child elements. Useful for library components that need to expose DOM nodes or for accessing child component methods from parent.",
+                tags: ["react", "forwardRef", "refs", "components"]
+            },
+            {
+                q: "What is useImperativeHandle hook?",
+                a: "useImperativeHandle customizes instance value exposed to parent when using forwardRef. It allows child components to expose specific methods or properties to parent components.",
+                tags: ["react", "hooks", "useImperativeHandle", "refs"]
+            },
+            {
+                q: "What is React.cloneElement?",
+                a: "cloneElement creates new React element using existing element as starting point. It allows modifying props, key, or ref of existing element. Useful for enhancing children components with additional props.",
+                tags: ["react", "cloneElement", "elements", "props"]
+            },
+            {
+                q: "What are React compound components pattern?",
+                a: "Compound components work together as cohesive unit, sharing implicit state. Parent manages state while children handle specific UI parts. Examples include Select/Option, Tabs/Tab, or Accordion/Panel combinations.",
+                tags: ["react", "patterns", "compound", "composition"]
+            },
+            {
+                q: "What is React provider pattern?",
+                a: "Provider pattern uses Context API to share data across component tree. Provider component supplies data while consumer components access it. Eliminates prop drilling and centralizes shared state.",
+                tags: ["react", "patterns", "provider", "context"]
+            },
+            {
+                q: "What are React custom hooks best practices?",
+                a: "Best practices include starting name with 'use', keeping hooks focused and reusable, returning objects for multiple values, handling cleanup properly, and following hooks rules consistently.",
+                tags: ["react", "hooks", "custom", "best-practices"]
+            },
+            {
+                q: "What is React useLayoutEffect vs useEffect?",
+                a: "useLayoutEffect runs synchronously after DOM mutations but before browser paint. useEffect runs asynchronously after paint. Use useLayoutEffect for DOM measurements or preventing visual flicker.",
+                tags: ["react", "hooks", "useLayoutEffect", "useEffect"]
+            },
+            {
+                q: "What is React useDebugValue hook?",
+                a: "useDebugValue displays custom label for custom hooks in React DevTools. It helps with debugging by showing meaningful information about hook state in development tools.",
+                tags: ["react", "hooks", "useDebugValue", "debugging"]
+            },
+            {
+                q: "What are React optimization techniques?",
+                a: "Techniques include memoization (memo, useMemo, useCallback), code splitting, lazy loading, virtualization for large lists, avoiding inline objects/functions, and using production builds.",
+                tags: ["react", "optimization", "performance", "techniques"]
+            },
+            {
+                q: "What is React virtualization?",
+                a: "Virtualization renders only visible items in large lists, improving performance. Libraries like react-window and react-virtualized implement virtualization for tables, lists, and grids.",
+                tags: ["react", "virtualization", "performance", "lists"]
+            },
+            {
+                q: "What is React windowing?",
+                a: "Windowing (same as virtualization) renders only visible portion of large datasets. It maintains smooth scrolling while handling thousands of items efficiently by recycling DOM elements.",
+                tags: ["react", "windowing", "performance", "optimization"]
+            },
+            {
+                q: "What are React performance anti-patterns?",
+                a: "Anti-patterns include creating objects/functions in render, using array index as key, not memoizing expensive calculations, excessive re-renders, and large component trees without optimization.",
+                tags: ["react", "performance", "anti-patterns", "mistakes"]
+            },
+            {
+                q: "What is React time slicing?",
+                a: "Time slicing (part of concurrent features) breaks rendering work into chunks, allowing React to pause and resume work. It keeps applications responsive by yielding control back to browser between chunks.",
+                tags: ["react", "time-slicing", "concurrent", "performance"]
+            },
+            {
+                q: "What are React concurrent mode features?",
+                a: "Concurrent features include Suspense, time slicing, automatic batching, transitions, and interruptible rendering. They improve user experience by keeping applications responsive during heavy operations.",
+                tags: ["react", "concurrent", "features", "performance"]
+            },
+            {
+                q: "What is React Suspense for data fetching?",
+                a: "Suspense for data fetching allows components to suspend rendering while waiting for async operations. It provides declarative loading states and better user experience with libraries that support it.",
+                tags: ["react", "suspense", "data-fetching", "async"]
+            },
+            {
+                q: "What are React error handling patterns?",
+                a: "Patterns include Error Boundaries for component errors, try-catch in event handlers, error states in components, global error handlers, and proper error logging and monitoring.",
+                tags: ["react", "error-handling", "patterns", "debugging"]
+            },
+            {
+                q: "What is React component testing strategies?",
+                a: "Strategies include unit testing individual components, integration testing component interactions, snapshot testing for UI consistency, and end-to-end testing for complete user flows.",
+                tags: ["react", "testing", "strategies", "quality"]
+            },
+            {
+                q: "What are React testing utilities?",
+                a: "Utilities include React Testing Library for user-centric testing, Enzyme for component testing, Jest for test running, and tools like MSW for API mocking in tests.",
+                tags: ["react", "testing", "utilities", "tools"]
+            },
+            {
+                q: "What is React snapshot testing?",
+                a: "Snapshot testing captures component output and compares it with saved snapshots. It helps detect unintended changes in component rendering and is useful for regression testing.",
+                tags: ["react", "testing", "snapshots", "regression"]
+            },
+            {
+                q: "What are React mocking techniques in tests?",
+                a: "Techniques include mocking modules with Jest, mocking API calls with MSW, mocking components for isolation, and using test doubles for external dependencies.",
+                tags: ["react", "testing", "mocking", "isolation"]
+            },
+            {
+                q: "What is React component architecture patterns?",
+                a: "Patterns include Atomic Design (atoms, molecules, organisms), Feature-based organization, Domain-driven design, and Layered architecture separating presentation, business logic, and data layers.",
+                tags: ["react", "architecture", "patterns", "organization"]
+            },
+            {
+                q: "What are React folder structure best practices?",
+                a: "Best practices include organizing by features, separating components by type, using index files for clean imports, keeping related files together, and maintaining consistent naming conventions.",
+                tags: ["react", "folder-structure", "organization", "best-practices"]
+            },
+            {
+                q: "What is React code splitting strategies?",
+                a: "Strategies include route-based splitting, component-based splitting, vendor splitting, and dynamic imports. Tools like Webpack automatically handle splitting with proper configuration.",
+                tags: ["react", "code-splitting", "strategies", "performance"]
+            },
+            {
+                q: "What are React bundle optimization techniques?",
+                a: "Techniques include tree shaking, code splitting, dynamic imports, analyzing bundle size, removing unused dependencies, and using production builds with proper minification.",
+                tags: ["react", "bundle", "optimization", "performance"]
+            },
+            {
+                q: "What is React hydration?",
+                a: "Hydration is the process of attaching event listeners and making server-rendered HTML interactive on the client. It's crucial for SSR applications to become fully functional in the browser.",
+                tags: ["react", "hydration", "ssr", "client-side"]
+            },
+            {
+                q: "What are React hydration mismatches?",
+                a: "Hydration mismatches occur when server-rendered HTML differs from client-rendered HTML. Common causes include different data, random values, or browser-specific APIs. They cause React to re-render the entire tree.",
+                tags: ["react", "hydration", "mismatches", "ssr"]
+            },
+            {
+                q: "What is React selective hydration?",
+                a: "Selective hydration allows hydrating parts of the page independently based on user interaction. It improves initial page interactivity by prioritizing critical components first.",
+                tags: ["react", "hydration", "selective", "performance"]
+            },
+            {
+                q: "What are React deployment best practices?",
+                a: "Best practices include using production builds, enabling gzip compression, setting proper cache headers, using CDN for static assets, implementing proper error monitoring, and following security guidelines.",
+                tags: ["react", "deployment", "best-practices", "production"]
+            },
+            {
+                q: "What is React environment configuration?",
+                a: "Environment configuration involves managing different settings for development, staging, and production. Use environment variables, config files, and build-time constants for different environments.",
+                tags: ["react", "environment", "configuration", "deployment"]
+            },
+            {
+                q: "What are React monitoring and analytics?",
+                a: "Monitoring includes error tracking (Sentry), performance monitoring (Web Vitals), user analytics (Google Analytics), and React-specific tools like React DevTools Profiler for performance analysis.",
+                tags: ["react", "monitoring", "analytics", "performance"]
+            },
+            {
+                q: "What is React Web Vitals?",
+                a: "Web Vitals are metrics that measure user experience: Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS). React applications should optimize for these metrics.",
+                tags: ["react", "web-vitals", "performance", "metrics"]
+            },
+            {
+                q: "What are React advanced patterns?",
+                a: "Advanced patterns include Render Props, Higher-Order Components, Compound Components, Provider Pattern, State Reducer Pattern, and Control Props Pattern for building flexible, reusable components.",
+                tags: ["react", "patterns", "advanced", "architecture"]
+            },
+            {
+                q: "What is React state reducer pattern?",
+                a: "State reducer pattern gives users control over component's internal state changes by accepting a reducer function as prop. It provides flexibility while maintaining component's default behavior.",
+                tags: ["react", "patterns", "state-reducer", "control"]
+            },
+            {
+                q: "What are React control props pattern?",
+                a: "Control props pattern allows parent components to control child component's state. Child component accepts both controlled and uncontrolled modes, providing flexibility for different use cases.",
+                tags: ["react", "patterns", "control-props", "flexibility"]
+            }
+        ];
+
+        // Function to download all questions as PDF
+        function downloadPDF() {
+            // Show loading message
+            const originalText = event.target.innerHTML;
+            event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            event.target.disabled = true;
+            
+            setTimeout(() => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Set font size and style
+                doc.setFontSize(20);
+                doc.text('Web Development - Interview Questions', 20, 20);
+                
+                doc.setFontSize(12);
+                doc.text('Complete collection of Web Development interview questions and answers', 20, 30);
+                
+                let yPosition = 50;
+                const pageHeight = doc.internal.pageSize.height;
+                const lineHeight = 7;
+                const margin = 20;
+                
+                // Add all questions to PDF
+                data.forEach((item, index) => {
+                    // Check if we need a new page
+                    if (yPosition > pageHeight - 40) {
+                        doc.addPage();
+                        yPosition = 30;
+                    }
+                    
+                    // Question number and title
+                    doc.setFontSize(14);
+                    doc.setFont(undefined, 'bold');
+                    const questionText = `Q${index + 1}: ${item.q}`;
+                    const questionLines = doc.splitTextToSize(questionText, 170);
+                    
+                    questionLines.forEach(line => {
+                        if (yPosition > pageHeight - 20) {
+                            doc.addPage();
+                            yPosition = 30;
+                        }
+                        doc.text(line, margin, yPosition);
+                        yPosition += lineHeight;
+                    });
+                    
+                    // Answer
+                    doc.setFontSize(11);
+                    doc.setFont(undefined, 'normal');
+                    const answerText = `Answer: ${item.a}`;
+                    const answerLines = doc.splitTextToSize(answerText, 170);
+                    
+                    answerLines.forEach(line => {
+                        if (yPosition > pageHeight - 20) {
+                            doc.addPage();
+                            yPosition = 30;
+                        }
+                        doc.text(line, margin, yPosition);
+                        yPosition += lineHeight;
+                    });
+                    
+                    // Real-world example (if exists)
+                    if (item.r) {
+                        doc.setFont(undefined, 'italic');
+                        const exampleText = `Example: ${item.r}`;
+                        const exampleLines = doc.splitTextToSize(exampleText, 170);
+                        
+                        exampleLines.forEach(line => {
+                            if (yPosition > pageHeight - 20) {
+                                doc.addPage();
+                                yPosition = 30;
+                            }
+                            doc.text(line, margin, yPosition);
+                            yPosition += lineHeight;
+                        });
+                    }
+                    
+                    // Add spacing between questions
+                    yPosition += lineHeight * 2;
+                    
+                    // Add separator line
+                    if (yPosition < pageHeight - 20) {
+                        doc.setLineWidth(0.1);
+                        doc.line(margin, yPosition, 190, yPosition);
+                        yPosition += lineHeight;
+                    }
+                });
+                
+                // Add footer
+                const totalPages = doc.internal.getNumberOfPages();
+                for (let i = 1; i <= totalPages; i++) {
+                    doc.setPage(i);
+                    doc.setFontSize(10);
+                    doc.setFont(undefined, 'normal');
+                    doc.text(`Page ${i} of ${totalPages}`, 105, pageHeight - 10, { align: 'center' });
+                    doc.text('Generated from IT Interview Hub', 105, pageHeight - 5, { align: 'center' });
+                }
+                
+                // Save the PDF
+                doc.save('Web-Development-Interview-Questions.pdf');
+                
+                // Restore button state
+                event.target.innerHTML = originalText;
+                event.target.disabled = false;
+            }, 100);
+        }
+
+        // Function to copy code to clipboard
+        function copyCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+
+            if (!codeElement) return;
+
+            const code = codeElement.innerText;
+
+            navigator.clipboard.writeText(code).then(() => {
+                // Show copied feedback
+                const copyBtn = codeElement.closest('.code-container').querySelector('.copy-btn');
+                if (copyBtn) {
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+            });
+        }
+    
+
+        // Function to scroll to specific question
+        function scrollToQuestion(questionId) {
+            const element = document.getElementById(questionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Update active TOC link
+                const tocLinks = document.querySelectorAll('.toc-link');
+                tocLinks.forEach(link => link.classList.remove('active'));
+                
+                const activeLink = document.querySelector(`.toc-link[href="#${questionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        }
+
+        // Function to render table of contents
+        function renderTOC() {
+            const tocList = document.getElementById('tocList');
+            const tocListMobile = document.getElementById('tocListMobile');
+            
+            if (!tocList && !tocListMobile) return;
+
+            const source = currentQuestions && currentQuestions.length ? currentQuestions : data;
+            const start = (currentPage - 1) * questionsPerPage;
+            const end = start + questionsPerPage;
+
+            const pageItems = source.slice(start, end);
+
+            const tocHTML = pageItems.map((item, index) => {
+                const number = start + index + 1;
+                const shortQ = item.q.substring(0, 50) + (item.q.length > 50 ? '...' : '');
+                return `
+                    <li class="toc-item">
+                        <a href="#q-${number}" class="toc-link" onclick="scrollToQuestion('q-${number}'); return false;">
+                            <span class="toc-number">${number}.</span>
+                            <span class="toc-question">${shortQ}</span>
+                        </a>
+                    </li>
+                `;
+            }).join('');
+            
+            // Update both TOC lists
+            if (tocList) {
+                tocList.innerHTML = tocHTML;
+            }
+            if (tocListMobile) {
+                tocListMobile.innerHTML = tocHTML;
+            }
+        }
+
+        // Function to handle search with highlighting
+        function filterQuestions() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!searchTerm) {
+                currentQuestions = [...data];
+                currentPage = 1;
+                updatePagination();
+                return;
+            }
+            
+            currentQuestions = data.filter(item => 
+                item.q.toLowerCase().includes(searchTerm) || 
+                item.a.toLowerCase().includes(searchTerm) ||
+                (item.r && item.r.toLowerCase().includes(searchTerm)) ||
+                (item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchTerm)))
+            );
+            
+            currentPage = 1;
+            updatePagination();
+            
+            // Highlight search terms after rendering
+            setTimeout(() => highlightSearchTerms(searchTerm), 100);
+        }
+
+        // Function to highlight search terms
+        function highlightSearchTerms(searchTerm) {
+            if (!searchTerm) return;
+            
+            const questionsContainer = document.getElementById('questionsContainer');
+            const questionBoxes = questionsContainer.querySelectorAll('.q-box');
+            
+            questionBoxes.forEach(box => {
+                const h3 = box.querySelector('h3');
+                const paragraphs = box.querySelectorAll('p');
+                
+                // Highlight in question title
+                if (h3) {
+                    h3.innerHTML = highlightText(h3.textContent, searchTerm);
+                }
+                
+                // Highlight in paragraphs
+                paragraphs.forEach(p => {
+                    p.innerHTML = highlightText(p.textContent, searchTerm);
+                });
+            });
+        }
+
+        // Function to highlight text
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+        }
+
+        // Add CSS for search highlighting
+        const searchHighlightStyle = document.createElement('style');
+        searchHighlightStyle.textContent = `
+            .search-highlight {
+                background-color: #fef08a;
+                color: #713f12;
+                padding: 2px 4px;
+                border-radius: 3px;
+                font-weight: 500;
+            }
+        `;
+        document.head.appendChild(searchHighlightStyle);
+
+        // Function to render questions with pagination
+        function renderQuestions(questionsToRender = data) {
+            currentQuestions = [...questionsToRender];
+            currentPage = 1; // Reset to first page when filtering
+            updatePagination();
+        }
+
+        // Function to update pagination
+        function updatePagination() {
+            const questionsContainer = document.getElementById('questionsContainer');
+            const pageInfo = document.getElementById('pageInfo');
+            const prevPageBtn = document.getElementById('prevPage');
+            const nextPageBtn = document.getElementById('nextPage');
+
+            // Calculate pagination details
+            const start = (currentPage - 1) * questionsPerPage;
+            const end = start + questionsPerPage;
+            const pageCount = Math.ceil(currentQuestions.length / questionsPerPage);
+
+            // Render questions for the current page
+            const questionsHTML = currentQuestions.slice(start, end).map((item, index) => {
+                const questionNumber = (currentPage - 1) * questionsPerPage + index + 1;
+                return `
+                    <div class="q-box" id="q-${questionNumber}">
+                        <h3>${item.q}</h3>
+                        <div class="q-meta">
+                            <span class="q-number">${questionNumber}</span>
+                            <span class="q-tags">
+                                ${item.tags.map(tag => `<span class="q-tag">${tag}</span>`).join('')}
+                            </span>
+                        </div>
+                        <p>${item.a}</p>
+                        ${item.r ? `<p class="q-result">${item.r}</p>` : ''}
+                        ${item.c ? `
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span class="code-title">Example Code</span>
+                                    <button class="copy-btn" onclick="copyCode('code-${questionNumber}')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                <pre><code id="code-${questionNumber}" class="language-javascript">${item.c}</code></pre>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            questionsContainer.innerHTML = questionsHTML;
+
+            renderTOC();
+
+            // Update page info
+            if (pageInfo) {
+                pageInfo.textContent = `Page ${currentPage} of ${pageCount} (${currentQuestions.length} questions)`;
+            }
+
+            // Update navigation buttons
+            if (prevPageBtn) {
+                prevPageBtn.disabled = currentPage === 1;
+            }
+            if (nextPageBtn) {
+                nextPageBtn.disabled = currentPage === pageCount || pageCount === 0;
+            }
+
+            // Highlight code blocks
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        }
+
+        // Pagination functions
+        function nextPage() {
+            const pageCount = Math.ceil(currentQuestions.length / questionsPerPage);
+            if (currentPage < pageCount) {
+                currentPage++;
+                updatePagination();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updatePagination();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderQuestions();
+
+            // Pagination button event listeners
+            const nextPageBtn = document.getElementById('nextPage');
+            if (nextPageBtn) {
+                nextPageBtn.addEventListener('click', nextPage);
+            }
+            const prevPageBtn = document.getElementById('prevPage');
+            if (prevPageBtn) {
+                prevPageBtn.addEventListener('click', prevPage);
+            }
+
+            // Toggle functionality for both desktop and mobile TOC
+            function setupTocToggle() {
+                const tocToggleBtn = document.getElementById('tocToggleBtn');
+                const tocToggleBtnMobile = document.getElementById('tocToggleBtnMobile');
+                const tocList = document.getElementById('tocList');
+                const tocListMobile = document.getElementById('tocListMobile');
+                
+                function toggleToc() {
+                    if (tocList) {
+                        tocList.classList.toggle('toc-hidden');
+                    }
+                    if (tocListMobile) {
+                        tocListMobile.classList.toggle('toc-hidden');
+                    }
+                }
+                
+                if (tocToggleBtn) {
+                    tocToggleBtn.addEventListener('click', toggleToc);
+                }
+                if (tocToggleBtnMobile) {
+                    tocToggleBtnMobile.addEventListener('click', toggleToc);
+                }
+            }
+            
+            setupTocToggle();
+            
+            // Add search event listener
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', filterQuestions);
+            }
+
+            // Mobile menu functionality
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+            const mobileSidebarClose = document.getElementById('mobileSidebarClose');
+
+            function openMobileMenu() {
+                mobileSidebar.classList.add('active');
+                mobileSidebarOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileSidebar.classList.remove('active');
+                mobileSidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openMobileMenu);
+            }
+
+            if (mobileSidebarClose) {
+                mobileSidebarClose.addEventListener('click', closeMobileMenu);
+            }
+
+            if (mobileSidebarOverlay) {
+                mobileSidebarOverlay.addEventListener('click', closeMobileMenu);
+            }
+
+            // Close mobile menu when clicking on TOC links
+            const mobileTocLinks = mobileSidebar?.querySelectorAll('.toc-link');
+            if (mobileTocLinks) {
+                mobileTocLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+            }
+
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileSidebar?.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
