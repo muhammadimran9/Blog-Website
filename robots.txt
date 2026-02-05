@@ -1,0 +1,129 @@
+# robots.txt for IT Interview Hub
+# https://blogstech.site
+
+# Allow all search engines
+User-agent: *
+
+# Disallow administrative and system files
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-config.php
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /wp-json/
+Disallow: /xmlrpc.php
+
+# Disallow temporary and development files
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /dev/
+Disallow: /staging/
+Disallow: /test/
+
+# Disallow private directories
+Disallow: /private/
+Disallow: /_private/
+Disallow: /logs/
+Disallow: /backup/
+
+# Disallow search and filter pages (to prevent duplicate content)
+Disallow: /search?
+Disallow: /filter?
+Disallow: /tag/
+Disallow: /category/
+Disallow: /author/
+Disallow: /page/
+Disallow: /*?*
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+
+# Disallow specific parameters
+Disallow: /*?utm*
+Disallow: /*?session*
+Disallow: /*?ref*
+Disallow: /*?source*
+Disallow: /*?campaign*
+
+# Allow important directories
+Allow: /wp-content/uploads/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+
+# Allow specific file types
+Allow: *.css
+Allow: *.js
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.png
+Allow: *.gif
+Allow: *.svg
+Allow: *.webp
+
+# Sitemap location
+Sitemap: https://blogstech.site/sitemap.xml
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: BacklinkCrawler
+Disallow: /
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Image search crawlers
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /wp-content/uploads/
+
+User-agent: Bingbot-Image
+Allow: /images/
+Allow: /wp-content/uploads/
+
+# Mobile crawlers
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot-Mobile
+Allow: /
+
+# API crawlers
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+# Crawl delay (optional - be careful with this)
+# Crawl-delay: 1

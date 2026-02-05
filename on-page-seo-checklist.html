@@ -1,0 +1,512 @@
+<!--
+ON-PAGE SEO CHECKLIST FOR IT INTERVIEW HUB
+Complete guide for optimizing individual pages for search engines
+-->
+
+<!-- 1. HTML HEAD SECTION OPTIMIZATION -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Essential meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO meta tags -->
+    <title>C vs C++ - Key Differences & When to Use Each | IT Interview Hub</title>
+    <meta name="description" content="Comprehensive guide comparing C vs C++ programming languages. Learn key differences, performance, and when to choose each language for your projects.">
+    <meta name="keywords" content="C vs C++, programming languages, interview preparation">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:url" content="https://blogstech.site/c-vs-cpp">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="C vs C++ - Key Differences & When to Use Each">
+    <meta property="og:description" content="Comprehensive guide comparing C vs C++ programming languages.">
+    <meta property="og:image" content="https://blogstech.site/images/c-vs-cpp-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="IT Interview Hub">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://blogstech.site/c-vs-cpp">
+    <meta name="twitter:title" content="C vs C++ - Key Differences & When to Use Each">
+    <meta name="twitter:description" content="Comprehensive guide comparing C vs C++ programming languages.">
+    <meta name="twitter:image" content="https://blogstech.site/images/c-vs-cpp-twitter.jpg">
+    
+    <!-- Additional SEO meta tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="author" content="IT Interview Hub">
+    <meta name="language" content="en">
+    
+    <!-- Canonical tag -->
+    <link rel="canonical" href="https://blogstech.site/c-vs-cpp">
+    
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://blogstech.site/c-vs-cpp"
+      },
+      "headline": "C vs C++ - Key Differences & When to Use Each",
+      "description": "Comprehensive guide comparing C vs C++ programming languages.",
+      "image": "https://blogstech.site/images/c-vs-cpp-cover.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "IT Interview Hub Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://blogstech.site#organization"
+      },
+      "datePublished": "2024-01-15T10:00:00+00:00",
+      "dateModified": "2024-01-20T15:30:00+00:00"
+    }
+    </script>
+</head>
+
+<!-- 2. CONTENT STRUCTURE OPTIMIZATION -->
+<body>
+    <!-- Breadcrumb navigation -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/programming-languages">Programming Languages</a></li>
+            <li><a href="/programming-languages/comparison">Language Comparisons</a></li>
+            <li>C vs C++</li>
+        </ol>
+    </nav>
+    
+    <main>
+        <article>
+            <!-- H1 tag - Only one per page -->
+            <h1>C vs C++ - Key Differences & When to Use Each</h1>
+            
+            <div class="article-meta">
+                <span class="author">By IT Interview Hub Team</span>
+                <span class="date">January 20, 2024</span>
+                <span class="read-time">15 min read</span>
+            </div>
+            
+            <!-- Table of contents -->
+            <nav class="table-of-contents">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#key-differences">Key Differences</a></li>
+                    <li><a href="#memory-management">Memory Management</a></li>
+                    <li><a href="#performance">Performance</a></li>
+                    <li><a href="#use-cases">Use Cases</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Proper heading hierarchy -->
+            <h2 id="introduction">Introduction</h2>
+            <p>C and C++ are two of the most influential programming languages in software development history. While C++ was originally designed as an extension of C, these languages have evolved to serve different purposes in modern development.</p>
+            
+            <h2 id="key-differences">Key Differences at a Glance</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>C</th>
+                        <th>C++</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Programming Paradigm</td>
+                        <td>Procedural</td>
+                        <td>Multi-paradigm (Procedural + OOP)</td>
+                    </tr>
+                    <tr>
+                        <td>Memory Management</td>
+                        <td>Manual (malloc/free)</td>
+                        <td>Manual + RAII</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>1. Object-Oriented Programming</h3>
+            <p>C++ introduces <strong>object-oriented programming</strong> concepts that C lacks. This includes classes, inheritance, polymorphism, and encapsulation, making C++ suitable for large-scale applications.</p>
+            
+            <blockquote>
+                <p>"C++ is like C with classes, but it's much more than that. It's a completely different way of thinking about software design."</p>
+                <cite>— Bjarne Stroustrup, Creator of C++</cite>
+            </blockquote>
+            
+            <h3>2. Memory Management</h3>
+            <p>While both languages require manual memory management, C++ provides additional tools...</p>
+            
+            <pre><code class="language-cpp">// C memory allocation
+int* ptr = (int*) malloc(sizeof(int) * 10);
+
+// C++ memory allocation
+int* ptr = new int[10];</code></pre>
+            
+            <h2 id="performance">Performance Comparison</h2>
+            <p>When it comes to performance, both languages have their strengths...</p>
+            
+            <!-- Related content section -->
+            <section class="related-content">
+                <h3>Related Topics</h3>
+                <div class="related-grid">
+                    <article>
+                        <h4><a href="/data-structures">Data Structures</a></h4>
+                        <p>Learn about arrays, linked lists, trees, and more</p>
+                    </article>
+                    <article>
+                        <h4><a href="/algorithms">Algorithms</a></h4>
+                        <p>Master sorting, searching, and problem-solving</p>
+                    </article>
+                    <article>
+                        <h4><a href="/system-design">System Design</a></h4>
+                        <p>Understand architecture and scalability</p>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- FAQ section -->
+            <section class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h3>Which language should I learn first?</h3>
+                    <p>For beginners, C++ might be more beneficial as it introduces object-oriented concepts early on...</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is C++ faster than C?</h3>
+                    <p>Performance depends on how you write the code. Well-optimized C code can be as fast as C++...</p>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+
+<!-- 3. IMAGE OPTIMIZATION -->
+<!-- Optimized images with proper attributes -->
+<img src="https://blogstech.site/images/c-vs-cpp-comparison.webp"
+     alt="C vs C++ comparison chart showing key differences between the two programming languages"
+     width="800"
+     height="400"
+     loading="lazy"
+     decoding="async"
+     srcset="https://blogstech.site/images/c-vs-cpp-comparison-400w.webp 400w,
+             https://blogstech.site/images/c-vs-cpp-comparison-800w.webp 800w,
+             https://blogstech.site/images/c-vs-cpp-comparison-1200w.webp 1200w"
+     sizes="(max-width: 600px) 400px, 800px">
+
+<!-- Picture element for responsive images -->
+<picture>
+  <source media="(max-width: 600px)" srcset="/images/c-vs-cpp-mobile.webp">
+  <source media="(min-width: 601px)" srcset="/images/c-vs-cpp-desktop.webp">
+  <img src="/images/c-vs-cpp-desktop.webp"
+       alt="C vs C++ comparison"
+       loading="lazy"
+       decoding="async">
+</picture>
+
+<!-- 4. INTERNAL AND EXTERNAL LINKING -->
+<!-- Strategic internal linking -->
+<p>Before diving into C++, make sure you understand <a href="/programming-basics">basic programming concepts</a>. For more advanced topics, check out our <a href="/system-design">system design guide</a>.</p>
+
+<!-- External links with proper attributes -->
+<p>You can also refer to the official <a href="https://isocpp.org/" target="_blank" rel="noopener noreferrer">C++ documentation</a> for detailed specifications.</p>
+
+<!-- Next/Previous navigation -->
+<nav class="article-navigation">
+    <a href="/programming-basics" rel="prev">← Previous: Programming Basics</a>
+    <a href="/oop-concepts" rel="next">Next: OOP Concepts →</a>
+</nav>
+
+<!-- 5. MOBILE OPTIMIZATION -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<!-- Responsive CSS -->
+<style>
+/* Mobile-first responsive design */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Touch-friendly buttons */
+.btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1.5rem;
+    font-size: 16px;
+}
+
+/* Readable text */
+body {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+}
+</style>
+
+<!-- 6. PAGE SPEED OPTIMIZATION -->
+<!-- Critical CSS inlined -->
+<style>
+/* Critical above-the-fold styles */
+body{font-family:Inter,sans-serif;line-height:1.6;margin:0;padding:0}
+.header{background:#fff;padding:1rem;box-shadow:0 2px 4px rgba(0,0,0,.1)}
+.main{max-width:1200px;margin:0 auto;padding:1rem}
+.hero{min-height:60vh;display:flex;align-items:center}
+</style>
+
+<!-- Non-critical CSS loaded asynchronously -->
+<link rel="preload" href="/css/non-critical.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/non-critical.css"></noscript>
+
+<!-- Deferred JavaScript -->
+<script src="/js/main.min.js" defer></script>
+<script src="/js/analytics.min.js" async></script>
+
+<!-- Preload critical resources -->
+<link rel="preload" href="/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/css/critical.css" as="style">
+
+<!-- 7. E-A-T SIGNALS -->
+<!-- Author information and expertise -->
+<div class="author-info">
+    <img src="/images/author-avatar.jpg" alt="IT Interview Hub Team">
+    <div class="author-details">
+        <p class="author-name">IT Interview Hub Team</p>
+        <p class="author-bio">Experienced software engineers and interview coaches with 15+ years in tech industry at companies like Google, Microsoft, and Amazon.</p>
+        <p class="last-updated">Last updated: January 20, 2024</p>
+    </div>
+</div>
+
+<!-- Expert tip section -->
+<div class="expert-tip">
+    <h3>💡 Expert Tip</h3>
+    <p>When choosing between C and C++ for interviews, consider the company's tech stack. Most modern companies prefer C++ for its object-oriented capabilities and extensive standard library.</p>
+</div>
+
+<!-- References and citations -->
+<div class="references">
+    <h4>References</h4>
+    <ul>
+        <li><a href="https://isocpp.org/" target="_blank" rel="noopener noreferrer">ISO C++ Official Website</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/C_(programming_language)" target="_blank" rel="noopener noreferrer">C Programming Language Wikipedia</a></li>
+        <li><a href="https://www.stroustrup.com/" target="_blank" rel="noopener noreferrer">Bjarne Stroustrup's Website</a></li>
+    </ul>
+</div>
+
+<!-- 8. ACCESSIBILITY OPTIMIZATION -->
+<!-- Semantic HTML5 structure -->
+<header>
+    <nav aria-label="Main navigation">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/programming-languages">Programming Languages</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <article aria-labelledby="main-heading">
+        <h1 id="main-heading">C vs C++ - Key Differences</h1>
+        <!-- Content -->
+    </article>
+</main>
+
+<!-- ARIA labels and roles -->
+<button aria-expanded="false" aria-controls="mobile-menu">
+    <span class="sr-only">Toggle navigation menu</span>
+</button>
+
+<div role="navigation" aria-label="Table of contents">
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+    </ul>
+</div>
+
+<!-- Skip to content link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- 9. SCHEMA MARKUP EXAMPLES -->
+<!-- Article schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "C vs C++ - Key Differences & When to Use Each",
+  "description": "Comprehensive guide comparing C vs C++ programming languages.",
+  "image": "https://blogstech.site/images/c-vs-cpp-cover.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "IT Interview Hub Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://blogstech.site#organization"
+  },
+  "datePublished": "2024-01-15T10:00:00+00:00",
+  "dateModified": "2024-01-20T15:30:00+00:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blogstech.site/c-vs-cpp"
+  }
+}
+</script>
+
+<!-- FAQ schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between C and C++?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C is a procedural programming language, while C++ is a multi-paradigm language that supports both procedural and object-oriented programming."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Breadcrumb schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://blogstech.site"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Programming Languages",
+      "item": "https://blogstech.site/programming-languages"
+    }
+  ]
+}
+</script>
+
+<!-- 10. COMPLETE ON-PAGE SEO CHECKLIST -->
+<!--
+📋 COMPLETE ON-PAGE SEO CHECKLIST:
+
+✅ HEAD SECTION:
+- [ ] Unique title tag (under 60 chars)
+- [ ] Meta description (under 160 chars)
+- [ ] H1 tag (only one per page)
+- [ ] Proper heading hierarchy (H1 → H2 → H3)
+- [ ] Meta charset UTF-8
+- [ ] Viewport meta tag
+- [ ] Robots meta tag
+- [ ] Canonical tag
+- [ ] Open Graph tags
+- [ ] Twitter Card tags
+- [ ] Language attribute (html lang)
+
+✅ CONTENT:
+- [ ] High-quality, original content
+- [ ] Natural keyword usage
+- [ ] Sufficient content length
+- [ ] Answers search intent
+- [ ] Proper grammar and spelling
+- [ ] Internal linking strategy
+- [ ] External links to authority sites
+- [ ] Multimedia elements (images, videos)
+
+✅ IMAGES:
+- [ ] Alt text for all images
+- [ ] Optimized file sizes
+- [ ] Proper file names
+- [ ] Responsive images (srcset)
+- [ ] Width and height attributes
+- [ ] Lazy loading
+
+✅ TECHNICAL:
+- [ ] Clean URL structure
+- [ ] HTTPS enabled
+- [ ] Fast page load speed
+- [ ] Mobile-friendly design
+- [ ] Schema markup
+- [ ] No broken links
+- [ ] Proper redirects
+
+✅ USER EXPERIENCE:
+- [ ] Easy navigation
+- [ ] Readable fonts
+- [ ] Good contrast ratios
+- [ ] Accessible design
+- [ ] Contact information
+- [ ] Privacy policy and terms
+
+✅ E-A-T SIGNALS:
+- [ ] Clear author information
+- [ ] Author expertise demonstrated
+- [ ] Factually accurate content
+- [ ] Citations and references
+- [ ] Regular updates
+- [ ] User reviews and testimonials
+
+✅ PERFORMANCE:
+- [ ] Critical CSS inlined
+- [ ] Non-critical resources deferred
+- [ ] Images optimized
+- [ ] Browser caching enabled
+- [ ] Gzip compression
+- [ ] CDN usage for static assets
+
+✅ ACCESSIBILITY:
+- [ ] Semantic HTML5 structure
+- [ ] ARIA labels and roles
+- [ ] Keyboard navigation
+- [ ] Screen reader compatible
+- [ ] High contrast mode support
+- [ ] Skip to content links
+
+✅ ANALYTICS:
+- [ ] Google Analytics installed
+- [ ] Search Console setup
+- [ ] Structured data testing
+- [ ] Page speed monitoring
+- [ ] Mobile usability testing
+- [ ] Core Web Vitals tracking
+-->

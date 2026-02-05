@@ -1,0 +1,677 @@
+<!--
+PAGE SPEED AND MOBILE FRIENDLINESS CHECKLIST FOR IT INTERVIEW HUB
+Complete optimization guide for fast loading and mobile-friendly pages
+-->
+
+<!-- 1. CRITICAL RENDERING PATH OPTIMIZATION -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/css/critical.css" as="style">
+    <link rel="preload" href="/js/critical.js" as="script">
+    
+    <!-- Critical CSS inlined -->
+    <style>
+        /* Critical above-the-fold styles */
+        body{font-family:Inter,sans-serif;line-height:1.6;margin:0;padding:0}
+        .header{background:#fff;padding:1rem;box-shadow:0 2px 4px rgba(0,0,0,.1)}
+        .main{max-width:1200px;margin:0 auto;padding:1rem}
+        .hero{min-height:60vh;display:flex;align-items:center}
+        .btn{min-height:44px;min-width:44px;padding:.75rem 1.5rem;font-size:16px}
+    </style>
+    
+    <!-- Non-critical CSS loaded asynchronously -->
+    <link rel="preload" href="/css/non-critical.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/css/non-critical.css"></noscript>
+    
+    <!-- Essential meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C vs C++ - Key Differences | IT Interview Hub</title>
+    <meta name="description" content="Comprehensive guide comparing C vs C++ programming languages for technical interviews.">
+    <link rel="canonical" href="https://blogstech.site/c-vs-cpp">
+</head>
+<body>
+    <!-- Content -->
+    <script src="/js/critical.js" defer></script>
+</body>
+</html>
+
+<!-- 2. IMAGE OPTIMIZATION -->
+<!-- Optimized images with modern formats -->
+<picture>
+  <!-- Modern format for modern browsers -->
+  <source srcset="/images/c-vs-cpp-comparison.webp" type="image/webp">
+  <!-- Fallback for older browsers -->
+  <source srcset="/images/c-vs-cpp-compression.jpg" type="image/jpeg">
+  <!-- Default image -->
+  <img src="/images/c-vs-cpp-comparison.jpg"
+       alt="C vs C++ comparison chart showing key differences"
+       width="800"
+       height="400"
+       loading="lazy"
+       decoding="async"
+       srcset="/images/c-vs-cpp-comparison-400w.jpg 400w,
+               /images/c-vs-cpp-comparison-800w.jpg 800w,
+               /images/c-vs-cpp-comparison-1200w.jpg 1200w"
+       sizes="(max-width: 600px) 400px, 800px">
+</picture>
+
+<!-- Responsive hero image with priority loading -->
+<picture>
+  <source media="(min-width: 768px)" srcset="/images/hero-desktop.webp">
+  <source srcset="/images/hero-mobile.webp">
+  <img src="/images/hero-mobile.webp"
+       alt="IT Interview Hub - Master Your Tech Interview"
+       width="1200"
+       height="600"
+       loading="eager"
+       decoding="sync"
+       importance="high">
+</picture>
+
+<!-- 3. JAVASCRIPT OPTIMIZATION -->
+<!-- Critical JavaScript - inline or head -->
+<script>
+  // Critical functionality only
+  document.addEventListener('DOMContentLoaded', function() {
+    // Essential page interactions
+    initializeNavigation();
+    setupMobileMenu();
+  });
+</script>
+
+<!-- Non-critical JavaScript - deferred -->
+<script src="/js/main.min.js" defer></script>
+<script src="/js/analytics.min.js" async></script>
+
+<!-- Third-party scripts with integrity checks -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"
+        integrity="sha384-ELGqnCszCPqT5G1g1Y1yGgA9t8J8U6qIa7nKlDuvU5hjWv7Sj1Kj+6DlF+QtQy"
+        crossorigin="anonymous"
+        async></script>
+
+<!-- 4. CACHING STRATEGY -->
+<!-- .htaccess for Apache servers -->
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  # CSS and JS
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  # Fonts
+  ExpiresByType font/woff2 "access plus 1 year"
+  # HTML
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
+
+<!-- Service Worker for caching -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(registration) {
+        console.log('SW registered: ', registration);
+      })
+      .catch(function(registrationError) {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
+</script>
+
+<!-- 5. MOBILE-FIRST RESPONSIVE DESIGN -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<style>
+/* Mobile-first CSS */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Touch-friendly buttons */
+.btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1.5rem;
+    font-size: 16px;
+}
+
+/* Readable text */
+body {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+}
+</style>
+
+<!-- 6. MOBILE NAVIGATION -->
+<header class="header">
+    <div class="header-content">
+        <div class="logo">
+            <a href="/">IT Interview Hub</a>
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
+    </div>
+    
+    <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/programming-languages">Programming Languages</a></li>
+            <li><a href="/data-structures">Data Structures</a></li>
+            <li><a href="/algorithms">Algorithms</a></li>
+            <li><a href="/system-design">System Design</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+.header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.mobile-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #333;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: #333;
+    transition: transform 0.3s;
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+.main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.main-nav.active {
+    display: block;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    border-bottom: 1px solid #eee;
+}
+
+.nav-list a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+    
+    .main-nav {
+        display: block;
+        position: static;
+        background: none;
+        box-shadow: none;
+    }
+    
+    .nav-list {
+        display: flex;
+        border: none;
+    }
+    
+    .nav-list li {
+        border: none;
+        margin: 0 1rem;
+    }
+    
+    .nav-list a {
+        padding: 0.5rem 0;
+    }
+}
+</style>
+
+<script>
+document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+    const nav = document.getElementById('main-nav');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+    nav.classList.toggle('active');
+});
+</script>
+
+<!-- 7. MOBILE PERFORMANCE OPTIMIZATION -->
+<head>
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <!-- Critical resources -->
+    <link rel="preload" href="/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/css/mobile-critical.css" as="style">
+    
+    <!-- Mobile-specific optimizations -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <!-- Apple touch icon -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="/manifest.json">
+</head>
+
+<!-- Mobile-optimized images -->
+<picture>
+  <source media="(max-width: 480px)" srcset="/images/c-vs-cpp-mobile-320w.webp 320w">
+  <source media="(max-width: 768px)" srcset="/images/c-vs-cpp-tablet-768w.webp 768w">
+  <source media="(min-width: 769px)" srcset="/images/c-vs-cpp-desktop-1200w.webp 1200w">
+  <img src="/images/c-vs-cpp-mobile-320w.webp"
+       alt="C vs C++ comparison"
+       loading="lazy"
+       decoding="async">
+</picture>
+
+<!-- 8. CORE WEB VITALS OPTIMIZATION -->
+<!-- Largest Contentful Paint (LCP) -->
+<head>
+    <!-- Preload LCP element -->
+    <link rel="preload" as="image" href="/images/hero-image.webp">
+    
+    <!-- Inline critical CSS -->
+    <style>
+        .hero { background-image: url('/images/hero-small.webp'); }
+        @media (min-width: 768px) {
+            .hero { background-image: url('/images/hero-large.webp'); }
+        }
+    </style>
+</head>
+
+<!-- First Input Delay (FID) -->
+<script>
+    // Split JavaScript into smaller chunks
+    // Use event delegation
+    // Minimize main thread work
+    document.addEventListener('DOMContentLoaded', function() {
+        // Non-critical interactions
+        setupAnalytics();
+        initializeTooltips();
+    });
+</script>
+
+<!-- Cumulative Layout Shift (CLS) -->
+<style>
+    /* Reserve space for images and ads */
+    .image-placeholder {
+        width: 100%;
+        height: 400px;
+        background: #f0f0f0;
+    }
+    
+    /* Avoid inserting content above existing content */
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    
+    /* Use transform animations instead of changing layout */
+    .slide-in {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .slide-in.active {
+        transform: translateX(0);
+    }
+</style>
+
+<!-- 9. PERFORMANCE MONITORING -->
+<!-- Web Vitals monitoring -->
+<script>
+import {getCLS, getFID, getFCP, getLCP, getTTFB} from 'web-vitals';
+
+function sendToAnalytics(metric) {
+    // Send to your analytics service
+    gtag('event', metric.name, {
+        value: Math.round(metric.value),
+        event_category: 'Web Vitals',
+        event_label: metric.id,
+        non_interaction: true,
+    });
+}
+
+getCLS(sendToAnalytics);
+getFID(sendToAnalytics);
+getFCP(sendToAnalytics);
+getLCP(sendToAnalytics);
+getTTFB(sendToAnalytics);
+</script>
+
+<!-- 10. SERVICE WORKER FOR CACHING -->
+<!-- sw.js -->
+const CACHE_NAME = 'itinterviewhub-v1';
+const urlsToCache = [
+    '/',
+    '/css/critical.css',
+    '/css/non-critical.css',
+    '/js/critical.js',
+    '/js/main.min.js',
+    '/fonts/inter-regular.woff2',
+    '/images/hero-mobile.webp'
+];
+
+self.addEventListener('install', function(event) {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                return cache.addAll(urlsToCache);
+            })
+    );
+});
+
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request)
+            .then(function(response) {
+                // Cache hit - return response
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request);
+            })
+    );
+});
+
+<!-- 11. MOBILE-FIRST CSS GRID -->
+<style>
+/* Mobile-first grid system */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive breakpoints */
+@media (min-width: 640px) {
+    .grid-sm-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-sm-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 768px) {
+    .grid-md-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-md-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-md-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .grid-lg-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-lg-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-lg-4 { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
+
+<!-- 12. ACCESSIBLE MOBILE DESIGN -->
+<!-- Touch-friendly navigation -->
+<nav class="mobile-nav" role="navigation" aria-label="Main navigation">
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="hamburger"></span>
+    </button>
+    <ul id="nav-menu" class="nav-menu" hidden>
+        <li><a href="/">Home</a></li>
+        <li><a href="/programming-languages">Languages</a></li>
+        <li><a href="/data-structures">Data Structures</a></li>
+    </ul>
+</nav>
+
+<!-- Accessible form elements -->
+<form class="mobile-form">
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="4" required></textarea>
+    
+    <button type="submit" class="btn-submit">Send Message</button>
+</form>
+
+<style>
+/* Mobile form styles */
+.mobile-form {
+    padding: 1rem;
+}
+
+.mobile-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.mobile-form input,
+.mobile-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px; /* Prevents zoom on iOS */
+}
+
+.mobile-form .btn-submit {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+</style>
+
+<!-- 13. COMPLETE PAGE SPEED & MOBILE CHECKLIST -->
+<!--
+📋 COMPLETE PAGE SPEED & MOBILE CHECKLIST:
+
+✅ PAGE SPEED:
+- [ ] Page load time under 3 seconds
+- [ ] Time to Interactive under 5 seconds
+- [ ] Core Web Vitals passed
+- [ ] Images optimized and compressed
+- [ ] CSS and JavaScript minified
+- [ ] Browser caching enabled
+- [ ] Gzip/Brotli compression
+- [ ] Critical resources prioritized
+- [ ] Non-critical resources deferred
+- [ ] CDN implemented
+- [ ] Server response time under 200ms
+- [ ] Redirects minimized
+
+✅ MOBILE FRIENDLINESS:
+- [ ] Responsive design implemented
+- [ ] Viewport meta tag correct
+- [ ] Text readable without zooming
+- [ ] Touch targets properly sized
+- [ ] No horizontal scrolling
+- [ ] Mobile navigation functional
+- [ ] Content fits screen width
+- [ ] Buttons and links spaced properly
+- [ ] Forms work on mobile
+- [ ] No Flash or unsupported plugins
+- [ ] Font sizes 16px or larger
+- [ ] Line height adequate (1.4+)
+
+✅ TECHNICAL OPTIMIZATIONS:
+- [ ] HTTPS enabled
+- [ ] Service worker implemented
+- [ ] Image lazy loading
+- [ ] Code splitting implemented
+- [ ] Tree shaking enabled
+- [ ] Resource hints used
+- [ ] Font loading optimized
+- [ ] Critical CSS inlined
+- [ ] Render-blocking resources eliminated
+- [ ] Third-party scripts optimized
+
+✅ USER EXPERIENCE:
+- [ ] Above-the-fold content loads quickly
+- [ ] Smooth scrolling and interactions
+- [ ] No annoying pop-ups on mobile
+- [ ] Accessible design
+- [ ] Keyboard navigation works
+- [ ] Screen reader compatible
+- [ ] High contrast mode support
+- [ ] Error states handled gracefully
+
+✅ MONITORING:
+- [ ] Real user monitoring setup
+- [ ] Performance budgets defined
+- [ ] Regular performance audits
+- [ ] Mobile testing across devices
+- [ ] Network condition testing
+- [ ] Analytics tracking performance
+- [ ] Error monitoring implemented
+
+✅ CORE WEB VITALS:
+- [ ] LCP under 2.5 seconds
+- [ ] FID under 100 milliseconds
+- [ ] CLS under 0.1
+- [ ] Image dimensions specified
+- [ ] Font loading optimized
+- [ ] No layout shifts
+- [ ] Interactive elements responsive
+
+✅ MOBILE SPECIFIC:
+- [ ] Touch-friendly interface
+- [ ] Swipe gestures supported
+- [ ] Mobile-specific features
+- [ ] App-like experience
+- [ ] Offline functionality
+- [ ] Push notifications (if applicable)
+- [ ] Deep linking support
+- [ ] Share functionality
+
+✅ PERFORMANCE TESTING:
+- [ ] Google PageSpeed Insights test
+- [ ] GTmetrix performance test
+- [ ] WebPageTest analysis
+- [ ] Chrome DevTools Lighthouse
+- [ ] Mobile-Friendly Test
+- [ ] Core Web Vitals Report
+- [ ] Real device testing
+- [ ] Network throttling test
+-->
